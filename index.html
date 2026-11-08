@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexágono & Animación Trazo SVG</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#a855f7',
+                        neonPink: '#ec4899',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+        body {
+            font-family: 'JetBrains+Mono', monospace;
+            background-color: #0b0f19;
+            overflow-x: hidden;
+        }
+
+        /* Neon Glow Filter Effect */
+        .glow-path {
+            filter: drop-shadow(0 0 6px rgba(0, 243, 255, 0.8)) 
+                    drop-shadow(0 0 16px rgba(0, 243, 255, 0.4));
+        }
+
+        .glow-hexagon {
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)) 
+                    drop-shadow(0 0 25px rgba(168, 85, 247, 0.2));
+        }
+
+        /* El vídeo conserva la silueta hexagonal, pero sin dibujar el marco.
+           La máscara suavizada funde sus bordes con el fondo de la página. */
+        #hexagon-svg { display: none !important; }
+        #image-container {
+            inset: 0 !important;
+            width: 100%;
+            height: 100%;
+            overflow: hidden !important;
+            clip-path: none !important;
+            background: transparent !important;
+            -webkit-mask: url(#hexagon-soft-mask);
+            mask: url(#hexagon-soft-mask);
+            mask-mode: alpha;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out;
+        }
+        #image-container.video-ready { opacity: 1; }
+        #hexagon-video {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 150%;
+            height: 150%;
+            max-width: none;
+            object-fit: contain;
+            object-position: 50% 50%;
+            transform: translate(-50%, -50%);
+            background: transparent !important;
+            /* El negro del MP4 se funde con el fondo de la página mediante Screen. */
+            mix-blend-mode: screen;
+            filter: none;
+        }
+
+        /* Espacio vertical suficiente para mostrar el rótulo y los tres botones
+           completos al final de la animación de scroll. */
+        #split-heading-wrapper {
+            min-height: 240px;
+        }
+        #revealed-text {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        /* Glassmorphism Card */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Pulse Animation for Hexagon Node Points */
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.4); opacity: 1; }
+        }
+
+        .pulse-dot {
+            animation: pulseDot 2s infinite ease-in-out;
+        }
+
+        /* Scroll Indicator Bounce Animation */
+        @keyframes scrollIndicator {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(8px); opacity: 1; }
+        }
+        .scroll-bounce {
+            animation: scrollIndicator 1.8s infinite ease-in-out;
+        }
+
+        /* Base styles for split text clipping container */
+        .split-text-base {
+            will-change: transform, clip-path;
+        }
+
+        /* Fullscreen Team Overlay Zigzag Split Effect */
+        .page-split-panel {
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            will-change: transform, opacity;
+        }
+
+        #about-overlay.active #about-split-left {
+            transform: translateX(-100%);
+        }
+        #about-overlay.active #about-split-right {
+            transform: translateX(100%);
+        }
+
+        /* Custom Scrollbar for Blog Feed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 243, 255, 0.4);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="h-[500vh] w-full bg-[#0b0f19] select-none">
+    <!-- Máscara hexagonal invisible con borde difuminado hacia el fondo -->
+    <svg aria-hidden="true" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden">
+        <defs>
+            <filter id="hexagon-mask-softness" x="-15%" y="-15%" width="130%" height="130%">
+                <feGaussianBlur stdDeviation="0.018" />
+            </filter>
+            <mask id="hexagon-soft-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+                <polygon points="0.5,0 1,0.25 1,0.75 0.5,1 0,0.75 0,0.25"
+                         fill="white" filter="url(#hexagon-mask-softness)" />
+            </mask>
+        </defs>
+    </svg>
+
+
+    <!-- Fixed Viewport View Container -->
+    <div class="fixed inset-0 w-full h-screen overflow-hidden flex items-center justify-center">
+
+        <!-- Background Subtle Grid -->
+        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none"></div>
+
+        <!-- Stage 3 Splitting Vertical Crack SVG Layer -->
+        <svg id="crack-svg-stage" class="absolute inset-0 w-full h-full pointer-events-none z-25 opacity-0">
+            <!-- Left Half of Crack -->
+            <path id="crack-path-left" 
+                  d="" 
+                  fill="none" 
+                  stroke="#00f3ff" 
+                  stroke-width="5" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round"
+                  filter="url(#neonGlow)" />
+            <!-- Right Half of Crack -->
+            <path id="crack-path-right" 
+                  d="" 
+                  fill="none" 
+                  stroke="#00f3ff" 
+                  stroke-width="5" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round"
+                  filter="url(#neonGlow)" />
+        </svg>
+
+        <!-- Main Canvas / SVG Overlay (Stage 1 & 2) -->
+        <svg id="svg-stage" class="absolute inset-0 w-full h-full pointer-events-none z-10 transition-transform ease-out duration-100">
+            <defs>
+                <!-- Cyan-to-Purple Gradient for Path -->
+                <linearGradient id="pathGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#00f3ff" />
+                    <stop offset="50%" stop-color="#a855f7" />
+                    <stop offset="100%" stop-color="#ec4899" />
+                </linearGradient>
+
+                <!-- Glow Filter -->
+                <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Dynamic Animated Path -->
+            <path id="animated-path" 
+                  d="" 
+                  fill="none" 
+                  stroke="url(#pathGradient)" 
+                  stroke-width="5" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round"
+                  class="glow-path" />
+        </svg>
+
+        <!-- Central Hexagon Container -->
+        <div id="hexagon-wrapper" class="relative z-20 flex items-center justify-center pointer-events-auto cursor-pointer group transition-all ease-out duration-75 origin-center">
+            <!-- SVG Hexagon Render (Outer frame overlay) -->
+            <svg id="hexagon-svg" class="w-full h-full glow-hexagon transition-transform duration-500 group-hover:scale-105 absolute inset-0 pointer-events-none z-20">
+                <polygon id="hexagon-polygon" 
+                         points="" 
+                         fill="rgba(15, 23, 42, 0.6)" 
+                         stroke="#a855f7" 
+                         stroke-width="3.5" 
+                         stroke-linejoin="round" />
+                <polygon id="hexagon-inner-polygon" 
+                         points="" 
+                         fill="none" 
+                         stroke="rgba(0, 243, 255, 0.5)" 
+                         stroke-width="1.5" 
+                         stroke-dasharray="6,4" />
+            </svg>
+
+            <!-- Embedded Video inside Hexagon -->
+            <div id="image-container" class="absolute z-10 flex items-center justify-center">
+                <video id="hexagon-video" autoplay muted playsinline preload="auto"
+                       class="block w-full h-full object-contain"
+                       style="object-position: 50% 50%; background: transparent;"
+                       aria-label="Animación del logotipo Acid Loom">
+                    <source src="./acidloom.webm" type="video/webm">
+                    <source src="./acidloomlogo-video.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de vídeo.
+                </video>
+            </div>
+        </div>
+
+        <!-- Ascending Text Reveal (Stage 2) & Split Effect (Stage 3) -->
+        <div id="scroll-text-container" class="absolute z-20 text-center pointer-events-none opacity-0 transform translate-y-32 scale-95 max-w-5xl px-6 w-full flex flex-col items-center justify-center">
+            
+            <!-- Badge & Subtitle -->
+            <div id="text-header" class="transition-opacity duration-300">
+                <span class="inline-block px-3 py-1 mb-4 rounded-full text-xs font-semibold tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
+                    TALLER DE PRÁCTICAS DE FRONTERA
+                </span>
+            </div>
+
+            <!-- Split Heading Container -->
+            <div id="split-heading-wrapper" class="relative w-full py-4 flex flex-col justify-center items-center overflow-hidden min-h-[240px] pointer-events-none">
+                
+                <!-- Stage 4: Hidden Layer Revealed ONLY WITHIN THE RIFT GAP -->
+                <div id="revealed-text-wrapper" class="absolute inset-y-0 flex items-center justify-center overflow-hidden z-50 transition-all duration-75 pointer-events-auto" style="width: 0px;">
+                    <div id="revealed-text" class="whitespace-nowrap flex flex-col items-center justify-center opacity-0 scale-75 pointer-events-none transition-all duration-300">
+                        <span class="text-xs uppercase tracking-[0.3em] text-purple-400 font-bold mb-3">THE ACID LOOM</span>
+                        <div class="flex flex-col items-stretch justify-center gap-2.5 w-48 md:w-56 pointer-events-auto">
+                            <button id="btn-blog" class="glass-panel px-6 py-2.5 rounded-xl text-center text-sm md:text-base font-bold text-purple-400 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 uppercase tracking-widest border border-purple-500/30 cursor-pointer relative z-50 pointer-events-auto">
+                                Bitácora
+                            </button>
+                            <button id="btn-projects" class="glass-panel px-6 py-2.5 rounded-xl text-center text-sm md:text-base font-bold text-purple-400 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 uppercase tracking-widest border border-purple-500/30 cursor-pointer relative z-50 pointer-events-auto">
+                                Quimeras
+                            </button>
+                            <button id="btn-about" class="glass-panel px-6 py-2.5 rounded-xl text-center text-sm md:text-base font-bold text-purple-400 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 uppercase tracking-widest border border-purple-500/30 cursor-pointer relative z-50 pointer-events-auto">
+                                Nosotros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left Split Half (Headline + Footer text) -->
+                <div id="text-left" class="split-text-base w-full text-center relative z-10 transition-transform duration-75 flex flex-col items-center justify-center pointer-events-none">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 tracking-tight whitespace-nowrap">
+                        THE ACID LOOM
+                    </h2>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl transition-opacity duration-300 mt-2 whitespace-normal px-4">
+                        En la frontera entre dos reactivos es donde empieza nuestro proceso. No trabajamos sobre el lienzo convencional.
+                        En nuestro taller nos adentramos en una exploración de lo que existe y lo que pudiera existir o haber existido. Te invitamos a adentrarte 
+                        en un tejido donde la intución estética, la filosofía y la física fundamental disuelven sus propios limites. 
+                    </p>
+                </div>
+
+                <!-- Right Split Half (Headline + Footer text) -->
+                <div id="text-right" class="split-text-base absolute inset-0 w-full text-center z-10 transition-transform duration-75 flex flex-col items-center justify-center pointer-events-none">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 tracking-tight whitespace-nowrap">
+                        THE ACID LOOM
+                    </h2>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl transition-opacity duration-300 mt-2 whitespace-normal px-4">
+                        En la frontera entre dos reactivos es donde empieza nuestro proceso. No trabajamos sobre el lienzo convencional.
+                        En nuestro taller nos adentramos en una exploración de lo que existe y lo que pudiera existir o haber existido. Te invitamos a adentrarte 
+                        en un tejido donde la intución estética, la filosofía y la física fundamental disuelven sus propios limites. 
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Scroll Indicator Hint -->
+        <div id="scroll-hint" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-opacity duration-700 flex flex-col items-center space-y-2">
+            <span class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">Haz Scroll</span>
+            <div class="w-5 h-8 rounded-full border-2 border-slate-500/50 flex items-start justify-center p-1">
+                <div class="w-1 h-2 bg-cyan-400 rounded-full scroll-bounce"></div>
+            </div>
+        </div>
+</div>
+
+    <!-- Fullscreen "Nosotros" Screen Overlay with ZigZag Split Transition -->
+    <div id="about-page" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-500 flex flex-col items-center justify-center p-6 overflow-y-auto">
+        <!-- Zigzag Split Curtain Panels -->
+        <div id="about-curtain-left" class="page-split-panel fixed inset-y-0 left-0 w-1/2 bg-[#0b0f19] z-10 border-r-2 border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
+        <div id="about-curtain-right" class="page-split-panel fixed inset-y-0 right-0 w-1/2 bg-[#0b0f19] z-10 border-l-2 border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
+
+        <!-- Content Container -->
+        <div id="about-content" class="relative z-20 max-w-4xl w-full flex flex-col items-center justify-center space-y-8 my-auto opacity-0 transform translate-y-8 transition-all duration-700">
+            <!-- Header -->
+            <div class="text-center space-y-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-widest text-purple-400 bg-purple-950/60 border border-purple-500/30 uppercase">
+                    THE ACID LOOM
+                </span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 uppercase tracking-tight">
+                    Quienes somos
+                </h2>
+                <p class="text-slate-400 text-sm max-w-md mx-auto">
+                    The Acid Loom es un estudio que trabaja tanto con materia como con ideas. Si te interesa lo que hacemos contáctanos.
+                </p>
+            </div>
+
+            <!-- Team Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <!-- CEO Card -->
+                <div class="glass-panel p-6 rounded-2xl border border-purple-500/30 hover:border-purple-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] group flex flex-col items-center text-center space-y-4">
+                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-purple-500 to-cyan-400 shadow-lg shadow-purple-500/20">
+                        <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <img    src="images/MiguelMTT.jpg"    
+                                    alt="Miguel MTT"
+                                    class="w-full h-full object-cover rounded-full transition-transform duration-300     group-hover:scale-110"
+                                    style="object-position: 50% 90%;"
+                             />
+                            <!-- <svg class="w-12 h-12 text-purple-400 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg> -->
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 tracking-wide">Miguel Moreno-Torres Tirado</h3>
+                        <p class="text-xs font-semibold text-purple-400 tracking-widest uppercase mt-0.5">CEO & Director Creativo</p>
+                    </div>
+                    <a href="mailto:carcubus@gmail.com" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">carcubus@gmail.com</a>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Fundador y propietario del estudio. Dirige la estrategia ejecutiva y la orientación artística y conceptual de las quimeras. 
+                    </p>
+                </div>
+
+                <!-- CMO Card -->
+                <div class="glass-panel p-6 rounded-2xl border border-pink-500/30 hover:border-pink-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(236,72,153,0.25)] group flex flex-col items-center text-center space-y-4">
+                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-pink-500 to-purple-400 shadow-lg shadow-pink-500/20">
+                        <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <img    src="images/DianaRN.jpg"    
+                                    alt="Diana RN"
+                                    class="w-full h-full object-cover rounded-full transition-transform duration-300     group-hover:scale-110"
+                                    style="object-position: 50% 50%;"
+                             />
+                            <!-- <svg class="w-12 h-12 text-pink-400 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                            </svg> -->
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 tracking-wide">Diana Rodríguez Nistal</h3>
+                        <p class="text-xs font-semibold text-pink-400 tracking-widest uppercase mt-0.5">CMO & Técnico especialista</p>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Lidera la comunicación de la marca y la estrategia comercial. Especialista en edición y acabados.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <button id="btn-close-about" class="glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-cyan-400 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Volver</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fullscreen "Bitácora" News Feed Overlay with ZigZag Split Transition -->
+    <div id="blog-page" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-500 flex flex-col items-center justify-center p-4 md:p-6 overflow-hidden">
+        <!-- Zigzag Split Curtain Panels -->
+        <div id="blog-curtain-left" class="page-split-panel fixed inset-y-0 left-0 w-1/2 bg-[#0b0f19] z-10 border-r-2 border-cyan-500/50 shadow-[0_0_20px_rgba(0,243,255,0.5)]"></div>
+        <div id="blog-curtain-right" class="page-split-panel fixed inset-y-0 right-0 w-1/2 bg-[#0b0f19] z-10 border-l-2 border-cyan-500/50 shadow-[0_0_20px_rgba(0,243,255,0.5)]"></div>
+
+        <!-- Content Container -->
+        <div id="blog-content" class="relative z-20 max-w-4xl w-full h-full max-h-[85vh] flex flex-col items-center justify-between opacity-0 transform translate-y-8 transition-all duration-700 my-auto">
+            
+            <!-- Feed Header -->
+            <div class="text-center space-y-1 mb-4 flex-shrink-0">
+                <span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
+                    NOVEDADES & DIARIO DIGITAL
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 uppercase tracking-tight">
+                    Bitácora
+                </h2>
+            </div>
+
+            <!-- Scrollable News Feed -->
+            <div class="w-full overflow-y-auto flex-1 pr-2 space-y-4 custom-scrollbar">
+                
+                <!-- Article 1: Visual News with Image -->
+                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] flex flex-col md:flex-row gap-5 items-center">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" 
+                         alt="Geometría Neón" 
+                         onerror="this.src='https://placehold.co/600x400/0b0f19/00f3ff?text=Geometria+Vectorial'"
+                         class="w-full md:w-48 h-36 object-cover rounded-xl border border-cyan-500/20" />
+                    <div class="space-y-2 flex-1">
+                        <div class="flex items-center space-x-3 text-xs">
+                            <span class="text-cyan-400 font-bold uppercase tracking-wider">Lanzamiento</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="text-slate-400">04 Nov, 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-100 hover:text-cyan-400 transition-colors cursor-pointer">
+                            Rediseño vectorial y transiciones geométricas continuas
+                        </h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Implementamos algoritmos dinámicos de interpolación SVG para generar fracturas de grieta neón y divisiones de contenido en tiempo real.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Article 2: Text-Only News -->
+                <article class="glass-panel p-5 rounded-2xl border border-purple-500/30 hover:border-purple-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] space-y-2">
+                    <div class="flex items-center space-x-3 text-xs">
+                        <span class="text-purple-400 font-bold uppercase tracking-wider">Reflexión</span>
+                        <span class="text-slate-500">•</span>
+                        <span class="text-slate-400">01 Nov, 2026</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 hover:text-purple-400 transition-colors cursor-pointer">
+                        El futuro de la experiencia web interactiva en 2027
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Exploramos cómo el renderizado híbrido canvas-SVG sustituye a las transiciones estáticas tradicionales, dando paso a narrativas visuales reactivas al desplazamiento del usuario.
+                    </p>
+                </article>
+
+                <!-- Article 3: Visual News with Image -->
+                <article class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] flex flex-col md:flex-row gap-5 items-center">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" 
+                         alt="Tecnología Neón" 
+                         onerror="this.src='https://placehold.co/600x400/0b0f19/ec4899?text=Tecnologia+Cyber'"
+                         class="w-full md:w-48 h-36 object-cover rounded-xl border border-pink-500/20" />
+                    <div class="space-y-2 flex-1">
+                        <div class="flex items-center space-x-3 text-xs">
+                            <span class="text-pink-400 font-bold uppercase tracking-wider">Innovación</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="text-slate-400">28 Oct, 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-100 hover:text-pink-400 transition-colors cursor-pointer">
+                            Sincronización estética neón y sistemas de interfaz adaptativos
+                        </h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Analizamos la combinación de patrones oscuros de contraste alto con sombras de luz difusa neón para reducir la fatiga visual.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Article 4: Text-Only News -->
+                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] space-y-2">
+                    <div class="flex items-center space-x-3 text-xs">
+                        <span class="text-cyan-400 font-bold uppercase tracking-wider">Comunicado</span>
+                        <span class="text-slate-500">•</span>
+                        <span class="text-slate-400">20 Oct, 2026</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-100 hover:text-cyan-400 transition-colors cursor-pointer">
+                        Actualización de rendimiento en capas vectoriales
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Optimizamos los tiempos de cálculo de rutas SVG para mantener 60 FPS estables durante el desplazamiento en dispositivos móviles.
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- Back Button -->
+            <button id="btn-close-blog" class="mt-4 flex-shrink-0 glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-cyan-400 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Volver</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fullscreen "Quimeras" Interactive Galaxy Overlay -->
+    <div id="projects-page" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-500 flex flex-col items-center justify-center p-4 overflow-hidden">
+        <!-- Zigzag Split Curtain Panels -->
+        <div id="projects-curtain-left" class="page-split-panel fixed inset-y-0 left-0 w-1/2 bg-[#0b0f19] z-10 border-r-2 border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
+        <div id="projects-curtain-right" class="page-split-panel fixed inset-y-0 right-0 w-1/2 bg-[#0b0f19] z-10 border-l-2 border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
+
+        <!-- Galaxy Canvas Container -->
+        <div id="projects-content" class="relative z-20 max-w-5xl w-full h-full flex flex-col items-center justify-between opacity-0 transform translate-y-8 transition-all duration-700 py-4">
+            
+            <!-- Header -->
+            <div class="text-center space-y-1 flex-shrink-0 z-20">
+                <span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold tracking-widest text-purple-400 bg-purple-950/60 border border-purple-500/30 uppercase">
+                    Los proyectos de Acid Loom
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-500 uppercase tracking-tight">
+                    Quimeras
+                </h2>
+                <p class="text-xs text-slate-400">No es fácil acotar nuestro campo de trabajo, mejor te invitamos a adentrarte en lo que hacemos.</p>
+            </div>
+
+            <!-- Galaxy Canvas Stage -->
+            <div class="relative w-full flex-1 max-h-[65vh] flex items-center justify-center my-auto">
+                <canvas id="galaxy-canvas" class="w-full h-full rounded-3xl border border-purple-500/20 bg-slate-950/40 backdrop-blur-md cursor-pointer"></canvas>
+
+                <!-- Project Detail Glass Card Modal -->
+                <div id="project-detail-modal" class="absolute inset-x-4 bottom-4 md:inset-x-auto md:bottom-8 max-w-md mx-auto glass-panel p-5 rounded-2xl border border-cyan-500/40 opacity-0 pointer-events-none transition-all duration-300 z-30 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span id="project-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 bg-cyan-950/80 border border-cyan-500/30 uppercase">ECHOES OF THE FRACTAL MAZE</span>
+                        <button id="btn-close-project-modal" class="text-slate-400 hover:text-white transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <h3 id="project-title" class="text-lg font-bold text-slate-100">Echoes of the Fractal Maze</h3>
+                    <p id="project-desc" class="text-xs text-slate-400 leading-relaxed">Representación interactiva de partículas gravitacionales en tiempo real.</p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <button id="btn-close-projects" class="mt-2 flex-shrink-0 glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-purple-400 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-purple-500/30 flex items-center space-x-2 cursor-pointer z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Volver</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Script Execution -->
+    <script>
+        // Mantener el último fotograma del vídeo visible al terminar.
+        const hexagonVideo = document.getElementById('hexagon-video');
+        const imageContainer = document.getElementById('image-container');
+        const revealVideo = () => imageContainer.classList.add('video-ready');
+        if (hexagonVideo.readyState >= 2) revealVideo();
+        else hexagonVideo.addEventListener('loadeddata', revealVideo, { once: true });
+        hexagonVideo.addEventListener('ended', () => {
+            hexagonVideo.pause();
+            if (Number.isFinite(hexagonVideo.duration)) {
+                hexagonVideo.currentTime = hexagonVideo.duration;
+            }
+        });
+
+        // Global State & Elements
+        const svgStage = document.getElementById('svg-stage');
+        const animatedPath = document.getElementById('animated-path');
+        const crackSvgStage = document.getElementById('crack-svg-stage');
+        const crackPathLeft = document.getElementById('crack-path-left');
+        const crackPathRight = document.getElementById('crack-path-right');
+
+        const hexWrapper = document.getElementById('hexagon-wrapper');
+        const hexPolygon = document.getElementById('hexagon-polygon');
+        const hexInnerPolygon = document.getElementById('hexagon-inner-polygon');
+        
+        const scrollTextContainer = document.getElementById('scroll-text-container');
+        const textLeft = document.getElementById('text-left');
+        const textRight = document.getElementById('text-right');
+        const textHeader = document.getElementById('text-header');
+        const revealedTextWrapper = document.getElementById('revealed-text-wrapper');
+        const revealedText = document.getElementById('revealed-text');
+        const scrollHint = document.getElementById('scroll-hint');
+        
+
+        const btnAbout = document.getElementById('btn-about');
+        const aboutPage = document.getElementById('about-page');
+        const aboutCurtainLeft = document.getElementById('about-curtain-left');
+        const aboutCurtainRight = document.getElementById('about-curtain-right');
+        const aboutContent = document.getElementById('about-content');
+        const btnCloseAbout = document.getElementById('btn-close-about');
+
+        const btnBlog = document.getElementById('btn-blog');
+        const blogPage = document.getElementById('blog-page');
+        const blogCurtainLeft = document.getElementById('blog-curtain-left');
+        const blogCurtainRight = document.getElementById('blog-curtain-right');
+        const blogContent = document.getElementById('blog-content');
+        const btnCloseBlog = document.getElementById('btn-close-blog');
+
+        const btnProjects = document.getElementById('btn-projects');
+        const projectsPage = document.getElementById('projects-page');
+        const projectsCurtainLeft = document.getElementById('projects-curtain-left');
+        const projectsCurtainRight = document.getElementById('projects-curtain-right');
+        const projectsContent = document.getElementById('projects-content');
+        const btnCloseProjects = document.getElementById('btn-close-projects');
+
+        const galaxyCanvas = document.getElementById('galaxy-canvas');
+        const projectDetailModal = document.getElementById('project-detail-modal');
+        const projectBadge = document.getElementById('project-badge');
+        const projectTitle = document.getElementById('project-title');
+        const projectDesc = document.getElementById('project-desc');
+        const btnCloseProjectModal = document.getElementById('btn-close-project-modal');
+
+        let galaxyAnimationId = null;
+        let galaxyParticles = [];
+        let projectNodes = [];
+        let hoveredNode = null;
+
+        let animationStartTime = null;
+
+        let animationDuration = 3000;
+        let animationFrameId = null;
+        let pathTotalLength = 0;
+        let crackTotalLength = 0;
+        let currentPathData = "";
+        let hexPoints = [];
+        let rawPathPoints = [];
+
+        // Calculate Hexagon Geometry
+        function calculateHexagonGeometry() {
+            const h = window.innerHeight;
+            const w = window.innerWidth;
+            const radius = h / 6;
+            const hexHeight = radius * 2;
+            const hexWidth = Math.sqrt(3) * radius;
+
+            const centerX = w / 2;
+            const centerY = h / 2;
+
+            hexWrapper.style.width = `${hexWidth}px`;
+            hexWrapper.style.height = `${hexHeight}px`;
+
+            hexPoints = [];
+            const angles = [-90, -30, 30, 90, 150, 210];
+            
+            angles.forEach(angleDeg => {
+                const rad = (angleDeg * Math.PI) / 180;
+                const x = centerX + radius * Math.cos(rad);
+                const y = centerY + radius * Math.sin(rad);
+                hexPoints.push({ x, y });
+            });
+
+            const localPoints = hexPoints.map(p => `${p.x - (centerX - hexWidth/2)},${p.y - (centerY - hexHeight/2)}`).join(' ');
+            hexPolygon.setAttribute('points', localPoints);
+
+            const innerRadius = radius * 0.85;
+            const innerPoints = angles.map(angleDeg => {
+                const rad = (angleDeg * Math.PI) / 180;
+                const x = (hexWidth / 2) + innerRadius * Math.cos(rad);
+                const y = (hexHeight / 2) + innerRadius * Math.sin(rad);
+                return `${x},${y}`;
+            }).join(' ');
+            hexInnerPolygon.setAttribute('points', innerPoints);
+
+            return { centerX, centerY, radius, hexWidth, hexHeight };
+        }
+
+        // Generate dynamic Zig-Zag SVG Path
+        function generatePathData() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            const startP = { x: 0, y: h };
+            const endP = { x: w, y: 0 };
+
+            const pTopLeftHex = hexPoints[5];
+            const pTopHex = hexPoints[0];
+            const pTopRightHex = hexPoints[1];
+
+            rawPathPoints = [startP];
+
+            let d = `M ${startP.x},${startP.y} `;
+
+            const steps1 = 3;
+            for (let i = 1; i <= steps1; i++) {
+                const progress = i / (steps1 + 1);
+                const targetX = startP.x + (pTopLeftHex.x - startP.x) * progress;
+                const targetY = startP.y + (pTopLeftHex.y - startP.y) * progress;
+
+                const offsetMagnitude = (Math.random() - 0.5) * (w * 0.12);
+                const zigX = parseFloat((targetX + offsetMagnitude).toFixed(1));
+                const zigY = parseFloat((targetY - (Math.random() * 30)).toFixed(1));
+
+                d += `L ${zigX},${zigY} `;
+                rawPathPoints.push({ x: zigX, y: zigY });
+            }
+
+            d += `L ${pTopLeftHex.x.toFixed(1)},${pTopLeftHex.y.toFixed(1)} `;
+            rawPathPoints.push({ x: pTopLeftHex.x, y: pTopLeftHex.y });
+
+            d += `L ${pTopHex.x.toFixed(1)},${pTopHex.y.toFixed(1)} `;
+            rawPathPoints.push({ x: pTopHex.x, y: pTopHex.y });
+
+            d += `L ${pTopRightHex.x.toFixed(1)},${pTopRightHex.y.toFixed(1)} `;
+            rawPathPoints.push({ x: pTopRightHex.x, y: pTopRightHex.y });
+
+            const steps2 = 3;
+            for (let i = 1; i <= steps2; i++) {
+                const progress = i / (steps2 + 1);
+                const targetX = pTopRightHex.x + (endP.x - pTopRightHex.x) * progress;
+                const targetY = pTopRightHex.y + (endP.y - pTopRightHex.y) * progress;
+
+                const offsetMagnitude = (Math.random() - 0.5) * (w * 0.12);
+                const zigX = parseFloat((targetX + offsetMagnitude).toFixed(1));
+                const zigY = parseFloat((targetY + (Math.random() * 30 - 15)).toFixed(1));
+
+                d += `L ${zigX},${zigY} `;
+                rawPathPoints.push({ x: zigX, y: zigY });
+            }
+
+            d += `L ${endP.x},${endP.y}`;
+            rawPathPoints.push(endP);
+
+            return d;
+        }
+
+        // Generate Stage 3 Vertical Crack SVG Path through the center
+        function generateCrackPathData() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const centerX = w / 2;
+
+            let d = `M ${centerX},0 `;
+            const numSegments = 8;
+            const segmentHeight = h / numSegments;
+
+            for (let i = 1; i < numSegments; i++) {
+                const y = i * segmentHeight;
+                const xOffset = (Math.random() - 0.5) * 50;
+                d += `L ${(centerX + xOffset).toFixed(1)},${y.toFixed(1)} `;
+            }
+
+            d += `L ${centerX},${h}`;
+            return d;
+        }
+
+        function setupStage(regeneratePath = false) {
+            calculateHexagonGeometry();
+            
+            if (!currentPathData || regeneratePath) {
+                currentPathData = generatePathData();
+            }
+
+            animatedPath.setAttribute('d', currentPathData);
+            pathTotalLength = animatedPath.getTotalLength();
+
+            animatedPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+            animatedPath.style.strokeDashoffset = pathTotalLength;
+
+            // Setup Crack Paths
+            const crackD = generateCrackPathData();
+            crackPathLeft.setAttribute('d', crackD);
+            crackPathRight.setAttribute('d', crackD);
+
+            crackTotalLength = crackPathLeft.getTotalLength();
+            crackPathLeft.style.strokeDasharray = `${crackTotalLength} ${crackTotalLength}`;
+            crackPathLeft.style.strokeDashoffset = crackTotalLength;
+            crackPathRight.style.strokeDasharray = `${crackTotalLength} ${crackTotalLength}`;
+            crackPathRight.style.strokeDashoffset = crackTotalLength;
+        }
+
+        function animatePath(timestamp) {
+            if (!animationStartTime) animationStartTime = timestamp;
+            const elapsed = timestamp - animationStartTime;
+            const progress = Math.min(elapsed / animationDuration, 1);
+
+            const easedProgress = progress < 0.5 
+                ? 4 * progress * progress * progress 
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            const currentOffset = pathTotalLength * (1 - easedProgress);
+            animatedPath.style.strokeDashoffset = currentOffset;
+
+            if (progress < 1) {
+                animationFrameId = requestAnimationFrame(animatePath);
+            } else {
+                if (window.scrollY < 20) {
+                    scrollHint.classList.remove('opacity-0');
+                }
+            }
+        }
+
+        function startAnimationSequence() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animationStartTime = null;
+            scrollHint.classList.add('opacity-0');
+            animatedPath.style.strokeDashoffset = pathTotalLength;
+            animationFrameId = requestAnimationFrame(animatePath);
+        }
+
+        // Multi-Stage Scroll Animation Logic
+        function handleScroll() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const maxScroll = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+            const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+
+            const stage12Progress = Math.min(progress / 0.25, 1);
+
+            const scale = Math.max(0, 1 - stage12Progress * 1.2);
+            const hexOpacity = Math.max(0, 1 - stage12Progress * 1.5);
+            // Desplazamiento óptico de 2 px hacia abajo y a la derecha,
+            // manteniendo intacta la escala animada durante el scroll.
+            hexWrapper.style.transform = `translate(2px, 2px) scale(${scale})`;
+            hexWrapper.style.opacity = hexOpacity.toString();
+            hexWrapper.style.pointerEvents = hexOpacity <= 0.05 ? 'none' : 'auto';
+
+            const pathTranslateY = stage12Progress * (window.innerHeight * 0.6);
+            const pathOpacity = Math.max(0, 1 - stage12Progress * 1.1);
+            svgStage.style.transform = `translateY(${pathTranslateY}px)`;
+            svgStage.style.opacity = pathOpacity.toString();
+
+            const startY = window.innerHeight * 0.85; 
+            const textTranslateY = (1 - stage12Progress) * startY; 
+            const textScale = 0.85 + (stage12Progress * 0.15);
+            const textOpacity = Math.min(1, stage12Progress * 1.5);
+            
+            scrollTextContainer.style.transform = `translateY(${textTranslateY}px) scale(${textScale})`;
+            scrollTextContainer.style.opacity = textOpacity.toString();
+
+            if (stage12Progress < 1 && rawPathPoints.length > 0) {
+                const containerRect = scrollTextContainer.getBoundingClientRect();
+                const containerLeft = containerRect.left;
+                const containerTop = containerRect.top;
+                const containerWidth = containerRect.width || 1;
+                const containerHeight = containerRect.height || 1;
+
+                const polyPoints = rawPathPoints.map(pt => {
+                    const screenX = pt.x;
+                    const screenY = pt.y + pathTranslateY;
+                    const relX = ((screenX - containerLeft) / containerWidth) * 100;
+                    const relY = ((screenY - containerTop) / containerHeight) * 100;
+                    return `${relX.toFixed(2)}% ${relY.toFixed(2)}%`;
+                });
+
+                const lastPoint = rawPathPoints[rawPathPoints.length - 1];
+                const screenYLast = lastPoint.y + pathTranslateY;
+                const relYLast = ((screenYLast - containerTop) / containerHeight) * 100;
+                
+                const screenYFirst = rawPathPoints[0].y + pathTranslateY;
+                const relYFirst = ((screenYFirst - containerTop) / containerHeight) * 100;
+
+                const maskPolygon = `polygon(${polyPoints.join(', ')}, 100% ${relYLast.toFixed(2)}%, 100% -500%, 0% -500%, 0% ${relYFirst.toFixed(2)}%)`;
+                scrollTextContainer.style.clipPath = maskPolygon;
+            } else {
+                scrollTextContainer.style.clipPath = 'none';
+            }
+
+            if (progress > 0.22) {
+                const crackProgress = Math.min(Math.max((progress - 0.22) / 0.23, 0), 1);
+                crackSvgStage.style.opacity = "1";
+                const crackOffset = crackTotalLength * (1 - crackProgress);
+                crackPathLeft.style.strokeDashoffset = crackOffset;
+                crackPathRight.style.strokeDashoffset = crackOffset;
+            } else {
+                crackSvgStage.style.opacity = "0";
+            }
+
+            if (progress > 0.45) {
+                const splitProgress = Math.min(Math.max((progress - 0.45) / 0.45, 0), 1);
+                const maxShift = window.innerWidth * 0.32;
+                const shiftDistance = splitProgress * maxShift;
+
+                const splitOpacity = Math.max(0, 1 - splitProgress * 1.6);
+
+                textLeft.style.transform = `translateX(-${shiftDistance}px)`;
+                textLeft.style.opacity = splitOpacity.toString();
+
+                textRight.style.transform = `translateX(${shiftDistance}px)`;
+                textRight.style.opacity = splitOpacity.toString();
+
+                textLeft.style.clipPath = 'polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)';
+                textRight.style.clipPath = 'polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)';
+
+                crackPathLeft.style.transform = `translateX(-${shiftDistance}px)`;
+                crackPathLeft.style.opacity = splitOpacity.toString();
+
+                crackPathRight.style.transform = `translateX(${shiftDistance}px)`;
+                crackPathRight.style.opacity = splitOpacity.toString();
+
+                const riftWidth = shiftDistance * 2;
+                revealedTextWrapper.style.width = `${riftWidth}px`;
+
+                textHeader.style.opacity = (1 - splitProgress * 1.5).toString();
+
+                if (splitProgress > 0.05) {
+                    const revealProgress = Math.min(1, (splitProgress - 0.05) / 0.85);
+                    revealedText.style.opacity = Math.min(1, revealProgress * 2.5).toString();
+                    const revealedScale = 0.75 + (revealProgress * 0.25);
+                    revealedText.style.transform = `scale(${revealedScale})`;
+                    revealedText.classList.remove('pointer-events-none');
+                } else {
+                    revealedText.style.opacity = '0';
+                    revealedText.classList.add('pointer-events-none');
+                }
+            } else {
+                textLeft.style.transform = 'translateX(0px)';
+                textLeft.style.opacity = '1';
+
+                textRight.style.transform = 'translateX(0px)';
+                textRight.style.opacity = '1';
+                
+                textLeft.style.clipPath = 'polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)';
+                textRight.style.clipPath = 'polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)';
+
+                crackPathLeft.style.transform = 'translateX(0px)';
+                crackPathLeft.style.opacity = '1';
+
+                crackPathRight.style.transform = 'translateX(0px)';
+                crackPathRight.style.opacity = '1';
+
+                revealedTextWrapper.style.width = '0px';
+                
+                textHeader.style.opacity = '1';
+                revealedText.style.opacity = '0';
+                revealedText.classList.add('pointer-events-none');
+            }
+
+            if (progress > 0.05) {
+                scrollHint.classList.add('opacity-0');
+            } else if (animationStartTime && (performance.now() - animationStartTime) >= animationDuration) {
+                scrollHint.classList.remove('opacity-0');
+            }
+        }
+
+        // Event Listeners
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        window.addEventListener('resize', () => {
+            setupStage(false);
+            startAnimationSequence();
+            handleScroll();
+        });
+
+
+        hexWrapper.addEventListener('click', () => {
+            startAnimationSequence();
+        });
+
+        // "Nosotros" Page Split Transition Handler
+        btnAbout.addEventListener('click', (e) => {
+            e.preventDefault();
+            aboutPage.classList.remove('pointer-events-none');
+            aboutPage.classList.remove('opacity-0');
+
+            // Animate curtains opening with a split effect
+            aboutCurtainLeft.style.transform = 'translateX(-100%)';
+            aboutCurtainRight.style.transform = 'translateX(100%)';
+
+            setTimeout(() => {
+                aboutContent.classList.remove('opacity-0', 'translate-y-8');
+            }, 400);
+        });
+
+        btnCloseAbout.addEventListener('click', () => {
+            aboutContent.classList.add('opacity-0', 'translate-y-8');
+
+            setTimeout(() => {
+                aboutCurtainLeft.style.transform = 'translateX(0%)';
+                aboutCurtainRight.style.transform = 'translateX(0%)';
+            }, 300);
+
+            setTimeout(() => {
+                aboutPage.classList.add('opacity-0', 'pointer-events-none');
+            }, 800);
+        });
+
+        // "Bitácora" Page Split Transition Handler
+        btnBlog.addEventListener('click', (e) => {
+            e.preventDefault();
+            blogPage.classList.remove('pointer-events-none');
+            blogPage.classList.remove('opacity-0');
+
+            blogCurtainLeft.style.transform = 'translateX(-100%)';
+            blogCurtainRight.style.transform = 'translateX(100%)';
+
+            setTimeout(() => {
+                blogContent.classList.remove('opacity-0', 'translate-y-8');
+            }, 400);
+        });
+
+        btnCloseBlog.addEventListener('click', () => {
+            blogContent.classList.add('opacity-0', 'translate-y-8');
+
+            setTimeout(() => {
+                blogCurtainLeft.style.transform = 'translateX(0%)';
+                blogCurtainRight.style.transform = 'translateX(0%)';
+            }, 300);
+
+            setTimeout(() => {
+                blogPage.classList.add('opacity-0', 'pointer-events-none');
+            }, 800);
+        });
+
+        // "Quimeras" Interactive Galaxy Handlers
+        function initGalaxy() {
+            const ctx = galaxyCanvas.getContext('2d');
+            const rect = galaxyCanvas.getBoundingClientRect();
+            galaxyCanvas.width = rect.width;
+            galaxyCanvas.height = rect.height;
+
+            const cx = galaxyCanvas.width / 2;
+            const cy = galaxyCanvas.height / 2;
+
+            // Ambient cyber circuit particles
+            galaxyParticles = [];
+            const numParticles = 200;
+            for (let i = 0; i < numParticles; i++) {
+                galaxyParticles.push({
+                    x: (Math.random() - 0.5) * galaxyCanvas.width,
+                    y: (Math.random() - 0.5) * galaxyCanvas.height,
+                    size: 1 + Math.random() * 2.5,
+                    vx: (Math.random() - 0.5) * 0.6,
+                    vy: (Math.random() - 0.5) * 0.6,
+                    phase: Math.random() * Math.PI * 2,
+                    color: Math.random() > 0.5 ? '#00f3ff' : (Math.random() > 0.5 ? '#ec4899' : '#a855f7')
+                });
+            }
+
+            // 5 Mecano-Cyberpunk Projects with Complex & Chaotic Parameters
+            const nodeNames = ["Echoes of the Fractal Maze", "Arte Rupestre Alienígena", "Quantum & a half", "proyecto 04", "proyecto 05"];
+            const nodeTitles = [
+                "Núcleo de Refracción SVG",
+                "Sintetizador Biomecánico",
+                "Matriz de Circuitos Holo",
+                "Procesador Neón Quantum",
+                "Motor Quimera Piston"
+            ];
+            const nodeDescs = [
+                "Sistema de geometría spline vectorial y colisión de trazos reflectantes en tiempo real.",
+                "Estructura sonora e interfaz táctil modelada mediante engranajes y polígonos cinéticos.",
+                "Matriz HUD autorreparable de circuitos paralelos y transmisiones de datos fotosensibles.",
+                "Unidad de renderizado cuántico para entornos virtuales de alta tasa de refresco.",
+                "Arquitectura hidráulica de inyectores biomecánicos inspirada en fotónica industrial."
+            ];
+
+            // Eccentric, non-concentric orbital configurations for complex anarchic motion
+            const orbitalConfigs = [
+                { rxRatio: 0.38, ryRatio: 0.16, offsetAngle: Math.PI / 6,   centerXOff: -0.08, centerYOff: 0.05,  speed: 0.0035, gearTeeth: 7,  color: '#00f3ff', waveFreq: 2.1 },
+                { rxRatio: 0.20, ryRatio: 0.35, offsetAngle: -Math.PI / 4,  centerXOff: 0.07,  centerYOff: -0.06, speed: -0.0045, gearTeeth: 10, color: '#a855f7', waveFreq: 1.7 },
+                { rxRatio: 0.32, ryRatio: 0.28, offsetAngle: Math.PI / 3,   centerXOff: -0.04, centerYOff: -0.08, speed: 0.0028, gearTeeth: 6,  color: '#ec4899', waveFreq: 3.2 },
+                { rxRatio: 0.15, ryRatio: 0.22, offsetAngle: -Math.PI / 2,  centerXOff: 0.09,  centerYOff: 0.07,  speed: -0.0060, gearTeeth: 12, color: '#00f3ff', waveFreq: 2.8 },
+                { rxRatio: 0.40, ryRatio: 0.30, offsetAngle: Math.PI / 1.2, centerXOff: 0.02,  centerYOff: 0.03,  speed: 0.0019, gearTeeth: 8,  color: '#ec4899', waveFreq: 1.3 }
+            ];
+
+            projectNodes = nodeNames.map((id, index) => {
+                const cfg = orbitalConfigs[index];
+                return {
+                    id: id,
+                    name: id.toUpperCase(),
+                    title: nodeTitles[index],
+                    desc: nodeDescs[index],
+                    angle: (index / 5) * Math.PI * 2,
+                    cfg: cfg,
+                    color: cfg.color,
+                    x: 0,
+                    y: 0,
+                    radius: 22,
+                    gearTeeth: cfg.gearTeeth
+                };
+            });
+        }
+
+        let mecanoTime = 0;
+
+        // Draw rotating cyberpunk gear wheel
+        function drawCyberGear(ctx, x, y, radius, teeth, angle, color, strokeWidth = 2) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = strokeWidth;
+            ctx.beginPath();
+
+            const outerR = radius;
+            const innerR = Math.max(4, radius - 6);
+            const teethAngle = (Math.PI * 2) / teeth;
+
+            for (let i = 0; i < teeth; i++) {
+                const a = i * teethAngle;
+                const a1 = a + teethAngle * 0.25;
+                const a2 = a + teethAngle * 0.5;
+                const a3 = a + teethAngle * 0.75;
+
+                ctx.lineTo(Math.cos(a) * innerR, Math.sin(a) * innerR);
+                ctx.lineTo(Math.cos(a1) * outerR, Math.sin(a1) * outerR);
+                ctx.lineTo(Math.cos(a2) * outerR, Math.sin(a2) * outerR);
+                ctx.lineTo(Math.cos(a3) * innerR, Math.sin(a3) * innerR);
+            }
+            ctx.closePath();
+            ctx.stroke();
+
+            // Inner axle ring
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.45, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // Draw dynamic mechanical connection rod with piston joint
+        function drawPistonRod(ctx, x1, y1, x2, y2, color, isHovered) {
+            ctx.save();
+            ctx.strokeStyle = isHovered ? '#00f3ff' : 'rgba(168, 85, 247, 0.4)';
+            ctx.lineWidth = isHovered ? 2.5 : 1.2;
+            if (isHovered) {
+                ctx.shadowColor = '#00f3ff';
+                ctx.shadowBlur = 15;
+            }
+
+            // Main rod stroke
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+
+            // Hydraulic piston sleeve positioned 40% along the link
+            const midX = x1 + (x2 - x1) * 0.4;
+            const midY = y1 + (y2 - y1) * 0.4;
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+
+            ctx.translate(midX, midY);
+            ctx.rotate(angle);
+
+            ctx.fillStyle = isHovered ? '#00f3ff' : color;
+            ctx.fillRect(-12, -4, 24, 8);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(-12, -4, 24, 8);
+
+            ctx.restore();
+        }
+
+        function renderGalaxy() {
+            if (!galaxyCanvas) return;
+            const ctx = galaxyCanvas.getContext('2d');
+            const w = galaxyCanvas.width;
+            const h = galaxyCanvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+            const minDim = Math.min(w, h);
+
+            mecanoTime += 0.008;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Cyber Background Overlay
+            const bgGrad = ctx.createRadialGradient(cx, cy, 20, cx, cy, minDim * 0.75);
+            bgGrad.addColorStop(0, 'rgba(15, 23, 42, 0.95)');
+            bgGrad.addColorStop(0.6, 'rgba(11, 15, 25, 0.98)');
+            bgGrad.addColorStop(1, '#0b0f19');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, w, h);
+
+            // 1. Asymmetrical Floating Circuit Tracks & Non-Centric Elliptical Rings
+            ctx.save();
+            projectNodes.forEach((node, i) => {
+                const cfg = node.cfg;
+                const ncx = cx + w * cfg.centerXOff;
+                const ncy = cy + h * cfg.centerYOff;
+
+                ctx.save();
+                ctx.translate(ncx, ncy);
+                ctx.rotate(cfg.offsetAngle);
+                ctx.strokeStyle = i % 2 === 0 ? 'rgba(0, 243, 255, 0.12)' : 'rgba(236, 72, 153, 0.12)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([8, 6]);
+
+                ctx.beginPath();
+                ctx.ellipse(0, 0, minDim * cfg.rxRatio, minDim * cfg.ryRatio, 0, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+            });
+            ctx.restore();
+
+            // 2. Off-Center Multi-Axis Primary Mechanical Drive Cores
+            const core1X = cx - minDim * 0.12;
+            const core1Y = cy + minDim * 0.08;
+            const core2X = cx + minDim * 0.15;
+            const core2Y = cy - minDim * 0.10;
+
+            drawCyberGear(ctx, core1X, core1Y, minDim * 0.09, 14, mecanoTime * 1.1, '#a855f7', 2);
+            drawCyberGear(ctx, core1X, core1Y, minDim * 0.05, 8, -mecanoTime * 1.8, '#00f3ff', 1.5);
+
+            drawCyberGear(ctx, core2X, core2Y, minDim * 0.11, 16, -mecanoTime * 0.7, '#ec4899', 2);
+            drawCyberGear(ctx, core2X, core2Y, minDim * 0.06, 9, mecanoTime * 1.5, '#00f3ff', 1.5);
+
+            // Secondary Intersecting Line Conduits connecting drive cores
+            ctx.save();
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(core1X, core1Y);
+            ctx.lineTo(core2X, core2Y);
+            ctx.stroke();
+            ctx.restore();
+
+            // 3. Floating Ambient Particles & Micro-Dots
+            galaxyParticles.forEach(p => {
+                p.phase += 0.02;
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (Math.abs(p.x) > w / 2) p.x = -p.x;
+                if (Math.abs(p.y) > h / 2) p.y = -p.y;
+
+                const px = cx + p.x;
+                const py = cy + p.y;
+
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.3 + Math.sin(p.phase) * 0.3;
+                ctx.beginPath();
+                ctx.arc(px, py, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1.0;
+            });
+
+            // 4. Calculate Anarchic Orbit Positions & Render Mechanical Project Nodes
+            projectNodes.forEach((node, idx) => {
+                const isHovered = hoveredNode === node;
+                const cfg = node.cfg;
+
+                if (!isHovered) {
+                    node.angle += cfg.speed;
+                }
+
+                // Complex non-concentric parametric trajectory calculation
+                const ncx = cx + w * cfg.centerXOff;
+                const ncy = cy + h * cfg.centerYOff;
+
+                const rawX = Math.cos(node.angle) * (minDim * cfg.rxRatio);
+                const rawY = Math.sin(node.angle) * (minDim * cfg.ryRatio);
+
+                // Rotated ellipse coordinates with added organic sine distortion
+                const cosO = Math.cos(cfg.offsetAngle);
+                const sinO = Math.sin(cfg.offsetAngle);
+                const waveShift = Math.sin(mecanoTime * cfg.waveFreq + idx) * 12;
+
+                node.x = ncx + (rawX * cosO - rawY * sinO) + Math.cos(node.angle * 2) * waveShift;
+                node.y = ncy + (rawX * sinO + rawY * cosO) + Math.sin(node.angle * 2) * waveShift;
+
+                // Pick target mechanical anchor (interchanging between Core 1 and Core 2)
+                const targetAnchorX = idx % 2 === 0 ? core1X : core2X;
+                const targetAnchorY = idx % 2 === 0 ? core1Y : core2Y;
+
+                // Draw mechanical hydraulic piston connecting rod
+                drawPistonRod(ctx, targetAnchorX, targetAnchorY, node.x, node.y, node.color, isHovered);
+
+                // Draw Inter-node secondary linkage rods for an organic mecano mesh look
+                const nextNode = projectNodes[(idx + 1) % projectNodes.length];
+                ctx.save();
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(node.x, node.y);
+                ctx.lineTo(nextNode.x, nextNode.y);
+                ctx.stroke();
+                ctx.restore();
+
+                // Rotating Gear Frame around Node
+                drawCyberGear(
+                    ctx, 
+                    node.x, 
+                    node.y, 
+                    node.radius + (isHovered ? 8 : 4), 
+                    node.gearTeeth, 
+                    mecanoTime * (isHovered ? 2 : 1) * (cfg.speed > 0 ? 1 : -1), 
+                    isHovered ? '#00f3ff' : node.color, 
+                    isHovered ? 2.5 : 1.5
+                );
+
+                // Hexagonal/Octagonal Mecano Core Plate
+                ctx.save();
+                ctx.translate(node.x, node.y);
+                ctx.rotate(-mecanoTime * 1.5 + idx);
+                ctx.fillStyle = isHovered ? '#ffffff' : 'rgba(15, 23, 42, 0.9)';
+                ctx.strokeStyle = isHovered ? '#00f3ff' : node.color;
+                ctx.lineWidth = 2;
+
+                if (isHovered) {
+                    ctx.shadowColor = '#00f3ff';
+                    ctx.shadowBlur = 20;
+                }
+
+                ctx.beginPath();
+                const sides = idx % 2 === 0 ? 6 : 8;
+                const polyRadius = node.radius * (isHovered ? 0.75 : 0.6);
+                for (let i = 0; i < sides; i++) {
+                    const a = (i / sides) * Math.PI * 2;
+                    const px = Math.cos(a) * polyRadius;
+                    const py = Math.sin(a) * polyRadius;
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                ctx.restore();
+
+                // Cyberpunk HUD Text Label
+                ctx.save();
+                ctx.font = isHovered ? '700 12px "JetBrains Mono", monospace' : '600 10px "JetBrains Mono", monospace';
+                ctx.fillStyle = isHovered ? '#00f3ff' : 'rgba(255, 255, 255, 0.85)';
+                ctx.textAlign = 'center';
+                ctx.shadowColor = 'rgba(0,0,0,0.9)';
+                ctx.shadowBlur = 8;
+                ctx.fillText(`[ ${node.name} ]`, node.x, node.y - node.radius - 12);
+                ctx.restore();
+            });
+
+            galaxyAnimationId = requestAnimationFrame(renderGalaxy);
+        }
+
+        // Canvas Mouse Events
+        if (galaxyCanvas) {
+            galaxyCanvas.addEventListener('mousemove', (e) => {
+                const rect = galaxyCanvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                hoveredNode = null;
+                projectNodes.forEach(node => {
+                    const dx = mouseX - node.x;
+                    const dy = mouseY - node.y;
+                    if (Math.sqrt(dx * dx + dy * dy) < node.radius + 14) {
+                        hoveredNode = node;
+                    }
+                });
+                galaxyCanvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+            });
+
+            galaxyCanvas.addEventListener('click', () => {
+                if (hoveredNode && projectDetailModal) {
+                    if (projectBadge) projectBadge.textContent = hoveredNode.name;
+                    if (projectTitle) projectTitle.textContent = hoveredNode.title;
+                    if (projectDesc) projectDesc.textContent = hoveredNode.desc;
+                    projectDetailModal.classList.remove('opacity-0', 'pointer-events-none');
+                }
+            });
+        }
+
+        if (btnCloseProjectModal) {
+            btnCloseProjectModal.addEventListener('click', () => {
+                projectDetailModal.classList.add('opacity-0', 'pointer-events-none');
+            });
+        }
+
+        if (btnProjects) {
+            btnProjects.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!projectsPage) return;
+                projectsPage.classList.remove('pointer-events-none');
+                projectsPage.classList.remove('opacity-0');
+
+                if (projectsCurtainLeft && projectsCurtainRight) {
+                    projectsCurtainLeft.style.transform = 'translateX(-100%)';
+                    projectsCurtainRight.style.transform = 'translateX(100%)';
+                }
+
+                setTimeout(() => {
+                    if (projectsContent) projectsContent.classList.remove('opacity-0', 'translate-y-8');
+                    initGalaxy();
+                    if (galaxyAnimationId) cancelAnimationFrame(galaxyAnimationId);
+                    renderGalaxy();
+                }, 400);
+            });
+        }
+
+        if (btnCloseProjects) {
+            btnCloseProjects.addEventListener('click', () => {
+                if (projectsContent) projectsContent.classList.add('opacity-0', 'translate-y-8');
+                if (projectDetailModal) projectDetailModal.classList.add('opacity-0', 'pointer-events-none');
+
+                setTimeout(() => {
+                    if (projectsCurtainLeft && projectsCurtainRight) {
+                        projectsCurtainLeft.style.transform = 'translateX(0%)';
+                        projectsCurtainRight.style.transform = 'translateX(0%)';
+                    }
+                }, 300);
+
+                setTimeout(() => {
+                    if (projectsPage) projectsPage.classList.add('opacity-0', 'pointer-events-none');
+                    if (galaxyAnimationId) cancelAnimationFrame(galaxyAnimationId);
+                }, 800);
+            });
+        }
+
+        // Window Load Initialization
+        window.onload = function() {
+            setupStage(true);
+            startAnimationSequence();
+            handleScroll();
+        };
+    </script>
+</body>
+</html>
