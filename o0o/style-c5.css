@@ -1,0 +1,34 @@
+@import "style-galeria.css";
+
+#mascsvg1 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 0%;
+  right: 0%;
+  width: auto;
+  height: 30%;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+}
+
+#mascsvg2 {
+  transform: scale(-1);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  bottom: 0%;
+  left: 0%;
+  width: auto;
+  height: 30%;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+}
+
+
+
+ 
+
+

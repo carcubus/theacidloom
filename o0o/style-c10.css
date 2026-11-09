@@ -1,0 +1,54 @@
+@import "style-galeria.css";
+
+#mascsvg1 {
+  transform: scaleY(-1) translate(-50%, 50%);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 140%;
+  left: 50%;
+  width: 200%;
+  height: 400%;
+  opacity: 0.5;
+  overflow:hidden;
+  pointer-events: none;
+}
+#mascsvg2 {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -40%;
+  left: 50%;
+  width: 200%;
+  height: 400%;
+  opacity: 0.5;
+  overflow:hidden;
+  pointer-events: none;
+}
+
+#mascsvg1 path  {
+  stroke: white;
+  stroke-width: 8;
+  fill: none;
+  animation: animaborde 20s infinite;
+  animation-direction: alternate;
+  stroke-linecap: round;
+}
+#mascsvg2 path  {
+  stroke: white;
+  stroke-width: 8;
+  fill: none;
+  animation: animaborde 20s infinite;
+  animation-direction: alternate-reverse;
+  stroke-linecap: round;
+}
+
+@keyframes animaborde {
+    0%    {visibility: visible; stroke-dashoffset: var(--largo); stroke: white; stroke-width: 8}
+    100%   {stroke-dashoffset:0; stroke: rgb(168, 89, 204); stroke-width: 8}
+  }
+
+ 
+
+

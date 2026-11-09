@@ -1,0 +1,65 @@
+@import "style-galeria.css";
+
+#svgmar1 {
+  position: absolute;
+  display: block;
+  fill: none;
+  z-index: 13;
+  top: 0%;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
+  pointer-events: none;
+  animation: fluctuasvg 10s infinite;
+}
+#svgmar1 path {
+  stroke-width: 16px;
+  stroke: white;
+}
+
+#svgmar2 {
+    position: absolute;
+    display: block;
+    fill: none;
+    z-index: 13;
+    top: 5%;
+    right: 5%;
+    width: 90%;
+    height: 90%;
+    overflow:hidden;
+    pointer-events: none;
+    animation: fluctuasvg 13s infinite;
+  }
+  #svgmar2 path {
+    stroke-width: 8px;
+    stroke: white;
+  }
+
+  #svgmar3 {
+    position: absolute;
+    display: block;
+    fill: none;
+    z-index: 13;
+    top: 10%;
+    right: 10%;
+    width: 80%;
+    height: 80%;
+    overflow:hidden;
+    pointer-events: none;
+    animation: fluctuasvg 19s infinite;
+  }
+  #svgmar3 path {
+    stroke-width: 4px;
+    stroke: white;
+  }
+
+@keyframes fluctuasvg {
+    0%    {opacity: 1}
+    50%   {opacity: 0}
+    100%  {opacity: 1}
+}
+
+ 
+
+

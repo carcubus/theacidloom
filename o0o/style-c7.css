@@ -1,0 +1,47 @@
+@import "style-galeria.css";
+
+#mascara1 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50%;
+  right: -10%;
+  width: auto;
+  height: calc(220vh - 20vw);
+  opacity: 0.7;
+  transform: translate(0%, -50%);
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascfluctua1 16s infinite;
+  animation-timing-function: ease-in-out;
+}
+#mascara2 {
+  position: absolute;
+  display: block;
+  z-index: 12;
+  top: 50%;
+  left: -10%;
+  width: auto;
+  height: calc(230vh - 20vw);
+  opacity: 0.7;
+  transform: translate(0%, -50%);
+  overflow: hidden;
+  pointer-events: none;
+  animation: mascfluctua2 16s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes mascfluctua1 {
+  0%   {right: -50vh}
+  50%  {right: calc(-50vh + 15vw)}
+  100% {right: -50vh}
+}
+@keyframes mascfluctua2 {
+  0%   {left: -50vh}
+  50%  {left: calc(-50vh + 15vw)}
+  100% {left: -50vh}
+} 
+
+ 
+
+

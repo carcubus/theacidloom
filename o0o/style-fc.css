@@ -1,0 +1,310 @@
+/* Estilos correspondientes a formulario de contacto */
+
+#flechaatras {
+  position: absolute;
+  z-index: 25;
+  bottom: 2vmin;
+  right: 2vmin;
+  transform: rotate(-45DEG);
+  background: linear-gradient(-225deg, rgb(155, 0, 255),rgba(0,0,0,0) 75%);
+  max-width: 225px;
+  max-height: 225px;
+  width: 6vmin;
+  height: 6vmin;
+  min-width: 40px;
+  min-height: 40px;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+  overflow:visible;
+}
+#fcopia1 {
+  position: absolute;
+  z-index: 23;
+  bottom: 2vmin;
+  right: -12vmin;
+  transform: rotate(-45DEG);
+  background: linear-gradient(-225deg, rgb(155, 0, 255),rgba(0,0,0,0) 75%);
+  max-width: 225px;
+  max-height: 225px;
+  width: 6vmin;
+  height: 6vmin;
+  min-width: 40px;
+  min-height: 40px;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+  overflow:visible;
+}
+#fcopia2 {
+  position: absolute;
+  z-index: 23;
+  bottom: 2vmin;
+  right: -12vmin;
+  transform: rotate(-45DEG);
+  background: linear-gradient(-225deg, rgb(155, 0, 255),rgba(0,0,0,0) 75%);
+  max-width: 225px;
+  max-height: 225px;
+  width: 6vmin;
+  height: 6vmin;
+  min-width: 40px;
+  min-height: 40px;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+  overflow:visible;
+}
+
+#divnegro {
+  position: absolute;
+  z-index: 24;
+  bottom: -295vmin;
+  right: -716vmin;
+  transform: rotate(-45DEG);
+  background: linear-gradient(-225deg, rgba(0,0,0,0) 3%, black 33%);
+  opacity: 1; 
+  width: 600vmin;
+  height: 600vmin;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+  overflow:hidden;
+}
+.flechamovil {
+  -webkit-animation: mueveflecha 2s ease-in-out; /* Chrome, Safari, Opera */ 
+  animation: mueveflecha 2s cubic-bezier( 1, -0.01, 0.72, 1 ); 
+  animation-iteration-count: 1;
+}
+#circle3 {
+  position: absolute;
+  z-index: 21;
+  top: 3%;
+  left: 3%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(rgb(155, 0, 255),rgba(0,0,0,0) 60%);
+  max-width: 300px;
+  max-height: 300px;
+  width: 8vmin;
+  height: 8vmin;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  overflow:hidden;
+}
+.circlemueve {
+  -webkit-animation: muevecirculo3 2s cubic-bezier( 1, -0.01, 0.72, 1 ); /* Chrome, Safari, Opera */ 
+  animation: muevecirculo3 2s cubic-bezier( 1, -0.01, 0.72, 1 ); 
+  animation-iteration-count: 1;
+}
+.flechahover:hover {
+  opacity: 0.5;
+}
+.flechahover:hover ~ #fcopia1{
+  -webkit-animation: latefle1 1.5s;  
+  animation: latefle1 1.5s; 
+  animation-iteration-count: 4;
+  animation-direction: alternate;
+}
+.flechahover:hover ~ #fcopia2{
+  -webkit-animation: latefle2 1.5s;  
+  animation: latefle2 1.5s; 
+  animation-iteration-count: 6;
+  animation-direction: alternate;
+}
+
+.latehover:hover {
+  -webkit-animation: latec 1.2s;  
+  animation: latec 1.2s; 
+  animation-iteration-count: 3;
+}
+
+
+#circle3b {
+  position: absolute;
+  z-index: 10;
+  top: calc(50% - max(300px,33vmin));
+  left: calc(50% - max(300px,33vmin));
+  background: radial-gradient(black 30%,rgb(155, 0, 255),rgba(0,0,0,0) 70%);
+  max-width: 1400px;
+  max-height: 1400px;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  overflow:hidden;
+  -webkit-animation: muevecirculo3 2s; /* Chrome, Safari, Opera */ 
+  animation: muevecirculo3 2s; 
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier( 1, -0.01, 0.72, 1 );
+}
+@font-face {
+  font-family: AturesFont;
+  src: url(Atures300.ttf);
+}
+@font-face {
+  font-family: NavyCadetFont;
+  src: url(navycadet.ttf);
+}
+
+input:not(:placeholder-shown):not(:focus):invalid {
+  border: 2px solid red;
+}
+textarea:not(:placeholder-shown):not(:focus):invalid {
+  border: 2px solid red;
+}
+
+#email1 {
+  position: absolute;
+  text-align: right;
+  left: 25%;
+  top: 22%;
+  width: 20%;
+  height: 4%;
+  background-color: rgba(0,0,0,0.2);
+  opacity: 0.8;
+  color: white;
+  font-family: NavyCadetFont;
+  font-size: 100%;
+}
+#email2 {
+  position: absolute;
+  right: 25%;
+  top: 22%;
+  width: 20%;
+  height: 4%;
+  background-color:rgba(0,0,0,0.2);
+  opacity: 0.8;
+  color: white;
+  font-family: NavyCadetFont;
+  font-size: 100%;
+}
+#mensaje {
+  position: absolute;
+  right: 30%;
+  width: 40%;
+  top: 30%;
+  height: 40%;
+  background-color: rgba(0,0,0,0.2);
+  border-bottom: none;
+  border-right: none;
+  border-left: 1px solid rgba(120,0,190,0.5);
+  border-top: 1px solid rgba(0,0,0,0.5);
+  opacity: 0.8;
+  color: white;
+  font-family: NavyCadetFont;
+  font-size: 100%;
+}
+#arrobus {
+  position: absolute;
+  left: 47%;
+  width: 6%;
+  top: 20%;
+  height: 6%;
+  border-radius: 50%;
+  background-color: rgb(0,0,0,0);
+  border: none;
+}
+#svgarrobussup {
+  z-index: 2;
+  height: 100%;
+  position: absolute;
+  top: 1.5%;
+  left: 1.5%;
+  opacity: 1;
+}
+.cls-2:hover {
+  fill: rgba(210, 125, 250, 0.5);
+}
+.cls-3:hover {
+  fill: white;
+}
+#svgarrobusinf {
+  width: 100%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: -8%;
+  left: -2.5%;
+  opacity: 0.5;
+  /*-webkit-animation: latearrobus 10s;  Chrome, Safari, Opera  
+  animation: latearrobus 10s; 
+  animation-iteration-count: infinite;*/
+  -webkit-animation: latearrobus 10s; 
+  animation: latearrobus 10s; 
+  animation-iteration-count: infinite;
+}
+
+  @keyframes apaformani {
+    0% {width: 0px; ; height: 0px; top: 3%; left: 3%;}
+    20% {width: max(50px,10vmin); height: max(50px,10vmin); top: calc(3% - max(25px,5vmin)); left: calc(3% - max(25px,5vmin));}
+    100% {width: max(600px,66vmin); height: max(600px,66vmin); top: calc(50% - max(300px,33vmin)); left: calc(50% - max(300px,33vmin));}
+}
+@keyframes desformani {
+  0% {width: max(600px,66vmin); height: max(600px,66vmin); top: calc(50% - max(300px,33vmin)); left: calc(50% - max(300px,33vmin));}
+  80% {width: max(50px,10vmin); height: max(50px,10vmin); top: calc(3% - max(25px,5vmin)); left: calc(3% - max(25px,5vmin));}
+  100% {width: 0px; height: 0px; top: 3%; left: 3%;}
+}
+@keyframes desffatuoani {
+  0% {width: 10vmin; height: 10vmin; opacity: 1;}
+  /*0% {width: var(--heig0); height: var(--widt0);}*/
+  90% {width: 0px; height: 0px; opacity: 1;}
+  100% {opacity: 0;}
+}
+@keyframes apaffatuoani {
+  0% {opacity: 0;}
+  80% {width: 0px; height: 0px; opacity: 0.8;}
+  100% {width: 8vmin; height: 8vmin; opacity: 1;}
+}
+
+@keyframes muevecirculo3 {
+    0%   {left: 50%}
+    100% {left: 3%}
+}
+@keyframes mueveflecha {
+  0%   {right: -12vmin}
+  100% {right: 2vmin}
+}
+@keyframes latec {
+  0% {max-width: 300px; max-height: 300px; width: 8vmin; height: 8vmin}
+  50% {max-width: 600px; max-height: 600px; width: 16vmin; height: 16vmin}
+  100% {max-width: 300px; max-height: 300px; width: 8vmin; height: 8vmin}
+}
+@keyframes latefle1 {
+  0% {right: 2vmin; opacity: 1}
+  100% {right: 8vmin; opacity: 0.5}
+}
+@keyframes latefle2 {
+  0% {right: 2vmin; opacity: 1}
+  100% {right: 5vmin; opacity: 0.5}
+}
+@keyframes agrandaflecha {
+  0%   {height: 6vmin; width: 6vmin; background: linear-gradient(-225deg, rgb(155, 0, 255),rgba(0,0,0,0) 75%);}
+  100% {height: 600vmin; width: 600vmin; bottom: -298vmin; max-height: 10000px; max-width: 10000px; background: linear-gradient(-225deg, rgb(155, 0, 255,0),rgba(0,0,0,1) 75%);}
+}
+@keyframes agrandanegro {
+  0%   {right: -716vmin}
+  100% {right: 0vmin}
+}
+@keyframes anigiraarro {
+  0%   {transform: rotate(0deg)}
+  100%   {transform: rotate(720deg)}
+}
+@-webkit-keyframes anigiraarro {
+  0%   {transform: rotate(0deg)}
+  100%   {transform: rotate(720deg)}
+}
+@keyframes anisubmitarro {
+  0%   {transform: rotate(0deg) scale(1)}
+  50%   {transform: rotate(180deg) scale(8)}
+  100%   {transform: rotate(360deg) scale(1)}
+}
+  @keyframes latearrobus {
+  0%   {transform: scale(1)}
+  80%   {transform: scale(1)}
+  85%   {transform: scale(1.3)}
+  90%   {transform: scale(0.8)}
+  95%   {transform: scale(1.6)}
+  100%   {transform: scale(1)}
+}
+@-webkit-keyframes latearrobus {
+  0%   {transform: scale(1)}
+  84%   {transform: scale(1)}
+  88%   {transform: scale(1.3)}
+  92%   {transform: scale(0.8)}
+  96%   {transform: scale(1.6)}
+  100%   {transform: scale(1)}
+}

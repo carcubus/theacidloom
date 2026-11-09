@@ -1,0 +1,60 @@
+html {
+  background-color: blue;
+}
+
+body {
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos correspondientes a galeria cuadro */
+
+#divmarco {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  overflow: hidden;
+  top: 0%;
+  left: 0%;
+  opacity: 1;
+  z-index: 1;
+}
+#divtapanegra {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 2;
+  animation: desaparece 3s; 
+}
+
+
+.chgimg {
+  position: absolute;
+  display: none;
+  z-index: 0;
+}
+
+@keyframes mueveimg {
+  0%   {left: var(--posx0); top: var(--posy0); width: var(--tamx0); height: var(--tamy0)}
+  100% {left: var(--posx100); top: var(--posy100); width: var(--tamx100); height: var(--tamy100)}
+}
+@keyframes desaparece {
+  0%   {opacity: 1}
+  100% {opacity: 0}
+}
+@keyframes aparece {
+  0%   {opacity: 0}
+  100% {opacity: 1}
+}
+
+

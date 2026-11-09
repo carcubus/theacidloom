@@ -1,0 +1,219 @@
+@import "style-galeria.css";
+
+#mascsvglat {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -150vmax;
+  left: -550vmax;
+  width: 200vmax;
+  height: 300vmax;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascvl 2.5s 2, mascvt 4s 1;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate, normal;
+}
+
+#mascsvglat2 {
+  position: absolute;
+  display: block;
+  z-index: 12;
+  top: -150vmax;
+  left: -550vmax;
+  width: 300vmax;
+  height: 450vmax;
+  opacity: 0.85;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascvl2 3s 2, mascvt 10s 1;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate, normal;
+}
+#mascsvglat3 {
+  position: absolute;
+  display: block;
+  z-index: 11;
+  top: -150vmax;
+  left: -550vmax;
+  width: 110vmax;
+  height: 165vmax;
+  opacity: 0.9;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascvl3 2s 2, mascvt3 3s 1;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate, normal;
+}
+#mascsvglat4 {
+  position: absolute;
+  display: block;
+  z-index: 14;
+  top: -40%;
+  left: 530%;
+  transform: rotate(160DEG);
+  width: 140vmax;
+  height: 210vmax;
+  opacity: 0.5;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascvl4 2s 2, mascvt4 10s 1;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate, normal;
+}
+
+#mascsvgx1 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -100vh;
+  left: -1000vmax;
+  width: 230vmax;
+  height: 230vmax;
+  opacity: 0.7;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascx1 9s infinite, mascx2 3s infinite;
+  animation-delay: 4.5s, 3s;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate;
+}
+#mascsvgx2 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -100vh;
+  left: -800vmax;
+  width: 200vmax;
+  height: 200vmax;
+  opacity: 0.7;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascx1b 3.5s infinite, mascx2b 4s infinite;
+  animation-delay: 6s, 4s;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate;
+}
+#mascsvgx3 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  bottom: -100vh;
+  right: -800vmax;
+  width: 230vmax;
+  height: 230vmax;
+  opacity: 0.7;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascx1c 9s infinite, mascx2c 3s infinite;
+  animation-delay: 4.5s, 3s;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate;
+}
+#mascsvgx4 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  bottom: -100vh;
+  right: -800vmax;
+  width: 200vmax;
+  height: 200vmax;
+  opacity: 0.7;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascx1d 3.5s infinite, mascx2d 4s infinite;
+  animation-delay: 6s, 4s;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate;
+}
+path {
+  stroke: rgba(200,120,220,0.5);
+  stroke-width: 1;
+}
+
+
+@keyframes mascv1 {
+  0%   {left: -240vmax; top: -100vmax}
+  50%  {left: -100vmax;}
+  100% {left: -240vmax; top: -150vmax}
+}
+@keyframes mascv2 {
+  0%   {left: -200vmax; top: -130vmax}
+  50%  {left: -90vmax;}
+  100% {left: -200vmax; top: -90vmax}
+}
+@keyframes mascvl {
+  0%   {left: -240vmax; transform: rotate(30DEG)}
+  100% {left: -80vmax; transform: scale(0.6) rotate(-30DEG)}
+}
+@keyframes mascvl2 {
+  0%   {left: -340vmax; transform: rotate(0DEG)}
+  100% {left: -180vmax; transform: scale(0.8) rotate(-60DEG)}
+}
+@keyframes mascvl3 {
+  0%   {left: -150vmax;}
+  100% {left: -20vmax;}
+}
+@keyframes mascvl4 {
+  0%   {left: 150vmax;}
+  100% {left: 55vmax;}
+}
+@keyframes mascvt {
+  0%   {top: -120vmax}
+  100% {top: -70vmax}
+}
+@keyframes mascvt3 {
+  0%   {top: -30vmax; transform: scale(0.8) rotate(25DEG)}
+  100% {top: -55vmax; transform: scale(1.1) rotate(-10DEG)}
+}
+@keyframes mascvt4 {
+  0%   {top: -70vmax; transform:  rotate(145DEG)}
+  100% {top: -145vmax; transform:  rotate(335DEG)}
+}
+@keyframes mascvt2 {
+  0%   {top: -140vmax}
+  100% {top: -60vmax}
+}
+@keyframes animabor {
+  0%   {stroke: white; stroke-width: 2}
+  50%  {stroke-width: 6}
+  100% {stroke: grey; stroke-width: 2}
+}
+
+@keyframes mascx1 {
+  0%   {left: calc(-115vmax - 50vh - 10vw)}
+  40%   {left: calc(-125vmax - 50vh - 10vw)}
+  100% {left: calc(-105vmax - 50vh - 10vw)}
+}
+@keyframes mascx1b {
+  0%   {left: calc(-115vmax - 50vh - 10vw)}
+  50%  {left: calc(-105vmax - 50vh - 10vw)}
+  100% {left: calc(-95vmax - 50vh - 10vw)}
+}
+@keyframes mascx1c {
+  0%   {right: calc(-115vmax - 50vh - 10vw)}
+  40%   {right: calc(-125vmax - 50vh - 10vw)}
+  100% {right: calc(-105vmax - 50vh - 10vw)}
+}
+@keyframes mascx1d {
+  0%   {right: calc(-115vmax - 50vh - 10vw)}
+  50%  {right: calc(-105vmax - 50vh - 10vw)}
+  100% {right: calc(-95vmax - 50vh - 10vw)}
+}
+@keyframes mascx2 {
+  0%   {top: 10vh; transform:  rotate(-25DEG)}
+  100% {top: 50vh; transform:  rotate(-60DEG)}
+}
+@keyframes mascx2b {
+  0%   {top: -60vh; transform:  rotate(-15DEG)}
+  100% {top: 20vh; transform:  rotate(-35DEG)}
+} 
+@keyframes mascx2c {
+  0%   {bottom: 10vh; transform:  rotate(155DEG)}
+  100% {bottom: 50vh; transform:  rotate(120DEG)}
+}
+@keyframes mascx2d {
+  0%   {bottom: -60vh; transform:  rotate(165DEG)}
+  100% {bottom: 20vh; transform:  rotate(145DEG)}
+} 

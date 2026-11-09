@@ -1,0 +1,48 @@
+@import "style-galeria.css";
+
+#mascsvg1 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -50vw;
+  left: -50vh;
+  width: auto;
+  height: calc(100vw + 100vh);
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascgira1 10s infinite;
+  animation-timing-function: linear; 
+}
+#mascsvg2 {
+  position: absolute;
+  display: block;
+  z-index: 12;
+  top: -50vw;
+  left: -50vh;
+  width: auto;
+  height: calc(100vw + 100vh);
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascgira2 10s infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes muevemasc {
+  0%   {margin: -50vmin 0 0 -50vmin; width: 100vmin; height: 100vmin}
+  50%  {margin: -70vmin 0 0 -70vmin; width: 140vmin; height: 140vmin}
+  100% {margin: -50vmin 0 0 -50vmin; width: 100vmin; height: 100vmin}
+}
+@keyframes mascgira1 {
+  0%   {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}
+@keyframes mascgira2 {
+  0%   {transform: rotate(0deg)}
+  100% {transform: rotate(-360deg)}
+} 
+
+ 
+
+

@@ -1,0 +1,110 @@
+@import "style-galeria.css";
+
+#mascsvg1 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -50vh;
+  left: -50vw;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascv1 20s infinite;
+  animation-timing-function: linear; 
+}
+#mascsvg2 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: -50vh;
+  left: 50vw;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascv2 20s infinite;
+  animation-timing-function: linear; 
+}
+#mascsvg3 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50vh;
+  left: 50vw;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascv3 20s infinite;
+  animation-timing-function: linear; 
+}
+#mascsvg4 {
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50vh;
+  left: -50vw;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: mascv4 20s infinite;
+  animation-timing-function: linear; 
+}
+
+
+@keyframes mascv1 {
+  0%   {transform: scaleX(1)}
+  10%   {transform: scaleX(1)}
+  13%   {transform: scaleX(-1)}
+  16%   {transform: scaleX(0.5)}
+  30%   {transform: scaleY(1) scaleX(0.5)}
+  35%  {transform: scaleY(-1) scaleX(0.5)}
+  45%   {transform: scaleY(-1) scaleX(0.5)}
+  50%  {transform: scaleY(1) scaleX(0.5)}
+  100% {transform: scaleX(1)}
+}
+@keyframes mascv2 {
+  0%   {transform: scaleX(1)}
+  13%   {transform: scaleX(1)}
+  16%   {transform: scaleX(-1)}
+  19%   {transform: scaleX(0.5)}
+  35%   {transform: scaleY(1) scaleX(0.5)}
+  40%  {transform: scaleY(-1) scaleX(0.5)}
+  45%   {transform: scaleY(-1) scaleX(0.5)}
+  50%  {transform: scaleY(1) scaleX(0.5)}
+  100% {transform: scaleX(1)}
+}
+@keyframes mascv3 {
+  0%   {transform: scaleX(1)}
+  16%   {transform: scaleX(1)}
+  19%   {transform: scaleX(-1)}
+  21%   {transform: scaleX(0.5)}
+  30%   {transform: scaleY(1) scaleX(0.5)}
+  35%  {transform: scaleY(-1) scaleX(0.5)}
+  40%   {transform: scaleY(-1) scaleX(0.5)}
+  45%  {transform: scaleY(1) scaleX(0.5)}
+  50%  {transform: scaleY(1) scaleX(0.5)}
+  100% {transform: scaleX(1)}
+}
+@keyframes mascv4 {
+  0%   {transform: scaleX(1)}
+  19%   {transform: scaleX(1)}
+  21%   {transform: scaleX(-1)}
+  23%   {transform: scaleX(0.5)}
+  35%  {transform: scaleY(1) scaleX(0.5)}
+  40%  {transform: scaleY(-1) scaleX(0.5)}
+  40%  {transform: scaleY(-1) scaleX(0.5)}
+  45%  {transform: scaleY(1) scaleX(0.5)}
+  50%  {transform: scaleY(1) scaleX(0.5)}
+  100%  {transform: scaleX(1)}
+}
+
+ 
+
+

@@ -1,0 +1,89 @@
+@import "style-galeria.css";
+
+#mascsvg1 {
+  transform: scaleX(-1);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 0%;
+  right: 0%;
+  max-width: 50%;
+  width: auto;
+  height: 50%;
+  opacity: 0.9;
+  overflow:hidden;
+  pointer-events: none;
+}
+#mascsvg1 path {
+  visibility: hidden;
+  animation: animabordib 12s infinite ;
+}
+
+#mascsvg2 {
+    transform: scale(-1);
+    position: absolute;
+    display: block;
+    z-index: 13;
+    bottom: 0%;
+    right: 0%;
+    max-width: 50%;
+    width: auto;
+    height: 50%;
+    opacity: 0.9;
+    overflow:hidden;
+    pointer-events: none;
+  }
+  #mascsvg2 path {
+    visibility: hidden;
+    animation: animabordib 12s infinite 3s;
+  }
+
+  #mascsvg3 {
+    transform: scaleY(-1);
+    position: absolute;
+    display: block;
+    z-index: 13;
+    bottom: 0%;
+    left: 0%;
+    max-width: 50%;
+    width: auto;
+    height: 50%;
+    opacity: 0.9;
+    overflow:hidden;
+    pointer-events: none;
+  }
+  #mascsvg3 path {
+    visibility: hidden;
+    animation: animabordib 12s infinite 6s;
+  }
+
+  #mascsvg4 {
+    position: absolute;
+    display: block;
+    z-index: 13;
+    top: 0%;
+    left: 0%;
+    max-width: 50%;
+    width: auto;
+    height: 50%;
+    opacity: 0.9;
+    overflow:hidden;
+    pointer-events: none;
+  }
+  #mascsvg4 path {
+    visibility: hidden;
+    animation: animabordib 12s infinite 9s;
+  }
+
+@keyframes animabordib {
+    0%    {visibility: visible; stroke-dashoffset: var(--largo); fill: rgba(0,0,0,0); stroke: white; stroke-width: 8}
+    10%   {stroke-dashoffset:0; fill: rgba(0,0,0,0); stroke: white; stroke-width: 8}
+    20%   {fill: black; stroke-width: 0}
+    40%   {fill: black; stroke-width: 0}
+    50%   {fill: rgba(0,0,0,0)}
+    100%   {fill: rgba(0,0,0,0)}
+  }
+
+ 
+
+

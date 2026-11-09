@@ -1,0 +1,85 @@
+
+@import "style-galeria.css";
+
+#mascsvg1 {
+  transform: translate(-50%,-50%);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50%;
+  left: 50%;
+  min-width: 140%;
+  width: auto;
+  height: 140%;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: muevesvg1 8s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+
+#mascsvg2 {
+  transform: translate(-50%,-50%);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50%;
+  left: 50%;
+  min-width: 110%;
+  width: auto;
+  height: 110%;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: muevesvg2 5s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  }
+  #mascsvg2 path {
+     fill: black;
+  }
+
+  #mascsvg3 {
+  transform: translate(-50%,-50%);
+  position: absolute;
+  display: block;
+  z-index: 13;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  width: auto;
+  height: 100%;
+  opacity: 0.8;
+  overflow:hidden;
+  pointer-events: none;
+  animation: muevesvg1 6s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  }
+  path {
+    animation: animabordib 20s infinite;
+  }
+
+
+@keyframes animabordib {
+    0%    {stroke: rgba(0,0,0,0); stroke-width: 7}
+    10%   {stroke: white; stroke-width: 7}
+    100%  {stroke: black; stroke-width: 0}
+  }
+  @keyframes muevesvg1 {
+    0%   {transform: scale(1) translate(-50%,-50%)}
+    100%  {transform: scale(1.1) translate(-45.4545%,-45.4545%)}
+}
+@keyframes muevesvg2 {
+  0%  {transform: scaleX(1.1) scaleY(1) translate(-45.4545%,-50%)}
+  100%  {transform: scaleX(1) scaleY(1.1) translate(-50%,-45.4545%)}
+}
+@keyframes muevesvg3 {
+  0%   {transform: scaleX(0.9) scaleY(1) translate(-55.5555%,-50%)}
+ 100%  {transform: scaleX(1) scaleY(1.1) translate(-50%,-45.4545%)}
+}
+ 
+
+
