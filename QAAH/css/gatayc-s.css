@@ -1,0 +1,280 @@
+
+:root {
+  --arat2: 0.75;
+}
+html {
+  background-color: var(--colorti1);
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar   {
+  width: max(8px,0.8vw);
+  opacity: 0.6;
+}
+::-webkit-scrollbar-track   {
+  background: linear-gradient(90deg, transparent 10%, var(--colorbar1) 50%, transparent 90%);
+}
+::-webkit-scrollbar-thumb   {
+  opacity: 0.3;
+  background:linear-gradient(0deg, transparent 10%, var(--colorbar2) 50%, transparent 90%);
+}
+body {
+  position: absolute;
+  padding: 0;
+  top: 0%;
+  left: 0%;
+  width: 0%;
+  background-color: rgb(102, 129, 163);
+  overflow: hidden;
+}
+.artcontainer h2   {
+  margin: 1.5vw;
+  text-align: center;
+  font-size: 2rem;
+}
+.artcontainer p   {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 1.25rem;
+}
+.artcontainer .pfecha   {
+    margin: 5%;
+    font-size: 1em;
+    font: Helvetica;
+  }
+
+h1 {
+  display: none;
+}
+
+ 
+
+    /*Estilo articulos*/
+
+
+
+/*Articulo 1*/
+
+#divtextmasc{
+  z-index: 4;
+  position: fixed;
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  width: calc(var(--dtwh)*1px);
+  height: calc(var(--dtwh)*1px);
+  left: calc(var(--dtleft)*1px); /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: calc(var(--dttop)*1px);
+  background-color: var(--colora11);
+  animation: animadt1 0.8s;
+  animation-timing-function: ease-in-out;   
+}
+
+#divtextfan1{
+  position: fixed;
+  width: calc(var(--dtwh)*1px);
+  height: calc(var(--dtwh)*1px);
+  left: calc(var(--dtleft)*1px); /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: calc(var(--dttop)*1px);
+  background-color: var(--colora12);
+  animation: animadt2 0.8s;
+  animation-timing-function: ease-in-out;   
+}
+
+#divtextfan2{
+    position: fixed;
+    width: calc(var(--dtwh)*1px);
+    height: calc(var(--dtwh)*1px);
+    left: calc(var(--dtleft)*1px); /*calc(10vw + 0.7*(100vw - var(--size)));*/
+    top: calc(var(--dttop)*1px);
+    background-color: var(--colora13);
+    animation: animadt3 0.8s;
+    animation-timing-function: ease-in-out;   
+}
+
+#divtextfan3{
+    position: fixed;
+    width: calc(var(--dtwh)*1px);
+    height: calc(var(--dtwh)*1px);
+    left: calc(var(--dtleft)*1px); /*calc(10vw + 0.7*(100vw - var(--size)));*/
+    top: calc(var(--dttop)*1px);
+    background-color: var(--colora14);
+    animation: animadt4 0.8s;
+    animation-timing-function: ease-in-out;   
+}
+
+#divtext{
+  position: fixed;
+  width: calc(var(--dtwh)*1px);
+  height: calc(var(--dtwh)*1px);
+  left: calc(var(--dtleft)*1px); /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: calc(var(--dttop)*1px);
+  background-color: var(--colora13);
+  opacity: 0.8;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 5;
+  /* animation: var(--vanidt1);
+  animation-duration: 0.8s; */
+  animation: animadt3 0.8s;
+  animation-timing-function: ease-in-out;   
+}
+#divtext a{
+  color: var(--colora11); 
+}
+#divtext h2{
+  color: var(--colora14); 
+}
+#divtext p{
+  color: var(--colorba14); 
+}
+.divdeco1{
+  position: absolute;
+  width: 2px;
+  height: 80%;
+  right: 4px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: 4px;
+  background: linear-gradient(180deg, var(--colora11) 10%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco2{
+  position: absolute;
+  width: 2px;
+  height: 60%;
+  right: 8px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: 8px;
+  background: linear-gradient(180deg, var(--colora11) 10%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco3{
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  right: 5px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  top: 4px;
+  background: linear-gradient(270deg, var(--colora11) 10%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco4{
+  position: absolute;
+  width: 25%;
+  height: 2px;
+  right: 9px; 
+  top: 8px;
+  background-color: var(--colora11); 
+  z-index: 5;
+}
+.divdeco5{
+  position: absolute;
+  width: 2px;
+  height: 4%;
+  right: calc(25% + 8px); 
+  top: 8px;
+  background-color: var(--colora11); 
+  z-index: 5;
+}
+.divdecoc{
+  position: absolute;
+  border-radius: 50%;
+  border:2px solid var(--colora11);
+  width: 10px;
+  height: 10px;
+  right: calc(25% + 2px); 
+  top: calc(4% + 8px);
+  z-index: 5;
+}
+.divdecoc2{
+  position: absolute;
+  border-radius: 50%;
+  border:2px solid var(--colora11);
+  width: 10px;
+  height: 10px;
+  left: calc(15% + 9px); 
+  top: calc(10% - 11px);
+  z-index: 5;
+}
+.divdeco6{
+  position: absolute;
+  width: 2px;
+  height: 90%;
+  left: 4px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: 4px;
+  background: linear-gradient(0deg, var(--colora11) 10%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco7{
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  left: 5px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: 4px;
+  background-color: var(--colora11);  
+  z-index: 5;
+}
+.divdeco8{
+  position: absolute;
+  width: 2px;
+  height: 90%;
+  left: 9px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: 4px;
+  background:  var(--colora11);
+  z-index: 5;
+}
+.divdeco9{
+  position: absolute;
+  width: 15%;
+  height: 2px;
+  left: 9px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: calc(4px + 90%);
+  background: var(--colora11); 
+  z-index: 5;
+}
+.divdeco9a{
+  position: absolute;
+  width: 20%;
+  height: 2px;
+  left: 9px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: calc(4px + 90%);
+  background: linear-gradient(90deg, var(--colora11) 10%, transparent 100%);  
+  z-index: 5;
+}
+.divdeco7a{
+  position: absolute;
+  width: 40%;
+  height: 2px;
+  left: 5px; /*calc(10vw + 0.7*(100vw - var(--size)));*/
+  bottom: 4px;
+  background: linear-gradient(90deg, var(--colora11) 10%, transparent 100%);   
+  z-index: 5;
+}
+.divcruza {
+  position: fixed;
+  background-color:var(--colorti2);
+  opacity: 0.2;
+  left: 0vmin;
+  top: 0vmin;
+  height: 20vmin;
+  width: 20vmin;
+  z-index: -1;
+}
+
+  @keyframes animadt1 {
+    0%   {left: -100vw}
+    100% {left: calc(var(--dtleft)*1px) }
+  }
+  @keyframes animadt2 {
+    0%   {top: -100vh}
+    100% {top: calc(var(--dttop)*1px) }
+  }
+  @keyframes animadt3 {
+    0%   {left: 140vw }
+    100% {left: calc(var(--dtleft)*1px) }
+  }
+  @keyframes animadt4 {
+    0%   {top: 140vh }
+    100% {top: calc(var(--dttop)*1px) }
+  }
+  @media screen and (min-width: 800px) {
+
+  }
+  @media screen and (max-width: 800px) {
+  }

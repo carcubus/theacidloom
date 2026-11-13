@@ -1,0 +1,362 @@
+   /*Css de la parte de comentarios*/
+   #comformboxmasc {
+    position: fixed;
+    z-index: 33;
+    width: 70vw;
+    height: 40%;
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    background-color: var(--colorcomb1);
+    --posy1: 10%;
+    --posy2: 10%;
+    --posx1: -85vw;
+    --posx2: 15vw;
+    --anidur: 1s;
+  }
+  #comformbox {
+    position: fixed;
+    z-index: 32;
+    width: 70vw;
+    height: 40%;
+    background-color: var(--colorcomb2);
+    --posy1: 10%;
+    --posy2: 10%;
+    --posx1: 115vw;
+    --posx2: 15vw;
+    --anidur: 1s;
+  }
+  #comformbox form{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  #comformboxfan {
+    position: fixed;
+    z-index: 32;
+    width: 70vw;
+    height: 40%;
+    background-color: var(--colorcomb3);
+    --posy1: 10%;
+    --posy2: 10%;
+    --posx1: 115vw;
+    --posx2: 15vw;
+    --anidur: 1s;
+  }
+  #comboxmasc {
+    position: fixed;
+    z-index: 33;
+    width: 80vw;
+    height: 40%;
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    background-color: var(--colorcomb3);
+    --posy1: -50%;
+    --posy2: 55%;
+    --posx1: 10vw;
+    --posx2: 10vw;
+    --anidur: 1s;
+  }
+#combox {
+  position: fixed;
+  z-index: 32;
+  width: 80vw;
+  height: 40%;
+  background-color: var(--colorcomb1);
+  --posy1: 110%;
+  --posy2: 55%;
+  --posx1: 10vw;
+  --posx2: 10vw;
+  --anidur: 1s;
+}
+#comboxfan {
+  position: fixed;
+  z-index: 32;
+  width: 80vw;
+  height: 40%;
+  background-color: var(--colorcomb2);
+  --posy1: 110%;
+  --posy2: 55%;
+  --posx1: 10vw;
+  --posx2: 10vw;
+  --anidur: 1s;
+}
+
+#incombox {
+    position: absolute;
+    font-size: large;
+    top: max(0.3vw,0.4vh);
+    left: max(0.3vw,0.4vh);
+    width: calc(100% - max(3.9vw,5.2vh));
+    height: calc(100% - max(0.6vw,0.8vh));
+    background-color: var(--colorcomb2);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+#incombox::-webkit-scrollbar {
+    width: max(4px,0.4vw);
+}
+.abrecombut {
+    z-index:4;
+    position: absolute;
+    bottom: 0.5vw;
+    right: 0.5vw;
+    width: max(3vw,4vh);
+    height: max(3vw,4vh);
+    background-color: var(--colorcom2);
+    border-color: var(--colorcom1);
+    overflow: visible;
+    cursor: pointer;
+}
+.comento {
+    position: relative;
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--colorcom3);
+}
+.comento b {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 0.5em;
+  display: inline-block;
+  color: var(--colorbcom4);
+  font-size: 1.8em;
+}
+.comento p {
+  color: var(--colorcom4);
+  font-size: 1.5em;
+}
+.comento a {
+  display: inline-block;
+}
+.comento .fechap {
+  position: absolute;
+  color: var(--colorbcom1);
+  font-size: 1em;
+  top: 0.3em;
+  right: 1em;
+}
+.comento a .webdiv {
+  display: inline-block;
+  border-bottom-left-radius: 1.5em;
+  border-top-right-radius: 0.6em;
+  border-bottom-right-radius: 0.2em;
+  margin-left: 3em;
+  margin-right: 0.1em;
+  background-color: var(--colorcomb4);
+  width: 3em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.comento a .emaildiv {
+  display: inline-block;
+  border-bottom-left-radius: 0.6em;
+  border-top-right-radius: 1.5em;
+  border-top-left-radius: 0.2em;
+  margin-left: 0.1em;
+  margin-right: 3em;
+  background-color: var(--colorcomb1);
+  width: 3em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#closebox {
+    position: absolute;
+    top: max(0.3vw,0.4vh);
+    right: max(0.3vw,0.4vh);
+    width: max(3vw,4vh);
+    height: max(3vw,4vh);
+    background-color: var(--colornbu1);
+    border-color: var(--colornbu2);
+    overflow: visible;
+    cursor: pointer;
+}
+#barritax1 {
+  --posy1: -65%;
+  --posy2: 45%;
+  --posx1: -80%;
+  --posx2: 20%;
+  --opa1: 0;
+  --opa2: 1;
+  --anidur: 2s;
+  transform: rotate(45deg);
+}
+#barritax2 {
+  --posy1: 145%;
+  --posy2: 45%;
+  --posx1: -80%;
+  --posx2: 20%;
+  --opa1: 0;
+  --opa2: 1;
+  --anidur: 2.5s;
+  transform: rotate(-45deg);
+}
+.puntito {
+  z-index: 4;
+  pointer-events: none;
+  position: absolute;
+  width: 20%;
+  height:20%;
+  background-color: var(--colorcom1);
+}
+.puntito1 {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: 10%;
+  --posx2: -90%;
+  --opa1: 1;
+  --opa2: 1;
+  --anidur: 1s;
+}
+.puntito2 {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: 40%;
+  --posx2: -60%;
+  --opa1: 1;
+  --opa2: 1;
+  --anidur: 2s;
+}
+.puntito3 {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: 70%;
+  --posx2: -30%;
+  --opa1: 1;
+  --opa2: 1;
+  --anidur: 3s;
+}
+.puntito1r {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: -90%;
+  --posx2: 10%;
+  --opa1: 0;
+  --opa2: 1;
+  --anidur: 3s;
+}
+.puntito2r {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: -60%;
+  --posx2: 40%;
+  --opa1: 0;
+  --opa2: 1;
+  --anidur: 2s;
+}
+.puntito3r {
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: -30%;
+  --posx2: 70%;
+  --opa1: 1;
+  --opa2: 1;
+  --anidur: 1s;
+}
+#closeformbut {
+    z-index: 3;
+    position: absolute;
+    top: max(0.3vw,0.4vh);
+    right: max(0.3vw,0.4vh);
+    width: max(3vw,4vh);
+    height: max(3vw,4vh);
+    background-color: var(--colornbu1);
+    border-color: var(--colornbu2);
+    cursor: pointer;
+}
+#barritax1f {
+  --posy1: 145%;
+  --posy2: 45%;
+  --posx1: -80%;
+  --posx2: 20%;
+  --opa1: 0;
+  --opa2: 1;
+  --anidur: 2s;
+  transform: rotate(45deg);
+}
+#barritax2f {
+  --posy1: -65%;
+  --posy2: 45%;
+  --posx1: -80%;
+  --posx2: 20%;
+  --opa1: 0;
+  --opa2: 1;
+  --gir1: -45deg;
+  --gir2: -45deg;
+  --anidur: 2.4s;
+  transform: rotate(-45deg);
+}
+#submitButton {
+  position: absolute;
+  bottom: max(1.8vw,2.4vh);
+  right: calc(50% - max(1.5vw,2vh));
+  width: max(3vw,4vh);
+  height: max(3vw,4vh);
+  background-color: rgb(87, 202, 206);
+}
+#submitsust {
+  pointer-events: none;
+  z-index: 44;
+  position: absolute;
+  bottom: max(1.8vw,2.4vh);
+  right: calc(50% - max(1.5vw,2vh));
+  width: max(3vw,4vh);
+  height: max(3vw,4vh);
+  background-color: var(--colorcom2);
+  border-color: var(--colorcom1);
+  cursor: pointer;
+}
+#adcomm {
+    position: absolute;
+    top: max(3.6vw,4.8vh);
+    right: max(0.3vw,0.4vh);
+    width: max(3vw,4vh);
+    height: max(3vw,4vh);
+    background-color: var(--colorcom2);
+    border-color: var(--colorcom1);
+    cursor: pointer;
+}
+#nombrein {
+  z-index: 3;
+  position: absolute;
+  top: max(2.4vw,3vh);
+  left: max(3.6vw,4.8vh);
+  width: 30%;
+  height: max(1.8vw,2.4vh);
+  font-size: 1.6em;
+}
+#emailin {
+  z-index: 3;
+  position: absolute;
+  top: max(1.2vw,1.5vh);
+  left: calc(35% + max(3.6vw,4.8vh));
+  width: 30%;
+  height: max(1.8vw,2.4vh);
+  font-size: 1.4em;
+}
+#commentin {
+  position: absolute;
+  top: max(3.6vw,4.8vh);
+  left: max(0.3vw,0.4vh);
+  width:  calc(96% - max(1vw,2vh));
+  height: calc(90% - max(7.2vw,9.6vh));
+  padding: max(0.9vw,1.2vh);
+  overflow-y: auto;
+  scrollbar-width: 4px;
+  font-size: 1.2em;
+}
+#commentin::-webkit-scrollbar {
+  width: max(4px,0.4vw);
+}
+@media (max-aspect-ratio: 1/1) {
+  .abrecombut {
+    width: 6vh;
+    height: 6vh;
+  }
+}
