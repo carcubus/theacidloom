@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="includes/navgatmin-s.css?v=__MATH_RANDOM__">
+<link rel="stylesheet" href="includes/chevland.css?v=__MATH_RANDOM__">
+<header class="main-header">
+
+<div id='tapanegra'></div>
+
+  <div class='navcont'>
+
+
+
+     <a href='gatitob.html'><div id="menuhomebox" class='menubox' href='gatitob.html'><div id='contA' class='letord'><b> H </b></div><p> O M E</p></div></a>
+
+     <button id='butx' onclick='colorincolorado()'><div id='butxdiv'></div></button>
+
+     <div id='fandiv' class='navdiv'> 
+      <div id='fandot' class='navdiv'></div>
+     </div>
+    
+    <div style="position: relative; top: 20px: left: 0px; z-index: 1000" class="containerchev" id='chevi1'>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+
+    <script>
+            window.addEventListener('mousemove',mueveojos)
+            function mueveojos(event) {
+              var xrel=event.clientX/window.innerWidth;
+              var yrel=event.clientY/window.innerHeight;
+              var erel=(2-xrel-yrel)/2;
+              document.getElementById('butxdiv').style.width = (1+8*xrel)+'vh';
+              document.getElementById('butxdiv').style.height = (1+8*yrel)+'vh';
+              document.getElementById('butxdiv').style.borderRight = (2+15*erel)+'px solid var(--colornbu3)';
+            }
+
+
+            window.onclick = function(event) {
+              //console.log(event.target.className);
+              if (!event.target.matches('.boton')) {
+                var dropdowns = document.getElementsByClassName("menu1elems");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive')) {
+                    xel.classList.remove('ddactive');
+                    xel.classList.add('ddinactive');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+                var dropdowns = document.getElementsByClassName("menu1elemsx");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive2')) {
+                    xel.classList.remove('ddactive2');
+                    xel.classList.add('ddinactive2');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+              }
+            }
+    </script>
+   
+
+  </div>
+</header>

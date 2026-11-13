@@ -1,0 +1,560 @@
+#menu2box {
+    z-index: 24;
+    position: fixed;
+    height: 200vh;
+    width: 100vw;
+    top: 0;
+    left: 0vw;
+    display: none;
+    overflow-x:hidden;
+}
+#menu2boxbg {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(75deg, black 55%, transparent 100%);
+}
+#menu2boxin {
+  z-index: 25;
+  position: fixed;
+  height: 82vh;
+  width: 70vw;;
+  top: 18vh;
+  left: 0;
+  background: linear-gradient(75deg, transparent 80%, var(--colornbu4) 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.menu2boxina {
+    animation: apafacil 3s;
+}
+.menu2boxind {
+    animation: desapafacil 3s;
+    opacity: 0;
+}
+
+.mascmenu2 {
+  position: absolute;
+  z-index: 23;
+  width: 200%;
+  height: 16%;
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent 30%, var(--colornm22) 100%);
+}
+.mascmenu2fanin {
+  position: absolute;
+  z-index: 23;
+  width: 60%;
+  height: 10%;
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent 30%, var(--colornm22) 100%);
+}
+.mascmenu2fan {
+  position: absolute;
+  z-index: 21;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(0deg, transparent 70%, var(--colornm22) 100%);
+}
+.lnkart {
+    display: table;
+    position: absolute;
+    width: 30%;
+    --posx2: 70%;
+    background: linear-gradient(45deg, transparent 50%, var(--colornm22) 100%);
+}
+.lnkart p {
+    word-wrap: normal;
+    text-align: center;
+    vertical-align: middle;
+    margin: min(4vw,calc(var(--arat) * 4vh));
+    font-size: min(5vw,calc(var(--arat) * 5vh));
+    color:var(--colornm23);
+}
+#menuliart16masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 300%;
+  --posy2: 300%;
+  --posx1: calc(-300%);
+  --posx2: calc(-115%);
+  --anidur: 1.5s;
+}
+#menuliart15masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 280%;
+  --posy2: 280%;
+  --posx1: calc(-300%);
+  --posx2: calc(-105%);
+  --anidur: 1.2s;
+}
+#menuliart14masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 260%;
+  --posy2: 260%;
+  --posx1: calc(-300%);
+  --posx2: calc(-120%);
+  --anidur: 1.5s;
+}
+#menuliart13masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 240%;
+  --posy2: 240%;
+  --posx1: calc(-300%);
+  --posx2: calc(-130%);
+  --anidur: 1.8s;
+}
+#menuliart12masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 220%;
+  --posy2: 220%;
+  --posx1: calc(-300%);
+  --posx2: calc(-115%);
+  --anidur: 1.5s;
+}
+#menuliart11masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 200%;
+  --posy2: 200%;
+  --posx1: calc(-300%);
+  --posx2: calc(-105%);
+  --anidur: 1.2s;
+}
+#menuliart10masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 180%;
+  --posy2: 180%;
+  --posx1: calc(-300%);
+  --posx2: calc(-120%);
+  --anidur: 1.5s;
+}
+#menuliart9masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 160%;
+  --posy2: 160%;
+  --posx1: calc(-300%);
+  --posx2: calc(-130%);
+  --anidur: 1.8s;
+}
+#menuliart8masc {
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    --posy1: 140%;
+    --posy2: 140%;
+    --posx1: calc(-300%);
+    --posx2: calc(-115%);
+    --anidur: 1.5s;
+  }
+  #menuliart7masc {
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    --posy1: 120%;
+    --posy2: 120%;
+    --posx1: calc(-300%);
+    --posx2: calc(-105%);
+    --anidur: 1.2s;
+  }
+  #menuliart6masc {
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    --posy1: 100%;
+    --posy2: 100%;
+    --posx1: calc(-300%);
+    --posx2: calc(-120%);
+    --anidur: 1.5s;
+  }
+  #menuliart5masc {
+    clip: rect(auto, auto, auto, auto);
+    overflow: hidden;
+    --posy1: 80%;
+    --posy2: 80%;
+    --posx1: calc(-300%);
+    --posx2: calc(-130%);
+    --anidur: 1.8s;
+  }
+#menuliart4masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 60%;
+  --posy2: 60%;
+  --posx1: calc(-300%);
+  --posx2: calc(-115%);
+  --anidur: 1.5s;
+}
+#menuliart3masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 40%;
+  --posy2: 40%;
+  --posx1: calc(-300%);
+  --posx2: calc(-105%);
+  --anidur: 1.2s;
+}
+#menuliart2masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 20%;
+  --posy2: 20%;
+  --posx1: calc(-300%);
+  --posx2: calc(-120%);
+  --anidur: 1.5s;
+}
+#menuliart1masc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 0%;
+  --posy2: 0%;
+  --posx1: calc(-300%);
+  --posx2: calc(-135%);
+  --anidur: 1.8s;
+}
+#menuliacdmasc {
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  --posy1: 10%;
+  --posy2: 10%;
+  --posx1: 170%;
+  --posx2: 80%;
+  --anidur: 2.2s;
+  position: absolute;
+  z-index: 23;
+  width: 100%;
+  height: min(11vw,calc(var(--arat) * 11vh));
+  background: linear-gradient(270deg, transparent 30%, var(--colornm22) 100%);
+}
+#menuliart16fan {
+  --posy1: calc(140% + 100vh);
+  --posy2: 300%;
+  --posx1: 25%;
+  --posx2: 25%;
+  --anidur: 1.0s;
+}
+#menuliart15fan {
+  --posy1: calc(120% + 100vh);
+  --posy2: 280%;
+  --posx1: 35%;
+  --posx2: 35%;
+  --anidur: 1.0s;
+}
+#menuliart14fan {
+  --posy1: calc(100% + 100vh);
+  --posy2: 260%;
+  --posx1: 20%;
+  --posx2: 20%;
+  --anidur: 1.3s;
+}
+#menuliart13fan {
+  --posy1: calc(80% + 100vh);
+  --posy2: 240%;
+  --posx1: 10%;
+  --posx2: 10%;
+  --anidur: 1.5s;
+}
+#menuliart12fan {
+  --posy1: calc(140% + 100vh);
+  --posy2: 220%;
+  --posx1: 25%;
+  --posx2: 25%;
+  --anidur: 1.0s;
+}
+#menuliart11fan {
+  --posy1: calc(120% + 100vh);
+  --posy2: 200%;
+  --posx1: 35%;
+  --posx2: 35%;
+  --anidur: 1.0s;
+}
+#menuliart10fan {
+  --posy1: calc(100% + 100vh);
+  --posy2: 180%;
+  --posx1: 20%;
+  --posx2: 20%;
+  --anidur: 1.3s;
+}
+#menuliart9fan {
+  --posy1: calc(80% + 100vh);
+  --posy2: 160%;
+  --posx1: 10%;
+  --posx2: 10%;
+  --anidur: 1.5s;
+}
+#menuliart8fan {
+    --posy1: calc(140% + 100vh);
+    --posy2: 140%;
+    --posx1: 25%;
+    --posx2: 25%;
+    --anidur: 1.0s;
+  }
+  #menuliart7fan {
+    --posy1: calc(120% + 100vh);
+    --posy2: 120%;
+    --posx1: 35%;
+    --posx2: 35%;
+    --anidur: 1.0s;
+  }
+  #menuliart6fan {
+    --posy1: calc(100% + 100vh);
+    --posy2: 100%;
+    --posx1: 20%;
+    --posx2: 20%;
+    --anidur: 1.3s;
+  }
+  #menuliart5fan {
+    --posy1: calc(80% + 100vh);
+    --posy2: 80%;
+    --posx1: 10%;
+    --posx2: 10%;
+    --anidur: 1.5s;
+  }
+#menuliart4fan {
+  --posy1: calc(60% + 100vh);
+  --posy2: 60%;
+  --posx1: 25%;
+  --posx2: 25%;
+  --anidur: 1.0s;
+}
+#menuliart3fan {
+  --posy1: calc(40% + 100vh);
+  --posy2: 40%;
+  --posx1: 35%;
+  --posx2: 35%;
+  --anidur: 1.0s;
+}
+#menuliart2fan {
+  --posy1: calc(20% + 100vh);
+  --posy2: 20%;
+  --posx1: 20%;
+  --posx2: 20%;
+  --anidur: 1.3s;
+}
+#menuliart1fan {
+  --posy1: calc(5% + 100vh);
+  --posy2: 0%;
+  --posx1: 5%;
+  --posx2: 5%;
+  --anidur: 1.5s;
+}
+.menufulart {
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    transform: translate(-50%,-50%);
+    background: var(--colornm23);
+    animation: locaani 5s infinite;
+    z-index: 33;
+  }
+  #menufulart1 {
+    top: 8%;
+    left: 65%;
+  }
+  #menufulart2 {
+    top: 28%;
+    left: 80%;
+  }
+  #menufulart3 {
+    top: 48%;
+    left: 95%;
+  }
+  #menufulart4 {
+    top: 68%;
+    left: 85%;
+  }
+  #menufulart5 {
+    top: 88%;
+    left: 70%;
+  }
+  #menufulart6 {
+    top: 108%;
+    left: 80%;
+  }
+  #menufulart7 {
+    top: 128%;
+    left: 95%;
+  }
+  #menufulart8 {
+    top: 148%;
+    left: 85%;
+  }
+  #menufulart9 {
+    top: 168%;
+    left: 70%;
+  }
+  #menufulart10 {
+    top: 188%;
+    left: 80%;
+  }
+  #menufulart11 {
+    top: 208%;
+    left: 95%;
+  }
+  #menufulart12 {
+    top: 228%;
+    left: 85%;
+  }
+  #menufulart13 {
+    top: 248%;
+    left: 70%;
+  }
+  #menufulart14 {
+    top: 268%;
+    left: 80%;
+  }
+  #menufulart15 {
+    top: 288%;
+    left: 95%;
+  }
+  #menufulart16 {
+    top: 308%;
+    left: 85%;
+  }
+  .abreimg {
+    width: 100%;
+    height: auto;
+  }
+#menuliacdfan {
+  position: absolute;
+  z-index: 21;
+  width: min(11vw,calc(var(--arat) * 11vh));
+  height: 50%;
+  background: linear-gradient(180deg, transparent 50%, var(--colornm22) 100%);
+  --posy1: -150%;
+  --posy2: calc(-40% + 10vw);
+  --posx1: 80%;
+  --posx2: 80%;
+  --anidur: 2.0s;
+}
+#linkart16 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 160%;
+  --anidur: 1.0s;
+}
+#linkart15 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 160%;
+    --anidur: 1.2s;
+}
+
+#linkart14 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 155%;
+  --anidur: 1.5s;
+}
+#linkart13 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 150%;
+  --anidur: 1.8s;
+}
+#linkart12 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 160%;
+  --anidur: 1.0s;
+}
+#linkart11 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 160%;
+    --anidur: 1.2s;
+}
+
+#linkart10 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 155%;
+  --anidur: 1.5s;
+}
+#linkart9 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 150%;
+  --anidur: 1.8s;
+}
+#linkart8 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 160%;
+    --anidur: 1.0s;
+  }
+  #linkart7 {
+      height: 100%;
+      --posy1: -10%;
+      --posy2: 0%;
+      --posx1: 160%;
+      --anidur: 1.2s;
+  }
+  
+  #linkart6 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 155%;
+    --anidur: 1.5s;
+  }
+  #linkart5 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 150%;
+    --anidur: 1.8s;
+  }
+#linkart4 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 160%;
+  --anidur: 1.0s;
+}
+#linkart3 {
+    height: 100%;
+    --posy1: -10%;
+    --posy2: 0%;
+    --posx1: 160%;
+    --anidur: 1.2s;
+}
+
+#linkart2 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 155%;
+  --anidur: 1.5s;
+}
+#linkart1 {
+  height: 100%;
+  --posy1: -10%;
+  --posy2: 0%;
+  --posx1: 150%;
+  --anidur: 1.8s;
+}
+
+
+
+@media (max-aspect-ratio: 1/1) {
+    .lnkart {
+        position: absolute;
+        width: 30%;
+        --posx2: 70%;
+        background-color: var(--colornm22);
+    }
+}

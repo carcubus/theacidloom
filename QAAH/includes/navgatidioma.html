@@ -1,0 +1,158 @@
+
+
+
+     <!-- menu idiomas (ahora invisible) -->
+
+     <div id='dividioma' onclick='abremenu2()'>
+        <p><b id="pidiocode"> Orig </b></p>
+        <img alt="torre de babel" src="img/babel.png">
+     </div>    
+
+     <!-- <div id="menu2box">
+       <a href="gatart1.html"> <div id="dividio-orig" class='menu2elems mascmenu2'>
+         <p><b>Orig</b></p>
+       </div></a>
+       <a href="gatart1es.html"> <div id="dividio-esp" class='menu2elems mascmenu2'>
+         <p><b>Esp</b></p>
+       </div></a>
+       <a href="gatart1en.html"> <div id="dividio-eng" class='menu2elems mascmenu2'>
+         <p><b>Eng</b></p>
+       </div></a>
+     </div>  -->
+
+<style>
+
+#dividioma {
+  z-index: 111;
+  position: fixed;
+  border-radius: 50%;
+  right: 3vh;
+  top: 5vh;
+  width: 8vh;
+  height: 8vh;
+  border-top:1px solid var(--colornf2);
+  border-right: 1px solid var(--colornf2);
+  border-bottom:6px solid var(--colornf2);
+  border-left:3px solid var(--colornf2);
+  background-color: transparent;
+  background-image: linear-gradient(16deg, transparent 50%, var(--colornf1) 100% );
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  word-break: break-word;
+}
+#dividioma p{
+    color: var(--colornf3);
+    font-size: 4em;
+    z-index: 33;
+    text-align: center;
+    vertical-align: middle;
+}
+#dividioma img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+    opacity: 0.5;
+}
+</style>   
+
+    <script>
+
+
+            function abrecierra(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive');
+                  xxx.classList.add('ddactive');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+
+            function cierra(ddmenu) {
+              var dropdowns = document.getElementsByClassName(ddmenu);
+              for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive')) {
+                    xel.classList.remove('ddactive');
+                    xel.classList.add('ddinactive');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+              }
+            }
+
+            function abrecierrax(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive2');
+                  xxx.classList.add('ddactive2');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+              function abrecierray(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive3');
+                  xxx.classList.add('ddactive3');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+
+
+            function abremenu1() {
+              abrecierra('menu1elems');
+              abrecierrax('menu1elemsx');
+            }
+            function abremenu2() {
+              var x=document.getElementById('menu2box')
+              if (x.style.display != "block") {
+                console.log('AA',x.style.display);
+                x.style.display = "block";  
+                abrecierra('menu2elems');
+              }
+              else { 
+                console.log('bbb',x.style.display);
+                cierra('menu2elems');  
+                setTimeout(function() {x.style.display = "none";}, 2500); 
+              }
+            }
+
+            window.onclick = function(event) {
+              //console.log(event.target.className);
+              if (!event.target.matches('.boton')) {
+                var dropdowns = document.getElementsByClassName("menu1elems");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive')) {
+                    xel.classList.remove('ddactive');
+                    xel.classList.add('ddinactive');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+                var dropdowns = document.getElementsByClassName("menu1elemsx");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive2')) {
+                    xel.classList.remove('ddactive2');
+                    xel.classList.add('ddinactive2');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+              }
+            }
+    </script>
+
+
+
+   
+      </div>
+    </div>
+</header>

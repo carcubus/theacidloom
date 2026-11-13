@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="includes/navgatmin-s.css?v=__MATH_RANDOM__">
+<header class="main-header">
+  <div class='navcont'>
+
+
+
+ 
+     <a href='gatitob.html'><div id="menuhomebox" class='menubox' href='gatitob.html'><div id='contA' class='letord'><b> H </b></div><p> O M E</p></div></a>
+
+     <button id='butx' onclick='colorincolorado()'><div id='butxdiv'></div></button>
+
+     <div id='fandiv' class='navdiv'> 
+      <div id='fandot' class='navdiv'></div>
+     </div>
+    
+
+
+    <script>
+            window.addEventListener('mousemove',mueveojos)
+            function mueveojos(event) {
+              var xrel=event.clientX/window.innerWidth;
+              var yrel=event.clientY/window.innerHeight;
+              var erel=(2-xrel-yrel)/2;
+              document.getElementById('butxdiv').style.width = (1+8*xrel)+'vh';
+              document.getElementById('butxdiv').style.height = (1+8*yrel)+'vh';
+              document.getElementById('butxdiv').style.borderRight = (2+15*erel)+'px solid var(--colornbu3)';
+            }
+    </script>
+   
+
+  </div>
+</header>

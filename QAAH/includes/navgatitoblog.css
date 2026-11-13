@@ -1,0 +1,359 @@
+
+.hexmenu {
+   width: 300px;
+   height: 348px;
+   overflow: hidden;
+   visibility: hidden;
+   transform: rotate(120deg);
+   list-style-type: none;
+}
+.hexmenu-in1 {
+   display: block;
+   overflow: hidden;
+   width: 100%;
+   height: 100%;
+   transform: rotate(-60deg);
+   text-decoration: none;
+}
+.hexmenu-in2 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("hexaint1zb.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    overflow: hidden;
+    visibility: visible;
+    line-height: 400px;
+    font-family: 'Capriola', sans-serif;
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    transform: rotate(-60deg);
+    transition: 1.5s ease-out;
+  }
+
+#hexabout {
+position: fixed;
+width: min(30vw,30vh);
+height: min(34.8vw,34.8vh);
+top: max(-15vw,-15vh);
+left: max(-8vw,-8vh);
+z-index: 9;
+}
+#butaboutin {
+  background-image: url("icohexabout.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#butaboutin:hover {
+  background-image: url("icohexabouthov.png");
+}
+.labelcont {
+  position: fixed;
+  display: flex;
+  bottom: 1vh;
+  height: 5vh;
+  left: 33vw;
+  width: 34vw;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+.buttonlabels {
+  pointer-events: none;
+  display: none;
+  width: 100%;
+  padding-top: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 1px;
+  background: white;
+  border: 2px solid rgb(174, 231, 16);
+  font-size: 3vh;
+  border-radius: 50vh;
+  z-index: 9;
+  text-align: center;
+}
+.buttonlabels b {
+  text-align: center;
+}
+#hexcont {
+position: fixed;
+width: min(30vw,30vh);
+height: min(34.8vw,34.8vh);
+top: max(-15vw,-15vh);
+right: max(-8vw,-8vh);
+z-index: 9;
+}
+#butcontin {
+  background-image: url("icohexcont.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#butcontin:hover {
+  background-image: url("icohexconthov.png");
+}
+#hexhome {
+   position: fixed;
+   width: min(30vw,30vh);
+   height: min(34.8vw,34.8vh);
+   top: max(-23vw,-23vh);
+   left: min(12vw,12vh);
+   z-index: 10;
+  }
+  #buthomein {
+    background-image: url("icohexhome.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+  }
+  #buthomein:hover {
+    background-image: url("icohexhomehov.png");
+  }
+   #hexlink {
+      position: fixed;
+      width: min(30vw,30vh);
+      height: min(34.8vw,34.8vh);
+      top: max(-23vw,-23vh);
+      right: min(12vw,12vh);
+      z-index: 10;
+      }
+         #butlinkin {
+          background-image: url("icohexlink.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position: center;
+        }
+        #butlinkin:hover {
+          background-image: url("icohexlinkhov.png");
+        }
+
+    .hexbut {
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        bottom: 10px;
+        overflow: hidden;
+        visibility: hidden;
+        transform: rotate(120deg);
+        display: inline-block;
+        list-style-type: none;
+        }
+     .hexbut-in1 {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-60deg);
+        text-decoration: none;
+        }
+     .hexbut-in2 {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        visibility: visible;
+        line-height: 10px;
+        font-family: 'Capriola', sans-serif;
+        font-size: 2em;
+        text-shadow: 1px 1px #000;
+        transform: rotate(-60deg);
+        transition: 1.5s ease-out;
+        }
+     .hexbut-in2 img { 
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;       
+   }
+   .hexbut-in2 a { 
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;       
+   }
+   .hexbut-in2 small { 
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      width: 30%;
+      height: 5%;       
+   }
+   .butinhex {
+    left: 35%;
+  }
+   .midropdown-content {
+    display: none;
+    position: absolute;
+    overflow: auto;
+   }
+   .ddshow {
+    display: block;
+    animation: ddmenuani 0.4s ;
+    animation-timing-function: ease-in-out; 
+    z-index: 10;
+  }
+  @keyframes ddmenuani {
+    0%   {transform: translate(30vw, 30vw); width: 0; height:0}
+    100% {width: 80vw; height:80vw}
+  }
+
+   @media screen and (min-width: 800px) {
+    .buttonlabelsmov {
+      display: none;
+    }
+   }
+   @media screen and (max-width: 800px) {
+    .hexmenu {
+      display: none;
+     }
+     #hexmenumov {
+      position: fixed;
+      width: 80vw;
+      height: 80vw;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 9;
+     }
+     #hexlogomov {
+      position: fixed;
+      width: min(20vw,20vh);
+      height: min(23.1vw,23.1vh);
+      top: min(3vw,3vh);
+      right: min(3vw,3vh);
+      padding: 0;
+      border: 0;
+      z-index: 9;
+     }
+     #hexlogomovin {
+      background-image: url("allogohexp.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+    #hexbutmenumov {
+      position: fixed;
+      width: min(20vw,20vh);
+      height: min(23.1vw,23.1vh);
+      top: min(3vw,3vh);
+      left: min(3vw,3vh);
+      padding: 0;
+      border: 0;
+      z-index: 9;
+     }
+     #hexbutmenumovin {
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+    .hexbutmenumovclosed {
+      background-image: url("icohexmmov.png");
+    }
+    .hexbutmenumovclosed:hover {
+      background-image: url("icohexmmovhov.png");
+    }
+    .hexbutmenumovopen {
+      background-image: url("icohexclos.png");
+    }
+    .hexbutmenumovopen:hover {
+      background-image: url("icohexcloshov.png");
+    }
+
+    .buttonlabelsmov {
+      display: inherit;
+      min-width: 30vw;
+      padding-top: 1px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 1px;
+      background: rgb(212, 183, 219);
+      border: 2px solid rgb(174, 231, 16);
+      font-size: 3vh;
+      border-radius: 50vh;
+      z-index: 9;
+      text-align: center;
+    }
+    .buttonlabelsmov b {
+      text-align: center;   
+      color: rebeccapurple;
+    }
+
+    #hexbuthomemov {
+      position: fixed;
+      width: min(20vw,20vh);
+      height: min(23.1vw,23.1vh);
+      top: min(20vw,20vh);
+      left: min(13vw,13vh);
+      z-index: 9;
+     }
+     #hexbuthomemovin {
+      background-image: url("icohexhome.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+    #hexbuthomemovin:hover {
+      background-image: url("icohexhomehov.png");
+    }
+    #labelbuthomemovin {
+      position: fixed;
+      top: min(29vw,29vh);
+      left: min(34vw,34vh);
+      z-index: 9;     
+    }
+
+    #hexbutlinkmov {
+      position: fixed;
+      width: min(20vw,20vh);
+      height: min(23.1vw,23.1vh);
+      top: min(37vw,37vh);
+      left: min(3vw,3vh);
+      z-index: 9;
+     }
+     #hexbutlinkmovin {
+      background-image: url("icohexlink.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+    #hexbutlinkmovin:hover {
+      background-image: url("icohexlinkhov.png");
+    }
+    #labelbutlinkmovin {
+      position: fixed;
+      top: min(46vw,46vh);
+      left: min(24vw,24vh);
+      z-index: 9;     
+    }
+
+    #hexbutaboutmov {
+      position: fixed;
+      width: min(20vw,20vh);
+      height: min(23.1vw,23.1vh);
+      top: min(54vw,54vh);
+      left: min(13vw,13vh);
+      z-index: 9;
+     }
+     #hexbutaboutmovin {
+      background-image: url("icohexabout.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    }
+    #hexbutaboutmovin:hover {
+      background-image: url("icohexabouthov.png");
+    }
+    #labelbutaboutmovin {
+      position: fixed;
+      top: min(63vw,63vh);
+      left: min(34vw,34vh);
+      z-index: 9;     
+    }
+   }

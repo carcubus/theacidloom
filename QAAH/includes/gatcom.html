@@ -1,0 +1,48 @@
+<!--------------------------------------caja comentarios-------------------------------------------> 
+<div id="comboxmasc" class="commentbox ddini">
+  <div id="combox" class="commentbox ddini">
+    <div id="incombox"></div>
+    <button id='closebox' onclick="cierracom(3)">
+      <div id='barritax1' class="barrita commentbox ddini"></div>
+      <div id='barritax2' class="barrita commentbox ddini"></div>
+    </button>
+    <button id='adcomm' class='addcomment' onclick="abreform()">
+      <div id='puntito1c' class="puntito puntito1r commentbox ddini"></div>
+      <div id='puntito2c' class="puntito puntito2r commentbox ddini"></div>
+      <div id='puntito3c' class="puntito puntito3r commentbox ddini"></div>
+    </button>    
+  </div>
+</div>
+<div id="comboxfan" class="commentbox ddini">
+</div>
+
+<div id="comformboxmasc" class="comformbox ddini">
+ <div id="comformbox" class="comformbox ddini">
+   <button id='closeformbut' onclick="cierraform()">
+    <div id='barritax1f' class="barrita comformbox ddini"></div>
+    <div id='barritax2f' class="barrita comformbox ddini"></div>
+   </button>
+   <form id="formcom" action="" method="post">
+    <div>
+      <input type="text" id="nombrein" name="nombre" placeholder="Who you are...">
+    </div>
+    <div>
+      <input type="text" id="emailin" name="email" placeholder="How to find you... (email)">
+    </div>
+      <textarea id="commentin" name="comment" placeholder="What you say... (max 10000char)" maxlength="7000"></textarea>
+
+      <input type="submit" id="submitButton" name="submitButton" value="Submit">
+
+   </form>
+   <button id='submitsust'>
+      <div class="puntito puntito1r comformbox ddini"></div>
+      <div class="puntito puntito2r comformbox ddini"></div>
+      <div class="puntito puntito3r comformbox ddini"></div>
+    </button>   
+ </div>
+</div>
+<div id="comformboxfan" class="comformbox ddini">
+</div>
+
+
+  <!-------------------------------------- fin caja comentarios-------------------------------------------> 

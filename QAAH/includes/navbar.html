@@ -1,0 +1,246 @@
+<link rel="stylesheet" href="includes/navhex.css?v=__MATH_RANDOM__">
+<header class="main-header">
+    <div class="container">
+
+        <!-- para movil -->
+
+        <!-- menu permanente -->
+    <button id='hexbutmenumov' class='hexbut' onclick="cambiaboton()"> 
+      <div class='hexbut-in1' href='#'><div id="hexbutmenumovin" class='hexbut-in2 hexbutmenumovclosed'>							   
+			</div></div>
+    </button>
+
+    <button id='hexbutcartmov' class='hexbut' onclick="abrecierramenu('hexcartmenu')"> 
+      <div class='hexbut-in1' href='#'><div id="hexbutcartmovin" class='hexbut-in2'>
+        <span class="numitemcart cart_count"></span>							   
+			</div></div>
+    </button>
+
+    
+
+        <!-- menu dentro carrito -->
+    <div id="hexcartmenu" class='hexmenualt midropdown-content'>
+            <div class='hexmenu-in1' href='#'><div class='hexmenu-in2' >
+            <div id="cart_menu">
+            </div> 
+            <div class='hexbut butinhex' style="cursor: pointer;" onclick="window.location='cart_view.html';">
+                <div class='hexbut-in1' href='#'><div id='butcartin2' class='hexbut-in2'>
+                <span class="numitemcart cart_count"></span>
+						</div></div>
+          </div>  
+    </div></div></div>
+  
+        <!-- menu categorias-colecciones -->    
+    <div id='hexcato' class='hexmenualt midropdown-content'> 
+      <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>		
+      					   
+			</div></div>
+    </div>
+
+        <!-- menu desplegable izquierdo -->
+    <div id="hexmenumov" class='midropdown-content'>
+
+    <div id='hexbuthomemov' class='hexbut' style="cursor: pointer;" onclick="window.location='index.html';"> 
+      <div class='hexbut-in1' href='#'><div id="hexbuthomemovin" class='hexbut-in2'>
+			</div></div>
+    </div>
+
+    <div class="buttonlabelsmov" id='labelbuthomemovin'><a href="index.html"> <b >HOME</b></a></div>
+
+    <div id='hexbutcontmov' class='hexbut' style="cursor: pointer;" onclick="window.location='contact.html';">
+      <div class='hexbut-in1' href='#'><div id="hexbutcontmovin" class='hexbut-in2'>
+			</div></div>
+    </div>
+    <div class="buttonlabelsmov" id='labelbutcontmovin'><a href="contact.html"> <b >CONTACT</b></a></div>
+
+    <div id='hexbutaboutmov' class='hexbut' style="cursor: pointer;" onclick="window.location='about.html';"> 
+      <div class='hexbut-in1' href='#'><div id="hexbutaboutmovin" class='hexbut-in2'>
+			</div></div>
+    </div>
+    <div class="buttonlabelsmov" id='labelbutaboutmovin'><a href="about.html"> <b >ABOUT</b></a></div>
+ 
+    <button id='hexbutcatmov' class='hexbut' onclick="abrecierramenu('hexcato')"> 
+      <div class='hexbut-in1' href='#'><div id="hexbutcatmovin" class='hexbut-in2'>
+			</div></div>
+    </button>
+    <div class="buttonlabelsmov" id='labelbutcatmovin' onclick="abrecierramenu('hexcato')"> <b class='tampoco'>COLLECTIONS</b></div>
+
+    <form method="POST" id="navseaformov" action="search.html">
+      <div id="input-search-mov" class=" tampoco">
+        <input type="text" class="form-control tampoco" id="navbar-search-input-mov" name="keyword" placeholder="Search!!!"> <!--required?--> 
+      </div>
+      <button id="hexbutseamov" type="submit" class="hexbut">
+        <div class='hexbut-in1' href='#'><div id="hexbutseamovin" class='hexbut-in2'>
+				</div></div>
+      </button>
+    </form>
+ 
+    <div id='hexbutblomov' class='hexbut' style="cursor: pointer;" onclick="window.location='blog.html';"> 
+      <div class='hexbut-in1' href='#'><div id="hexbutblomovin" class='hexbut-in2'>
+			</div></div>
+    </div>
+    <div class="buttonlabelsmov" id='labelbutblomovin'><a href="blog.html"> <b >THE BLOG</b></a></div>
+
+    </div>
+
+        <!-- menu desplegable usuario -->
+    <div id="menusermov" class='midropdown-content'>
+    
+    </div>  
+
+    <script>
+            function abrecierramenu(ddmenu) {
+              document.getElementById(ddmenu).classList.toggle("ddshow");
+            }
+
+            function cambiaboton() {
+              document.getElementById('hexbutmenumovin').classList.remove("hexbutmenumovclosed");
+              document.getElementById('hexbutmenumovin').classList.toggle("hexbutmenumovopen");
+              abrecierramenu('hexmenumov');
+              //document.getElementById('hexbutmenumovin').style.backgroundImage = "url('includes/icohexclos.png')";
+            }
+
+            window.onclick = function(event) {
+              console.log(event.target.className);
+              //if (document.getElementById('hexbutcat').contains(event.target))
+              if (!event.target.matches('.hexbut-in2')&&!event.target.matches('.tampoco')) {
+                //document.getElementById('hexbutmenumovin').style.backgroundImage = 'url("includes/icohexmmov.png")';
+                document.getElementById('hexbutmenumovin').classList.remove("hexbutmenumovopen");
+                document.getElementById('hexbutmenumovin').classList.add("hexbutmenumovclosed");
+                var dropdowns = document.getElementsByClassName("midropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('ddshow')) {
+                    openDropdown.classList.remove('ddshow');
+                  }
+                }
+              }
+            }
+    </script>
+
+      <!-- para ordenador -->
+
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+        <li id='hexhome' class='hexmenu'>      
+								   <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+                   <a id='hexhomex' class='hexbut butinhex' href="index.html"> 
+                   <div class='hexbut-in1' href='#'><div id="buthomein" class='hexbut-in2'>
+										   <!--<img src='' width='100%' height='230px' class='thumbnail'>-->
+										 </div></div>
+                   </a>
+          </div></div>
+          </li>
+          <li id='hexabout' class='hexmenu'>
+          <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+                   <a id='hexaboutx' class='hexbut butinhex' href="about.html"> 
+                   <div class='hexbut-in1' href='#'><div id="butaboutin"  class='hexbut-in2'>
+										   <!--<img src='' width='100%' height='230px' class='thumbnail'>-->
+										 </div></div>
+                   </a>    
+          </div></div>
+          </li>
+
+          <div class='labelcont'>
+            <div class="buttonlabels" id='labelbuthomein'><b >HOME PAGE</b></div>
+            <div class="buttonlabels" id='labelbutaboutin'><b >ABOUT US</b></div>
+            <div class="buttonlabels" id='labelbutcatin'><b >COLLECTIONS</b></div>
+            <div class="buttonlabels" id='labelbutcontin'><b >CONTACT US</b></div>
+            <div class="buttonlabels" id='labelbutseain'><b >SEARCH THE SHOP</b></div>
+            <div class="buttonlabels" id='labelbutloginin'><b >LOG IN TO YOUR ACCOUNT</b></div>
+            <div class="buttonlabels" id='labelbutregin'><b >REGISTER NEW USER</b></div>
+            <div class="buttonlabels" id='labelbutlogoutin'><b >LOG OUT</b></div>
+            <div class="buttonlabels" id='labelbutcartin'><b >SHOPPING CART</b></div>
+            <div class="buttonlabels" id='labelbutcartin2'><b >SHOW SHOPPING CART</b></div>
+          </div>
+
+
+          <li id='hexcont' class='hexmenu'>      
+								   <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+                   <div class='hexbut butinhex'> 
+                   <div class='hexbut-in1' href='#'><div id='butcontin' class='hexbut-in2'>
+										   <!--<img src='' width='100%' height='230px' class='thumbnail'>-->
+										 </div></div>
+                   </div>
+          </div></div>
+          </li>
+
+          <li id='hexcat' class='hexmenu'>      
+								   <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+                   <button id='hexbutcat' class='hexbut butinhex' onclick="abrecierramenu('hexcatop')"> 
+                   <div class='hexbut-in1' href='#'><a id='hexcatx'><div id="butcatin" class='hexbut-in2'>
+										   <!--<img src='' width='100%' height='230px' class='thumbnail'>-->
+										 </div></a></div>
+                     </button>
+          </div></div>
+          </li>
+
+          <div id="hexcatop" class='hexmenu midropdown-content'>
+            <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+              
+              </div></div></div>
+      
+        
+        
+        <li id='hexsearch' class='hexmenu'>      
+					<div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+            <form method="POST" id="navseafor" action="search.html">
+              <div id="input-search" class="input-group">
+                <input type="text" class="form-control" id="navbar-search-input" name="keyword" placeholder="Search!!!"> <!--required?--> 
+              </div>
+              <button id="hexseabut" type="submit" class="hexbut butinhex">
+                <div class='hexbut-in1' href='#'><div id="butseain" class='hexbut-in2'>
+										   <!--<img src='' width='100%' height='230px' class='thumbnail'><i class="fa fa-search"></i>-->
+					      </div></div>
+              </button>
+            </form>
+          </div></div>
+        </li>
+
+<!--         <script>
+            var z=document.getElementById("navbar-search-input");
+            z.oninvalid = function() {inputvacio()};
+            function inputvacio() {
+            var zx=document.getElementById("input-search");
+            zx.classList.remove("flashea");
+            zx.offsetHeight;
+            zx.classList.add("flashea");
+            }
+        </script>  -->
+
+          <div id='hexlogcart' class='hexmenu'>
+        <div class='hexmenu-in1' href='#'><div class='hexmenu-in2'>
+
+         <button id='hexcartbut' class='hexbut butinhex' onclick="abrecierramenu('hexcartmenu')">
+          <div class='hexbut-in1'> <div id='butcartin' class='hexbut-in2'>
+           <span class="numitemcart cart_count"></span>
+          </div></div>
+         </button>
+         
+
+          
+          </div></div>
+          </div>
+
+          <script>
+
+             var butobjs=document.getElementsByClassName('hexbut-in2');
+             for (i = 0; i < butobjs.length; i++) {
+               butobjs[i].addEventListener('mouseover', function() {
+               var labelobj=document.getElementById('label'+event.target.id);
+               if (labelobj) {labelobj.style.setProperty('display','inline-block');}
+               });
+               butobjs[i].addEventListener('mouseout', function() {
+               var labelobj=document.getElementById('label'+event.target.id);
+               if (labelobj) {labelobj.style.setProperty('display','none');}
+               });
+             }
+            </script>
+
+   
+      </div>
+    </div>
+</header>

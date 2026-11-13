@@ -1,0 +1,175 @@
+<link rel="stylesheet" href="includes/navgatart-s.css?v=__MATH_RANDOM__">
+<header class="main-header">
+
+<div id='tapanegra'></div>
+
+    <!-- menu1 para movil -->
+    <div class='navcont'>
+
+     <button id='butmenumov' class='navdiv boton solomovil' onclick="abremenu1()"> 
+      <div id='barrita1' class="barrita menu1elemsx ddini"></div>
+      <div id='barrita2' class="barrita menu1elemsx ddini"></div>
+      <div id='barrita3' class="barrita menu1elemsx ddini"></div>
+     </button>
+     <div id="menu1box" class='menu1elems ddini'></div>
+
+     <div id="menulinkmasc" class='menu1elems ddini mascmenu1 solomovil'>
+      <div id="movlinkbox" class='intmenu' href='links'><p> O &#7788; E</p></div>
+     </div>
+     <div id="menuaboutmasc" class='menu1elems ddini mascmenu1 solomovil'>
+      <div id="movaboutbox" class='intmenu' href='gatabout.html'><p> B &#558; &#7908; T</p></div>
+     </div>
+     <div id="menucontmasc" class='menu1elems ddini mascmenu1 solomovil'>
+      <div id="movcontbox" class='homelink intmenu' href='gatitob.html'><p> &#334; M &#276;</p></div>
+     </div>
+ 
+     <div id="menulacmasc" class='menu1elems ddini'>
+      <a onclick='abremenu2()'><div id='LinkLmov'  class='letmov'><b> N </b></div></a>
+      <a href='gatabout.html'><div id='AboutAmov' class='letmov'><b> A </b></div></a>
+      <a class="homelink" href='gatitob.html'><div id='HomeHmov'  class='letmov'><b> H </b></div></a>
+     </div>
+
+      <!-- menu1 para ordenador -->
+     <a ><div id="menulinkbox" class='menu1elems ddini soloorde menubox' onclick='abremenu2()'><div id='linkL' class='letord'><b> N </b></div><p> &#558; T E </p></div></a>
+     <a href='gatabout.html'><div id="menuaboutbox" class='menu1elems ddini soloorde menubox' href='about.html'><div id='aboutA' class='letord'><b> A </b></div><p> B &#7884; &#7908; T</p></div></a>
+     <a class="homelink" href='gatitob.html'><div id="menucontbox" class='homelink menu1elems ddini soloorde menubox' href='gatitob.html'><div id='contA' class='letord'><b> H </b></div><p> &#334; M &#276;</p></div></a>
+
+      <!-- misterio menu x -->
+     <div id='fandiv' class='navdiv'> 
+      <button id='butx' onclick='colorincolorado()'></button>
+      <div id='fandot' class='navdiv'></div>
+     </div>
+    
+
+
+     <!-- menu idiomas (ahora invisible) -->
+     <div id='contojodiv' class='navdiv'> 
+       <div id='ojodiv'>
+         <div id='pupila' class='boton' onclick='abremenu2()'><span>A</span></div>
+         <div id='subpupila' class='botonx' onclick='revorder()'><span>R</span></div>
+	   </div>
+     </div>    
+
+     <div id="menu2box">
+       <div id="menulinkamasc" class='menu2elems mascmenu2'>
+         <div id="linkabox" class='lnkart menu2elems' ></div>
+       </div>
+       <div id="menulinkafan" class='menu2elems mascmenu2fan'></div>
+       <div id="menuliacdmasc" class='menu2elems'>
+         <button id='closedir' class='menu2elems' onclick="abremenu2()">
+           <div id='barrit1' class="barrita menu2elems"></div>
+           <div id='barrit2' class="barrita menu2elems"></div>
+         </button>
+       </div>
+       <div id="menuliacdfan" class='menu2elems'></div>
+      </div>
+
+    </div> 
+
+
+
+    <script>
+            window.addEventListener('mousemove',mueveojos)
+            function mueveojos(event) {
+              var xrel=event.clientX/window.innerWidth
+              var yrel=event.clientY/window.innerHeight
+              document.getElementById('pupila').style.width = 60*xrel+'%';
+              document.getElementById('subpupila').style.left = 60*xrel+'%';
+              document.getElementById('subpupila').style.width = (100-60*xrel)+'%';
+              document.getElementById('subpupila').style.height = (60-55*yrel)+'%';
+            }
+
+            function abrecierra(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive');
+                  xxx.classList.add('ddactive');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+
+            function cierra(ddmenu) {
+              var dropdowns = document.getElementsByClassName(ddmenu);
+              for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive')) {
+                    xel.classList.remove('ddactive');
+                    xel.classList.add('ddinactive');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+              }
+            }
+
+            function abrecierrax(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive2');
+                  xxx.classList.add('ddactive2');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+              function abrecierray(ddmenu) {
+              xx=document.getElementsByClassName(ddmenu)
+              for (i = 0; i < xx.length; i++) {
+                  var xxx = xx[i];
+                  xxx.classList.remove('ddinactive3');
+                  xxx.classList.add('ddactive3');
+                  //xxx.classList.toggle("ddactive");   
+                  xxx.replaceWith(xxx.cloneNode(true)); 
+              }
+            }
+
+
+            function abremenu1() {
+              abrecierra('menu1elems');
+              abrecierrax('menu1elemsx');
+            }
+            function abremenu2() {
+              var x=document.getElementById('menu2box')
+              if (x.style.display != "block") {
+                console.log('AA',x.style.display);
+                x.style.display = "block";  
+                abrecierra('menu2elems');
+              }
+              else { 
+                console.log('bbb',x.style.display);
+                cierra('menu2elems');  
+                setTimeout(function() {x.style.display = "none";}, 2500); 
+              }
+            }
+
+            window.onclick = function(event) {
+              //console.log(event.target.className);
+              if (!event.target.matches('.boton')) {
+                var dropdowns = document.getElementsByClassName("menu1elems");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive')) {
+                    xel.classList.remove('ddactive');
+                    xel.classList.add('ddinactive');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+                var dropdowns = document.getElementsByClassName("menu1elemsx");
+                for (i = 0; i < dropdowns.length; i++) {
+                  var xel = dropdowns[i];
+                  if (xel.classList.contains('ddactive2')) {
+                    xel.classList.remove('ddactive2');
+                    xel.classList.add('ddinactive2');
+                    xel.replaceWith(xel.cloneNode(true));                 
+                  }
+                }
+              }
+            }
+    </script>
+
+
+
+   
+      </div>
+    </div>
+</header>
