@@ -285,6 +285,203 @@ h1 {
 }
 
     /*Estilo articulos*/
+    /*Articulo 13*/
+
+    #art13masc{
+      position: fixed;
+      clip: rect(auto, auto, auto, auto);
+      overflow: hidden;
+      width: 150vw;
+      height: 64vh;
+      left: 5vw; 
+      top: 18vh;
+      background-color: var(--colora131);
+    }
+    
+    #art13fan{
+      position: fixed;
+      width: 67vw;
+      height: 90vh;
+      left: 19vw; 
+      top: 20vh;
+      background-color: var(--colora132);
+      opacity: 0.6;
+    }
+    #art13espejo{
+      position: fixed;
+      width: 65vw;
+      height: 90vh;
+      left: 20vw; 
+      top: 20vh;
+      background-color: var(--colora132);
+      opacity: 0.6;
+    }
+    
+    #art13{
+      position: fixed;
+      width: 65vw;
+      height: auto;
+      left: 20vw; 
+      background-color: var(--colora133); 
+      z-index: 5;
+    }
+    #art13 .rectit{
+      background: var(--colora133); 
+    }
+    #art13 .abreart{
+      --colorfle: var(--colorba134);
+      border-color: var(--colorba134);
+      background: linear-gradient(180deg, var(--colorba134) 0%, transparent 20%);   
+    }
+    #art13 a{
+      color: var(--colora131); 
+      text-shadow: 1px 1px var(--colora134); 
+    }
+    #art13 h2{
+      color: var(--colorba134); 
+    }
+    #art13 p{
+      color: var(--colora134); 
+      margin-left: 5%;
+    }
+    #art13espejo p{
+      margin-left: 5.5%;
+    }
+    .divdeco131{
+      position: absolute;
+      width: 4px;
+      height: 70%;
+      right: 4px; 
+      top: 24px;
+      background: linear-gradient(180deg, var(--colora131) -40%, transparent 100%); 
+      z-index: 5;
+    }
+    .divdeco132{
+      position: absolute;
+      width: 2px;
+      height: 70%;
+      right: 8px; 
+      top: 12px;
+      background: linear-gradient(180deg, var(--colora131) -40%, transparent 100%); 
+      z-index: 5;
+    }
+    .divdeco133{
+      position: absolute;
+      width: 70%;
+      height: 2px;
+      right: 12px; 
+      top: 8px;
+      background: linear-gradient(270deg, var(--colora131) 50%, transparent 100%);
+      z-index: 5;
+    }
+    .divdeco134{
+      position: absolute;
+      width: 70%;
+      height: 4px;
+      right: 24px; 
+      top: 4px;
+      background: linear-gradient(270deg, var(--colora131) 50%, transparent 100%);
+      z-index: 5;
+    }
+        /*Articulo 12*/
+
+#art12masc{
+  position: fixed;
+  clip: rect(auto, auto, auto, auto);
+  overflow: hidden;
+  width: 150vw;
+  height: 64vh;
+  left: 5vw; 
+  top: 18vh;
+  background-color: var(--colora121);
+}
+
+#art12fan{
+  position: fixed;
+  width: 60vw;
+  height: 90vh;
+  left: 5vw; 
+  top: 20vh;
+  background-color: var(--colora122);
+  opacity: 0.6;
+}
+#art12espejo{
+  position: fixed;
+  width: 60vw;
+  height: 90vh;
+  left: 5vw; 
+  top: 20vh;
+  background-color: var(--colora122);
+  opacity: 0.6;
+}
+
+#art12{
+  position: fixed;
+  width: 60vw;
+  height: auto;
+  left: 5vw; 
+  background-color: var(--colora123); 
+  z-index: 5;
+}
+#art12 .rectit{
+  background: var(--colora123); 
+}
+#art12 .abreart{
+  --colorfle: var(--colorba124);
+  border-color: var(--colorba124);
+  background: linear-gradient(180deg, var(--colorba124) 0%, transparent 20%);   
+}
+#art12 a{
+  color: var(--colora121); 
+  text-shadow: 1px 1px var(--colora124); 
+}
+#art12 h2{
+  color: var(--colorba124); 
+}
+#art12 p{
+  color: var(--colora124); 
+  margin-left: 5%;
+}
+#art12espejo p{
+  margin-left: 5.5%;
+}
+.divdeco121{
+  position: absolute;
+  width: 2px;
+  height: 70%;
+  right: 8px; 
+  top: 16px;
+  background: linear-gradient(180deg, var(--colora121) -40%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco122{
+  position: absolute;
+  width: 2px;
+  height: 70%;
+  right: 4px; 
+  top: 8px;
+  background: linear-gradient(180deg, var(--colora121) -40%, transparent 100%); 
+  z-index: 5;
+}
+.divdeco123{
+  position: absolute;
+  width: 70%;
+  height: 2px;
+  right: 8px; 
+  top: 8px;
+  background: linear-gradient(270deg, var(--colora121) 50%, transparent 100%);
+  z-index: 5;
+}
+.divdeco124{
+  position: absolute;
+  width: 70%;
+  height: 2px;
+  right: 16px; 
+  top: 4px;
+  background: linear-gradient(270deg, var(--colora121) 50%, transparent 100%);
+  z-index: 5;
+}
+
     /*Articulo 11*/
 
 #art11masc{
@@ -1324,7 +1521,7 @@ h1 {
   background: var(--colora13); 
 }
 #art1 .abreart{
-  --colorfle: var(--colorba14)
+  --colorfle: var(--colorba14);
   border-color: var(--colorba14);
   background: linear-gradient(180deg, var(--colorba14) 0%, transparent 20%);   
 }
@@ -1402,6 +1599,60 @@ h1 {
 }
 
 /*Imagenes interior articulos*/
+    /*Imagen art 13 interior 1*/
+
+    #a13imgi1{
+      overflow: hidden;
+      z-index: 4;
+      background-color: var(--colori14);
+    }
+    #a13imgi1pic {
+      z-index: 2;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain;
+    }
+    .a13imgi1loc{
+      float: right;
+      min-width: max(100px, 25vw);
+      max-width: 30vw;
+      width: auto;
+      height: auto;
+    }
+    .a13imgi1fan{
+      float: right;
+      margin-left: 5%;
+      margin-right: 5%;
+      min-width: max(100px, 25vw);
+      max-width: 30vw;
+      width: auto;
+      height: auto;
+      opacity: 0.2;
+      background-color: var(--colori11);
+      overflow: hidden;
+    }
+    #a13imgi1mir{
+      opacity: 0.5;
+      background-color: var(--colori12);
+    }
+    #a13imgi1masc{
+      clip: rect(auto, auto, auto, auto);
+      width: 80vw;
+      mask-image: linear-gradient(180deg, black 80%, transparent 100%);
+      pointer-events: none;
+    }
+    #a13imgi1masc:before{
+    position: absolute;
+    z-index: -1;
+    content: '';
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    background-color: var(--colori13);
+    }
     /*Imagen art 11 interior 1*/
 
     #a11imgi1{
@@ -1444,7 +1695,7 @@ h1 {
     #a11imgi1masc{
       clip: rect(auto, auto, auto, auto);
       width: 80vw;
-      mask-image: linear-gradient(180deg, black 0%, transparent 20%);
+      mask-image: linear-gradient(180deg, black 40%, transparent 100%);
       pointer-events: none;
     }
     #a11imgi1masc:before{
@@ -1499,7 +1750,6 @@ h1 {
   #a7imgi2masc{
     clip: rect(auto, auto, auto, auto);
     width: 80vw;
-    mask-image: linear-gradient(180deg, black 0%, transparent 20%);
     pointer-events: none;
   }
   #a7imgi2masc:before{
@@ -1556,7 +1806,6 @@ h1 {
 #a7imgi1masc{
   clip: rect(auto, auto, auto, auto);
   width: 80vw;
-  mask-image: linear-gradient(180deg, black 0%, transparent 20%);
   pointer-events: none;
 }
 #a7imgi1masc:before{
@@ -1621,7 +1870,6 @@ background-color: var(--colori13);
 #a6imgi1masc{
   clip: rect(auto, auto, auto, auto);
   width: 80vw;
-  mask-image: linear-gradient(180deg, black 0%, transparent 20%);
   pointer-events: none;
 }
 #a6imgi1masc:before{
@@ -2117,7 +2365,50 @@ background-color: var(--colori13);
         left: 5vw; 
         background-color: var(--colorie14);
       }
-  
+      /*Imagen exterior 7*/
+
+    #aimg7{
+      position: fixed;
+      width: 30vw;
+      height: 30vw;
+      right: 5vw; 
+      top: 25vh;
+      opacity: 1;
+      background-color: var(--colorie13);
+    }
+    #aimg7masc{
+      position: fixed;
+      clip: rect(auto, auto, auto, auto);
+      overflow: hidden;
+      width: 90vw;
+      height: 30vw;
+      left: 450vw; 
+      top: 25vh;
+      pointer-events: none;
+    }
+    #aimg7masc:before{
+      position: absolute;
+      z-index: -1;
+      content: '';
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-color: var(--colorie12);
+    }
+    #aimg7fan{
+      position: fixed;
+      width: 30vw;
+      height: calc(90vh + 30vw);
+      right: 5vw; 
+      opacity: 0.6;
+      background-color: var(--colorie11);
+    }
+    #aimg7tapa{
+      z-index: 2;
+      position: fixed;
+      right: 5vw; 
+      background-color: var(--colorie14);
+    }
 
     @keyframes imgtransslow {
       0%   {opacity: 0}
@@ -2207,7 +2498,7 @@ background-color: var(--colori13);
         animation-timing-function: ease-out;   
       }
 
-/*Articulo 1*/
+/*Articulo 1* Movil!!!*/ 
 
 #art1masc{
 height: 73vh;
@@ -2232,7 +2523,7 @@ left: 2vw;
   height: calc(4px + 5vh);
 }
 
-/*Articulo 2*/
+/*Articulo 2* Movil!!!*/ 
 
 #art2masc{
   height: 75vh;
@@ -2487,6 +2778,56 @@ left: 2vw;
     #art11 p{
       margin-left: 5%; 
     }
+    /*Articulo 12* Movil!!!*/ 
+
+    #art12masc{
+      height: 73vh;
+      top: 18vh;
+    }
+      
+    #art12fan{
+      width: 70vw;
+      left: 2vw; 
+    }
+    #art12espejo{
+      position: fixed;
+      width: 70vw;
+      left: 2vw; 
+    }
+      
+    #art12{
+      width: 70vw;
+      left: 2vw; 
+    }
+    #art12espejo .divespacio{
+      height: calc(4px + 5vh);
+    }
+
+    /*Articulo 13* Movil!!!*/ 
+
+    #art13masc{
+      height: 81vh;
+      top: 15vh;
+    }
+      
+    #art13fan{
+      width: 83vw;
+      left: 2vw; 
+    }
+    #art13espejo{
+      position: fixed;
+      width: 81vw;
+      left: 3vw; 
+      padding-top: 4px;
+    }
+      
+    #art13{
+      width: 81vw;
+      left: 3vw; 
+    }
+    #art13 p{
+      margin-left: 5%; 
+    }
 /*Imagenes interior articulos*/
 
 /*Imagen interior 1*/
@@ -2561,6 +2902,22 @@ left: 2vw;
   max-width: 60vw;
 }
 .a11imgi1fan{
+  min-width: max(150px, 45vw);
+  max-width: 60vw;
+}
+
+.a12imgi1loc{
+  max-width: 60vw;
+}
+.a12imgi1fan{
+  min-width: max(150px, 45vw);
+  max-width: 60vw;
+}
+
+.a13imgi1loc{
+  max-width: 60vw;
+}
+.a13imgi1fan{
   min-width: max(150px, 45vw);
   max-width: 60vw;
 }
@@ -2720,4 +3077,30 @@ right: 2vw;
         left: 2vw; 
       }
 
+    /*Imagen exterior 7*/  
+      #aimg7{
+        width: 30vw;
+        height: 30vw;
+        right: 2vw; 
+        top: 25vh;
+        opacity: 0.5;
+        }
+        #aimg7masc{
+        clip: rect(auto, auto, auto, auto);
+        overflow: hidden;
+        width: 90vw;
+        height: 30vw;
+        top: 25vh;
+        }
+        #aimg7fan{
+        position: fixed;
+        width: 30vw;
+        height: calc(40vh + 30vw);
+        background-color: var(--colorie11);
+        opacity: 0.3;
+        right: 2vw; 
+        }
+        #aimg7tapa{
+          right: 2vw; 
+        }
 } /*Fin para movil*/
