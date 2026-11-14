@@ -1,9 +1,9 @@
 var vparo;
 var quintow=0.2*window.innerWidth; // 1 quinto del ancho de ventana
-var nart=11; //numero articulos
-var nimg=6; //numero imagenes externas
+var nart=13; //numero articulos
+var nimg=7; //numero imagenes externas
 var ichivato=0;
-var nimgi= [0,0,1,0,2,1,1,2,0,0,0,1]; //numero imagenes internas
+var nimgi= [0,0,1,0,2,1,1,2,0,0,0,1,0,1]; //numero imagenes internas
 var order;
 var posimgt;
 var heiimgt;
@@ -145,7 +145,8 @@ function elemorder() {
     $("#aimg5fan").css({position: "fixed",  height: 0.9*heiart9 + 'px'});
     $("#aimg6fan").css({position: "fixed",  top: posart10.top + 0.1*heiart10 + 'px'});
     $("#aimg6fan").css({position: "fixed",  height: 0.8*heiart10 + 'px'});
-
+    $("#aimg7fan").css({position: "fixed",  top: posart12.top + 0.1*heiart12 + 'px'});
+    $("#aimg7fan").css({position: "fixed",  height: 0.8*heiart12 + 'px'});
   
     //Reposicionamiento imagenes
     for (i = 1; i <= nimg; i++) {
