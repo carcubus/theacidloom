@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="UTF-8" />
+<head>
+<style>
+/* optional - uncomment and customise next line to change maths font size
+	.katex { font-size: 1em !important; } 
+*/ 
+</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+    <link rel="stylesheet" href="katex/katex.min.css">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+    <script src="katex/katex.min.js"></script>
+    <script src="katex/smrender.js"></script>
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" 
+  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" 
+  crossorigin="anonymous">
+</script>
+</head>
 <link rel="icon" href="img/icoqaah64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +45,7 @@
 <div id="divtitulosup" class='tituloelems'>
  <img id="imgtitulosup" src="img/nubes.jpg"> 
 </div>
-<div style="visibility: hidden; pointer-events: none">
-  <img src="img2x.jpg">
-</div>
+
 
 <div id='cruza1' class="divcruza"></div>
 <div id='cruza2' class="divcruza"></div>
@@ -38,6 +56,76 @@
 
 
   <!--------------------------------------articulos------------------------------------------->   
+          <!-- ++ articulo 13 ++ --> 
+        <div id="art13fan" class="artfantasma">
+       <div id="a13imgi1mir" class="artintfantasma">
+       </div>
+  </div>
+  <div id="art13masc" class="artmascara">
+   <div id="art13" class="artcontainer">
+    <button id='abreart13' class='abreart' onclick="window.location='gatart13.html';">
+      <div class="flechatr1"></div>
+      <div class="flechatr2"></div>
+      <div class="flechabr1"></div>
+      <div class="flechabr2"></div>
+      <div class="flechatl1"></div>
+      <div class="flechatl2"></div>
+      <div class="flechabl1"></div>
+      <div class="flechabl2"></div>
+    </button>
+    <!-- fetch-include:html/art13.html -->
+      <button id='abrecombut13' class='abrecombut' onclick="abrecom(13)">
+        <div id='puntito1xx' class="puntito puntito1 commentbox ddini"></div>
+        <div id='puntito2xx' class="puntito puntito2 commentbox ddini"></div>
+        <div id='puntito3xx' class="puntito puntito3 commentbox ddini"></div>
+      </button>
+    </div> 
+  </div>
+
+  <div id="a13imgi1masc" class="artintmascara">
+   <div id="a13imgi1" class="artintcontainer">
+          <img id="a13imgi1pic" src="img/surregg.jpg">
+   </div>        
+  </div>
+        <!-- ++ articulo 12 ++ --> 
+        <div id="art12fan" class="artfantasma">
+       <div id="a12imgi1mir" class="artintfantasma">
+       </div>
+  </div>
+  <div id="art12masc" class="artmascara">
+   <div id="art12" class="artcontainer">
+    <button id='abreart12' class='abreart' onclick="window.location='gatart12.html';">
+      <div class="flechatr1"></div>
+      <div class="flechatr2"></div>
+      <div class="flechabr1"></div>
+      <div class="flechabr2"></div>
+      <div class="flechatl1"></div>
+      <div class="flechatl2"></div>
+      <div class="flechabl1"></div>
+      <div class="flechabl2"></div>
+    </button>
+    <!-- fetch-include:html/art12.html -->
+      <button id='abrecombut12' class='abrecombut' onclick="abrecom(12)">
+        <div id='puntito1xx' class="puntito puntito1 commentbox ddini"></div>
+        <div id='puntito2xx' class="puntito puntito2 commentbox ddini"></div>
+        <div id='puntito3xx' class="puntito puntito3 commentbox ddini"></div>
+      </button>
+    </div> 
+  </div>
+
+  <div id="aimg7fan" class="artfantasma">
+  </div>
+  <div id="aimg7masc" class="artmascara">
+   <div id="aimg7div" class="artcontainer">
+    <img id="aimg7" src="img/gatoscho.jpeg">
+   </div>
+   <div id="aimg7tapa" class="arttapa"></div>
+  </div>
+  <!-- <div id="a12imgi1masc" class="artintmascara">
+   <div id="a12imgi1" class="artintcontainer">
+          <img id="a12imgi1pic" src="img/uniuni.jpeg">
+   </div>        
+  </div> -->
       <!-- ++ articulo 11 ++ --> 
       <div id="art11fan" class="artfantasma">
        <div id="a11imgi1mir" class="artintfantasma">
@@ -424,6 +512,14 @@
 <!--------------------------------------Espejismo articulos----------------------------------------------> 
 <div id="artmascespejo" class="artmascara">
 
+  <div id="art13espejo" class="artcontainer">
+    <!-- fetch-include:html/art13.html -->
+  </div>
+
+  <div id="art12espejo" class="artcontainer">
+    <!-- fetch-include:html/art12.html -->
+  </div>
+
   <div id="art11espejo" class="artcontainer">
     <!-- fetch-include:html/art11.html -->
   </div>
@@ -518,6 +614,26 @@
     }
 
     await loadIncludes();
+
+    // Renderizamos KaTeX justo aquí, una vez que los includes ya se han inyectado en el DOM
+    if (document.getElementById("myktx1")) {
+        katex.render(String.raw`\omega_1 \cdot \omega_2 \cdot \omega_3 ... = e^{-S_1}\cdot e^{-S_2} \cdot e^{-S_3} = e^{-S_1-S_2-S_3} = e^{-S}`, document.getElementById("myktx1"));
+        katex.render(String.raw`\theta_0\left\{ \begin{array}{lr} \theta_{1^+}\left\{\begin{array}{lr} \theta_{2^{++}} \left\{\begin{array}{lr} \theta_{3^{+++}}\left\{ \begin{array}{lr} \theta_{4^{++++}}\left\{ \begin{array}{lr} ... \\ ...  \\  \end{array}
+\right.       \\ \theta_{4^{+++-}}\left\{\begin{array}{lr} ... \\ ...  \\   \end{array}  \right.   \\   \end{array}  \right. \\  \theta_{3^{++-}}\left\{\begin{array}{lr}  ... \\  ...  \\   \end{array} \right. \\   \end{array}  \right.  \\
+\theta_{2^{+-}}  \left\{\begin{array}{lr} \theta_{3^{+-+}}\left\{\begin{array}{lr} ... \\ ... \\   \end{array} \right. \\  \theta_{3^{+--}} \left\{\begin{array}{lr} ... \\ ... \\   \end{array} \right. \\ \end{array} \right.  \end{array} \right. \\
+\theta_{1^+}\left\{\begin{array}{lr} \theta_{2^{-+}} \left\{\begin{array}{lr} \theta_{3^{-++}}\left\{\begin{array}{lr} ... \\ ... \\   \end{array}  \right.  \\ \\  \theta_{3^{-+-}}\left\{\begin{array}{lr}  ... \\ ...  \\   \end{array}  \right.  \\  \end{array}
+\right.      \\  \theta_{2^{--}}  \left\{\begin{array}{lr} ... \\ ... \\ \end{array} \right. \end{array} \right. \\  \end{array}  \right.`, document.getElementById("myktx2"));
+        katex.render(String.raw`\mathcal{P}(N)=\omega_{N(0)}(\theta_{0})\omega_{N(1)}(\theta_{r_1})\omega_{N(2)}(\theta_{r_2})...\omega_{N(\infty)}(\theta_{r_\infty})`, document.getElementById("myktx3"));
+        katex.render(String.raw`\begin{array}{lr} N \rightarrow \infty\text{-binary sequence} \\ N(n) \rightarrow n^{th}\text{term of N binary sequence} \\ \theta_r\sim \mathscr{U}(0,1)\\   \omega_+(\theta_r)=\omega_1(\theta_r)=\theta_r \\ \omega_-(\theta_r)=\omega_0(\theta_r)=1-\theta_r   \\ \end{array}`, document.getElementById("myktx4"));
+        katex.render(String.raw`S(P') > S(P) \quad \forall P`, document.getElementById("myktx5"));
+        katex.render(String.raw`\Omega(n) = \left\{\begin{array}{lr} 1 & : n=0\\  \\ \max\left\{\begin{array}{lr} \Omega(n-1)\cdot\theta_r\\  \Omega'(n-1)\cdot(1-\theta_r)  \\  \end{array}   \right. & : n>0 \\  \end{array}   \right.`, document.getElementById("myktx6"));
+ katex.render(String.raw`P(\theta_0*\Omega(\infty) > (1-\theta_0)*\Omega(\infty))`, document.getElementById("myktx7"));
+ katex.render(String.raw`P(\theta_0*\Omega(\infty) < (1-\theta_0)*\Omega(\infty))`, document.getElementById("myktx8"));
+    }
+
+    if (document.getElementById("mykatex1")) {
+        katex.render(String.raw`\Omega(n) = \left\{\begin{array}{lr} 1 & : n=0\\  \\ \max\left\{\begin{array}{lr} \Omega(n-1)\cdot\theta_r\\  \Omega'(n-1)\cdot(1-\theta_r)  \\  \end{array}   \right. & : n>0 \\  \end{array}   \right.`, document.getElementById("mykatex1"));
+    }
 
     document.querySelectorAll('template[data-after-includes]').forEach(function (template) {
         template.replaceWith(template.content);
