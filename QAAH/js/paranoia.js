@@ -1,14 +1,14 @@
   var ipal = Math.floor(Math.random() * 2 + 1);
   var icolorin = Math.floor(Math.random() * 2 + 1);
   var sorteopal;
-  let orden = [1,2,3,4];
-  const ordens1 = [1,2];
-  const ordens2 = [3,4];
-  const nsubpal = [9,4,9,9];
-  const elemcol=['ti','bar','no','nf','nbu','nm1','nm2','comb','com','acom','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12','i1','ie1'];
-  const elemcolesp=['comb','com','acom','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12'];
-  const elemcolnoesp=['ti','bar','no','nf','nbu','nm1','nm2','i1','ie1'];
-  const paletaest1=[['indigo','white','red','grey'],['white','red','grey','black'],['grey','black','white','red'],['rgb(31,31,31)','white','red','grey'],
+  orden = [1,2,3,4];
+  ordens1 = [1,2];
+  ordens2 = [3,4];
+  nsubpal = [9,4,9,9];
+  elemcol=['ti','bar','no','nf','nbu','nm1','nm2','comb','com','acom','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12','a13','i1','ie1'];
+  elemcolesp=['comb','com','acom','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12','a13'];
+  elemcolnoesp=['ti','bar','no','nf','nbu','nm1','nm2','i1','ie1'];
+  paletaest1=[['indigo','white','red','grey'],['white','red','grey','black'],['grey','black','white','red'],['rgb(31,31,31)','white','red','grey'],
                     ['black','white','red','grey'],['black','white','red','grey'],['black','white','red','grey'],['rgb(191,191,191)','white','grey','red'],['black','white','darkgrey','rgb(139, 102, 187)'],['black','white','red','grey'],
                     ['black','grey','rgb(200,0,0)','white'],['rgb(191,191,191)','rgb(31,31,31)','white','black'],['grey','white','rgb(255,127,127)','black'],
                     ['grey','white','black','rgb(255,63,63)'],['rgb(191,191,191)','rgb(31,31,31)','black','white'],['grey','white','rgb(255,63,63)','black'],
@@ -16,7 +16,7 @@
                     ['black','grey','rgb(255,16,16)','white'],['rgb(191,191,191)','rgb(31,31,31)','white','black'],['grey','white','rgb(255,63,63)','black'],
                     ['black','purple','red','rgb(255,127,255)'],['rgb(191,63,95)','white','red','rgb(139, 102, 187)']
   ];
-  const paletaest2=[['rgb(100,100,100)','white','black','rgb(191,191,191)'],['white','rgb(50,50,50)','grey','black'],['grey','black','rgb(200,200,200)','white'],['rgb(60,60,60)','white','black','grey'],
+  paletaest2=[['rgb(100,100,100)','white','black','rgb(191,191,191)'],['white','rgb(50,50,50)','grey','black'],['grey','black','rgb(200,200,200)','white'],['rgb(60,60,60)','white','black','grey'],
                     ['black','white','rgb(40,40,40)','grey'],['black','white','darkgrey','grey'],['black','white','rgb(170,170,170)','grey'],['rgb(190,210,190)','white','grey','red'],['black','white','darkgrey','rgb(139, 102, 187)'],['white','black','rgb(100,80,100','grey'],
                     ['rgb(50,50,50)','grey','white','black'],['black','rgb(200,190,180)','rgb(30,30,50)','white'],['grey','white','rgb(240,250,240)','black'],
                     ['rgb(50,60,50)','rgb(60,60,70)','rgb(220,200,220)','black'],['black','rgb(200,190,190)','rgb(30,50,50)','white'],['grey','rgb(50,40,50)','rgb(180,180,200)','black'],
