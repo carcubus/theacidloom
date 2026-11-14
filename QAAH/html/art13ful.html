@@ -96,7 +96,7 @@
        <p class="sciart">Ok, what I can do, as a temporary workaround, is to cut off the range of paths in the future. I could choose the maximum value of the possible paths at only 2, 3, 4, 5... steps ahead. This would make it easier.  </p>
        <p class="sciart"><span class="spanext">In fact, I can think of an easier way to write this with a recursive function that, while it doesn't help me calculate a probability at a large number of steps, is good for handling a sketch of the idea and is also easily programmable on the computer.</span> </p>
 
-       <p><span id="mykatex1">...</span></p>
+       <p style="text-align:center"><span id="myktx6">...</span></p>
        <!-- Omega(N)= {1 if N=0; otherwise Omega(N)= {1 if N=0; otherwise Omega(N)=1 if N=0.
         Omega(0)=1
         Omega(N)= Max{Omega(N-1)*theta, Omega(N-1)*(theta-1)} where theta is a random number between 0 and 1 generated on the fly at every function recall.  -->
@@ -104,19 +104,14 @@
         <div class="aimgi6fan artintfantasma">
             <img class="aimgi6loc" src="img/noinfnoresult.jpg">
            </div>
-       <p class="sciart"><span class="spanext">So the problem of calculating the probability that, given a theta0, the particle chooses + or - will consist of calculating:</span> </p>
-       <!-- P(Theta0*Omega(Inf) > (1-theta0)*Omega(Inf)) for the + outcome.
-Or
-P(Theta0*Omega(Inf) < (1-theta0)*Omega(Inf)) for the outcome - -->
+       <p class="sciart"><span class="spanext">So the problem of calculating the probability that, given a &theta;<sub>0</sub>, the particle chooses + or - will consist of calculating:</span> </p>
+       <p class="sciart" style="text-align:center"><span style="font-size: 1.0  em" id="myktx7"></span> for the '+'' outcome. </p>
+       <p class="sciart">Or</p>
+       <p class="sciart" style="text-align:center"><span style="font-size: 1.0  em" id="myktx8"></span> for the '-' outcome. </p> 
 
        
-         
-    
-        <script>
-            katex.render(String.raw`\Omega(n) = \left\{\begin{array}{lr} 1 & : n=0\\  \\ \max\left\{\begin{array}{lr} \Omega(n-1)\cdot\theta_r\\  \Omega'(n-1)\cdot(1-\theta_r)  \\  \end{array}   \right. & : n>0 \\  \end{array}   \right.`, document.getElementById("mykatex1"));
-        </script>
         <div class="maths">...<div></div>
-       <p class="sciart"><span class="spanext">Keep always in mind that the value of Omega(Inf) is not fixed, it depends on an infinite number of random numbers.</span> </p>
+       <p class="sciart"><span class="spanext">Keep always in mind that the value of &Omega;(&infin;) is not fixed, it depends on an infinite number of random numbers. So, the prime would mean the alternative run for &Omega;</span> </p>
        <p class="sciart">Whatever the true result is, a few steps doesn't tell me enough about the convergence of this thing. I would need an actual analytic calculation. I think I would know how to calculate exactly the probability a couple of steps away, maybe do a numerical calculation 30 or 40 max... but, admittedly, is truly over my head.</p>
 
        <p class="sciart"><span class="spanext"></span> </p>
@@ -129,19 +124,6 @@ P(Theta0*Omega(Inf) < (1-theta0)*Omega(Inf)) for the outcome - -->
            
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<script>
-    katex.render(String.raw`\omega_1 \cdot \omega_2 \cdot \omega_3 ... = e^{-S_1}\cdot e^{-S_2} \cdot e^{-S_3} = e^{-S_1-S_2-S_3} = e^{-S}`, myktx1);
-    katex.render(String.raw`\theta_0\left\{ \begin{array}{lr} \theta_{1^+}\left\{\begin{array}{lr} \theta_{2^{++}} \left\{\begin{array}{lr} \theta_{3^{+++}}\left\{ \begin{array}{lr} \theta_{4^{++++}}\left\{ \begin{array}{lr} ... \\ ...  \\  \end{array}
-\right.       \\ \theta_{4^{+++-}}\left\{\begin{array}{lr} ... \\ ...  \\   \end{array}  \right.   \\   \end{array}  \right. \\  \theta_{3^{++-}}\left\{\begin{array}{lr}  ... \\  ...  \\   \end{array} \right. \\   \end{array}  \right.  \\
-\theta_{2^{+-}}  \left\{\begin{array}{lr} \theta_{3^{+-+}}\left\{\begin{array}{lr} ... \\ ... \\   \end{array} \right. \\  \theta_{3^{+--}} \left\{\begin{array}{lr} ... \\ ... \\   \end{array} \right. \\ \end{array} \right.  \end{array} \right. \\
-\theta_{1^+}\left\{\begin{array}{lr} \theta_{2^{-+}} \left\{\begin{array}{lr} \theta_{3^{-++}}\left\{\begin{array}{lr} ... \\ ... \\   \end{array}  \right.  \\ \\  \theta_{3^{-+-}}\left\{\begin{array}{lr}  ... \\ ...  \\   \end{array}  \right.  \\  \end{array}
-\right.      \\  \theta_{2^{--}}  \left\{\begin{array}{lr} ... \\ ... \\ \end{array} \right. \end{array} \right. \\  \end{array}  \right.`, myktx2);
- katex.render(String.raw`\mathcal{P}(N)=\omega_{N(0)}(\theta_{0})\omega_{N(1)}(\theta_{r_1})\omega_{N(2)}(\theta_{r_2})...\omega_{N(\infty)}(\theta_{r_\infty})`, myktx3);
- katex.render(String.raw`\begin{array}{lr} N \rightarrow \infty\text{-binary sequence} \\ N(n) \rightarrow n^{th}\text{term of N binary sequence} \\ \theta_r\sim \mathscr{U}(0,1)\\   \omega_+(\theta_r)=\omega_1(\theta_r)=\theta_r \\ \omega_-(\theta_r)=\omega_0(\theta_r)=1-\theta_r   \\ \end{array}`, myktx4);
- katex.render(String.raw`S(P') > S(P) \quad \forall P`, myktx5);
-
- katex.render(String.raw`/pi`, mth1); 
-</script>
 <style>
   .sciart{
     font-family: 'Zeyada' !important;
