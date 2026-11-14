@@ -107,7 +107,6 @@
   document.getElementById('linkabox').innerHTML = '<p><a href="https://en.wikipedia.org/wiki/Solved_game">Solved game</a> ¿Qué es un juego resuelto?</p> <p><a href="http://jdh.hamkins.org/tag/infinite-chess/">jdh.hamkins.org</a> Página del matemático Joel David Hamkins con varios trabajos sobre Teoría de Juegos Infinitos</p><p><a href="https://es.chessbase.com/post/los-ordenadores-resuelven-el-juego-de-damas">Los ordenadores resuelven el juego de las damas</a> Las damas ya es un juego resuelto, el ajedrez, aún no</p> <p><a href="https://www.youtube.com/watch?v=_7VAnAgmshA">5D Chess With Multiverse Time Travel</a> - paranoia</p> <p><a href="https://www.youtube.com/watch?v=CQ4Ap5itTX4">Mate-in-Omega, The Great Phenomenon of Infinite Chess</a> - paranoia menor</p> <p>&there4;Imagen&there4; Ajedrez en espiral &rarr; Google CC </p><p> &there4;Imagen&there4; Luces y carretera &rarr; Stable Diffusion</p> <p>&there4;Imagen&there4; Reyes Tumbados &rarr; Diana Rodríguez Nistal</p> <br>  </p>';
 </script>
 
-
 <script id="fetch-include-loader">
 (async function () {
     const cacheVersion = Math.random();
@@ -149,12 +148,18 @@
         }
     }
 
+    // 1. Primero cargamos todos los includes de HTML
     await loadIncludes();
 
+    // 2. Insertamos las plantillas pendientes (incluyendo jQuery y scripts)
     document.querySelectorAll('template[data-after-includes]').forEach(function (template) {
         template.replaceWith(template.content);
     });
 
+    // 3. Pequeña pausa de seguridad para asegurar que el navegador procese el script de jQuery del CDN
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    // 4. Recogemos y ejecutamos los scripts restantes en orden estricto
     const scripts = Array.from(document.querySelectorAll('script')).filter(function (script) {
         return script.id !== 'fetch-include-loader' && script.closest('head') === null;
     });
@@ -162,17 +167,17 @@
     for (const oldScript of scripts) {
         const script = document.createElement('script');
         for (const attr of Array.from(oldScript.attributes)) script.setAttribute(attr.name, attr.value);
-        if (script.hasAttribute('src')) {
-            script.src = script.src.replaceAll('__MATH_RANDOM__', cacheVersion);
-            script.async = false;
+        if (oldScript.src) {
+            script.src = oldScript.src.replaceAll('__MATH_RANDOM__', cacheVersion);
             await new Promise(function (resolve) {
                 script.onload = resolve;
                 script.onerror = function () {
                     console.error('No se pudo cargar el script:', script.src);
                     resolve();
                 };
-                oldScript.replaceWith(script);
+                document.body.appendChild(script);
             });
+            oldScript.remove();
         } else {
             script.textContent = oldScript.textContent;
             oldScript.replaceWith(script);
