@@ -224,7 +224,6 @@ function actualizascroll(){
   //para las imagenes internas
   if (ichivato < 4) {
     ichivato+=1;
-    console.log(ichivato,'xxxx',hei2imgi1,document.querySelector(".a2imgi1fan").offsetHeight);
     for (j=nart; j>0; j--) {
       for (i = nimgi[j]; i > 0; i--) {
         eval('pos'+j+'imgi'+i+'fan = $(".a'+j+'imgi'+i+'fan").position()'); 
