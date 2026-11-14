@@ -3,8 +3,10 @@
 <link rel="icon" href="img/icoqaah64.png">
 <link rel="stylesheet" href="css/gatartgen-s.css?v=__MATH_RANDOM__">
 <link rel="stylesheet" href="css/gatcom-s.css?v=__MATH_RANDOM__">
+<body>
  <!-- fetch-include:includes/navgatart.html -->
  <!-- fetch-include:includes/gatcom.html -->
+</body>  
 <!--------------------------------------Titulo------------------------------------------->              
 <h1 class="page-header">Salvación Cuántica - Quantum and a half</h1>
 
@@ -135,79 +137,7 @@
   document.getElementById('linkabox').innerHTML = '<p><a href="https://www.colchonexpres.com/blog/las-fases-del-sueno">dormir</a> y <a href="https://www.elsevier.com/es-es/connect/enfermeria/las-fases-del-sueno-nrem-y-rem">sueños</a> y las fases del sueño</p> <p><a href="https://www.spaghettimonster.org/">Pastafarismo</a>, la verdadera fe</p> <p><a href="https://en.wikipedia.org/wiki/Quantum_teleportation">Quantum-Teleportation</a>: La ¿comunicación? del futuro</p> <p> &there4;Imagen&there4; Ciclope verde &rarr; Mural en la Arenera de Granada -Si alguien conoce al autor que me lo diga-</p>  <br>  </p> <p> &there4;Otras imagenes&there4; &rarr; Stable Diffusion</p>  <br>  </p>';
 </script>
 
-
-<script id="fetch-include-loader">
-(async function () {
-    const cacheVersion = Math.random();
-
-    function updateRandomResources(root) {
-        root.querySelectorAll('[href*="__MATH_RANDOM__"], [src*="__MATH_RANDOM__"]').forEach(function (el) {
-            if (el.hasAttribute('href')) el.setAttribute('href', el.getAttribute('href').replaceAll('__MATH_RANDOM__', cacheVersion));
-            if (el.hasAttribute('src')) el.setAttribute('src', el.getAttribute('src').replaceAll('__MATH_RANDOM__', cacheVersion));
-        });
-    }
-
-    updateRandomResources(document);
-
-    async function loadIncludes() {
-        while (true) {
-            const walker = document.createTreeWalker(document, NodeFilter.SHOW_COMMENT);
-            let marker = null;
-            while (walker.nextNode()) {
-                if (walker.currentNode.nodeValue.trim().startsWith('fetch-include:')) {
-                    marker = walker.currentNode;
-                    break;
-                }
-            }
-            if (!marker) break;
-
-            const path = marker.nodeValue.trim().slice('fetch-include:'.length).trim();
-            try {
-                const response = await fetch(path);
-                if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-                const html = await response.text();
-                const template = document.createElement('template');
-                template.innerHTML = html;
-                updateRandomResources(template.content);
-                marker.replaceWith(template.content);
-            } catch (error) {
-                console.error('No se pudo cargar el include:', path, error);
-                marker.replaceWith(document.createComment('No se pudo cargar: ' + path));
-            }
-        }
-    }
-
-    await loadIncludes();
-
-    document.querySelectorAll('template[data-after-includes]').forEach(function (template) {
-        template.replaceWith(template.content);
-    });
-
-    const scripts = Array.from(document.querySelectorAll('script')).filter(function (script) {
-        return script.id !== 'fetch-include-loader' && script.closest('head') === null;
-    });
-
-    for (const oldScript of scripts) {
-        const script = document.createElement('script');
-        for (const attr of Array.from(oldScript.attributes)) script.setAttribute(attr.name, attr.value);
-        if (script.hasAttribute('src')) {
-            script.src = script.src.replaceAll('__MATH_RANDOM__', cacheVersion);
-            script.async = false;
-            await new Promise(function (resolve) {
-                script.onload = resolve;
-                script.onerror = function () {
-                    console.error('No se pudo cargar el script:', script.src);
-                    resolve();
-                };
-                oldScript.replaceWith(script);
-            });
-        } else {
-            script.textContent = oldScript.textContent;
-            oldScript.replaceWith(script);
-        }
-    }
-})();
-</script>
+<script id="fetch-include-loader" src="js/fetching.js"></script>
 
 </html>
 
