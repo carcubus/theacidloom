@@ -3,8 +3,10 @@
 <link rel="icon" href="img/icoqaah64.png">
 <link rel="stylesheet" href="css/gatart1-s.css?v=__MATH_RANDOM__">
 <link rel="stylesheet" href="css/gatcom-s.css?v=__MATH_RANDOM__">
+<body>
  <!-- fetch-include:includes/navgatart.html -->
  <!-- fetch-include:includes/gatcom.html -->
+</body>
 <!--------------------------------------= Cambio Idioma =------------------------------------------->  
  <div id='dividioma' onclick="window.location.href='gatart1en.html'">
     <p><b id="pidiocode"> ·Esp </b></p>
@@ -22,7 +24,7 @@
 <div id="divtitulosup" class='tituloelems'>
  <img id="imgtitulosup" src="img/infinitechess.jpg"> 
 </div>
-<div style="visibility: hidden;">
+<div style="visibility: hidden; opacity: 0">
   <img id="imgtitul2o" src="img2x.jpg">
 </div>
 
@@ -105,79 +107,7 @@
   document.getElementById('linkabox').innerHTML = '<p><a href="https://en.wikipedia.org/wiki/Solved_game">Solved game</a> ¿Qué es un juego resuelto?</p> <p><a href="http://jdh.hamkins.org/tag/infinite-chess/">jdh.hamkins.org</a> Página del matemático Joel David Hamkins con varios trabajos sobre Teoría de Juegos Infinitos</p><p><a href="https://es.chessbase.com/post/los-ordenadores-resuelven-el-juego-de-damas">Los ordenadores resuelven el juego de las damas</a> Las damas ya es un juego resuelto, el ajedrez, aún no</p> <p>&there4;Imagen&there4; Ajedrez en espiral &rarr; Google CC </p><p> &there4;Imagen&there4; Luces y carretera &rarr; Stable Diffusion</p> <p>&there4;Imagen&there4; Reyes Tumbados &rarr; Diana Rodríguez Nistal</p> <br>  </p>';
 </script>
 
-
-<script id="fetch-include-loader">
-(async function () {
-    const cacheVersion = Math.random();
-
-    function updateRandomResources(root) {
-        root.querySelectorAll('[href*="__MATH_RANDOM__"], [src*="__MATH_RANDOM__"]').forEach(function (el) {
-            if (el.hasAttribute('href')) el.setAttribute('href', el.getAttribute('href').replaceAll('__MATH_RANDOM__', cacheVersion));
-            if (el.hasAttribute('src')) el.setAttribute('src', el.getAttribute('src').replaceAll('__MATH_RANDOM__', cacheVersion));
-        });
-    }
-
-    updateRandomResources(document);
-
-    async function loadIncludes() {
-        while (true) {
-            const walker = document.createTreeWalker(document, NodeFilter.SHOW_COMMENT);
-            let marker = null;
-            while (walker.nextNode()) {
-                if (walker.currentNode.nodeValue.trim().startsWith('fetch-include:')) {
-                    marker = walker.currentNode;
-                    break;
-                }
-            }
-            if (!marker) break;
-
-            const path = marker.nodeValue.trim().slice('fetch-include:'.length).trim();
-            try {
-                const response = await fetch(path);
-                if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-                const html = await response.text();
-                const template = document.createElement('template');
-                template.innerHTML = html;
-                updateRandomResources(template.content);
-                marker.replaceWith(template.content);
-            } catch (error) {
-                console.error('No se pudo cargar el include:', path, error);
-                marker.replaceWith(document.createComment('No se pudo cargar: ' + path));
-            }
-        }
-    }
-
-    await loadIncludes();
-
-    document.querySelectorAll('template[data-after-includes]').forEach(function (template) {
-        template.replaceWith(template.content);
-    });
-
-    const scripts = Array.from(document.querySelectorAll('script')).filter(function (script) {
-        return script.id !== 'fetch-include-loader' && script.closest('head') === null;
-    });
-
-    for (const oldScript of scripts) {
-        const script = document.createElement('script');
-        for (const attr of Array.from(oldScript.attributes)) script.setAttribute(attr.name, attr.value);
-        if (script.hasAttribute('src')) {
-            script.src = script.src.replaceAll('__MATH_RANDOM__', cacheVersion);
-            script.async = false;
-            await new Promise(function (resolve) {
-                script.onload = resolve;
-                script.onerror = function () {
-                    console.error('No se pudo cargar el script:', script.src);
-                    resolve();
-                };
-                oldScript.replaceWith(script);
-            });
-        } else {
-            script.textContent = oldScript.textContent;
-            oldScript.replaceWith(script);
-        }
-    }
-})();
-</script>
+<script id="fetch-include-loader" src="js/fetching.js"></script>
 
 </html>
 
