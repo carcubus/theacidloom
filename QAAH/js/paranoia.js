@@ -1,7 +1,7 @@
   var ipal = Math.floor(Math.random() * 2 + 1);
   var icolorin = Math.floor(Math.random() * 2 + 1);
   var sorteopal;
-  const orden = [1,2,3,4];
+  let orden = [1,2,3,4];
   const ordens1 = [1,2];
   const ordens2 = [3,4];
   const nsubpal = [9,4,9,9];
