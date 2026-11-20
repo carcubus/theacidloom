@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Acid Loom - Estudio Creativo de Vanguardia</title>
-    <meta name="description" content="Estudio de arte e investigación de Miguel Moreno-Torres Tirado. Metal, luz UV, Fluorescencia, Corrosión controlada, Ruptura de marcos y Refracciones de la realidad Física.">
-    <link rel="icon" href="images/TheAcidLoom-Logo.png">
-    <!-- Tailwind CSS CDN -->
+    <meta name="description" content="Laboratorio de arte e investigación de Miguel Moreno-Torres Tirado. Metal, luz UV, Fluorescencia, Corrosión controlada, ruptura de marcos y subversión de la realidad física.">
+    <link rel="icon" href="images/acidloom-favicon2.png">
+    <!-- Tailwind CSS CDN --> 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,14 +14,15 @@
                 extend: {
                     colors: {
                         darkBg: '#0b0f19',
-                        neonCyan: '#00f3ff',
+                        neonCyan: '#00ffcc',
                         neonPurple: '#a855f7',
-                        neonPink: '#ec4899',
-                    }
+                        neonfuchsia: '#e3c7ca',
+                    },  
                 }
             }
         }
     </script>
+    <link rel="stylesheet" href="acidloom-estilo.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
@@ -170,7 +171,7 @@
             <path id="crack-path-left" 
                   d="" 
                   fill="none" 
-                  stroke="#00f3ff" 
+                  stroke="#00ffcc" 
                   stroke-width="5" 
                   stroke-linecap="round" 
                   stroke-linejoin="round"
@@ -179,7 +180,7 @@
             <path id="crack-path-right" 
                   d="" 
                   fill="none" 
-                  stroke="#00f3ff" 
+                  stroke="#00ffcc" 
                   stroke-width="5" 
                   stroke-linecap="round" 
                   stroke-linejoin="round"
@@ -191,7 +192,7 @@
             <defs>
                 <!-- Cyan-to-Purple Gradient for Path -->
                 <linearGradient id="pathGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#00f3ff" />
+                    <stop offset="0%" stop-color="#00ffcc" />
                     <stop offset="50%" stop-color="#a855f7" />
                     <stop offset="100%" stop-color="#ec4899" />
                 </linearGradient>
@@ -237,16 +238,20 @@
             </svg>
 
             <!-- Embedded Video inside Hexagon -->
-            <div id="image-container" class="absolute z-10 flex items-center justify-center">
-                <video id="hexagon-video" autoplay muted playsinline preload="auto"
-                       class="block w-full h-full object-contain"
-                       style="object-position: 50% 50%; background: transparent;"
-                       aria-label="Animación del logotipo Acid Loom">
-                    <source src="./acidloom.webm" type="video/webm">
-                    <source src="./acidloomlogo-video.mp4" type="video/mp4">
-                    Tu navegador no soporta el formato de vídeo.
-                </video>
-            </div>
+    <div id="image-container" class="absolute z-10 flex items-center justify-center">
+        <video id="hexagon-video" autoplay muted playsinline preload="auto"
+           poster="./acidloom-fallback.png"
+           class="block w-full h-full object-contain"
+           style="object-position: 50% 50%; background: transparent;"
+           aria-label="Animación del logotipo Acid Loom">
+        <source src="./acidloom.webm" type="video/webm">
+        <source src="./acidloomlogo-video.mp4" type="video/mp4">
+        <img src="./acidloom-fallback.png" 
+             alt="Logotipo Acid Loom" 
+             class="block w-full h-full object-contain"
+             style="object-position: 50% 50%;">
+        </video>
+    </div>
         </div>
 
         <!-- Ascending Text Reveal (Stage 2) & Split Effect (Stage 3) -->
@@ -254,7 +259,7 @@
             
             <!-- Badge & Subtitle -->
             <div id="text-header" class="transition-opacity duration-300">
-                <span class="inline-block px-3 py-1 mb-4 rounded-full text-xs font-semibold tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
+                <span class="inline-block px-3 py-1 mb-4 rounded-full text-xs font-semibold tracking-widest text-teal-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
                     TALLER DE PRÁCTICAS DE FRONTERA
                 </span>
             </div>
@@ -282,25 +287,25 @@
 
                 <!-- Left Split Half (Headline + Footer text) -->
                 <div id="text-left" class="split-text-base w-full text-center relative z-10 transition-transform duration-75 flex flex-col items-center justify-center pointer-events-none">
-                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 tracking-tight whitespace-nowrap">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-purple-400 to-fuchsia-500 tracking-tight whitespace-nowrap">
                         THE ACID LOOM
                     </h2>
                     <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl transition-opacity duration-300 mt-2 whitespace-normal px-4">
                         En la frontera entre dos reactivos es donde empieza nuestro proceso. No trabajamos sobre el lienzo convencional.
                         En nuestro taller nos adentramos en una exploración de lo que existe y lo que pudiera existir o haber existido. Te invitamos a adentrarte 
-                        en un tejido donde la intución estética, la filosofía y la física fundamental disuelven sus propios limites. 
+                        en un tejido donde la intuición estética, la filosofía y la física fundamental disuelven sus propios límites. 
                     </p>
                 </div>
 
                 <!-- Right Split Half (Headline + Footer text) -->
                 <div id="text-right" class="split-text-base absolute inset-0 w-full text-center z-10 transition-transform duration-75 flex flex-col items-center justify-center pointer-events-none">
-                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 tracking-tight whitespace-nowrap">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-purple-400 to-fuchsia-500 tracking-tight whitespace-nowrap">
                         THE ACID LOOM
                     </h2>
-                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl transition-opacity duration-300 mt-2 whitespace-normal px-4">
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl transition-opacity duration-300 mt-2 whitespace-normal px-4 data-nosnippet">
                         En la frontera entre dos reactivos es donde empieza nuestro proceso. No trabajamos sobre el lienzo convencional.
                         En nuestro taller nos adentramos en una exploración de lo que existe y lo que pudiera existir o haber existido. Te invitamos a adentrarte 
-                        en un tejido donde la intución estética, la filosofía y la física fundamental disuelven sus propios limites. 
+                        en un tejido donde la intuición estética, la filosofía y la física fundamental disuelven sus propios límites. 
                     </p>
                 </div>
 
@@ -312,7 +317,7 @@
         <div id="scroll-hint" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 transition-opacity duration-700 flex flex-col items-center space-y-2">
             <span class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">Haz Scroll</span>
             <div class="w-5 h-8 rounded-full border-2 border-slate-500/50 flex items-start justify-center p-1">
-                <div class="w-1 h-2 bg-cyan-400 rounded-full scroll-bounce"></div>
+                <div class="w-1 h-2 bg-teal-400 rounded-full scroll-bounce"></div>
             </div>
         </div>
 </div>
@@ -330,7 +335,7 @@
                 <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-widest text-purple-400 bg-purple-950/60 border border-purple-500/30 uppercase">
                     THE ACID LOOM
                 </span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 uppercase tracking-tight">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-teal-400 uppercase tracking-tight">
                     Quienes somos
                 </h2>
                 <p class="text-slate-400 text-sm max-w-md mx-auto">
@@ -342,7 +347,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <!-- CEO Card -->
                 <div class="glass-panel p-6 rounded-2xl border border-purple-500/30 hover:border-purple-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] group flex flex-col items-center text-center space-y-4">
-                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-purple-500 to-cyan-400 shadow-lg shadow-purple-500/20">
+                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-purple-500 to-teal-400 shadow-lg shadow-purple-500/20">
                         <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
                             <img    src="images/MiguelMTT.jpg"    
                                     alt="Miguel MTT"
@@ -358,31 +363,31 @@
                         <h3 class="text-xl font-bold text-slate-100 tracking-wide">Miguel Moreno-Torres Tirado</h3>
                         <p class="text-xs font-semibold text-purple-400 tracking-widest uppercase mt-0.5">CEO & Director Creativo</p>
                     </div>
-                    <a href="mailto:carcubus@gmail.com" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">carcubus@gmail.com</a>
+                    <a href="mailto:miguel@acidloom.com" class="text-xs text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors block mt-0.5 font-medium tracking-wider">carcubus@gmail.com</a>
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Fundador y propietario del estudio. Define el marco conceptual y artístico y dirige la estrategia ejecutiva de los proyectos. 
                     </p>
                 </div>
 
                 <!-- CMO Card -->
-                <div class="glass-panel p-6 rounded-2xl border border-pink-500/30 hover:border-pink-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(236,72,153,0.25)] group flex flex-col items-center text-center space-y-4">
-                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-pink-500 to-purple-400 shadow-lg shadow-pink-500/20">
+                <div class="glass-panel p-6 rounded-2xl border border-fuchsia-500/30 hover:border-fuchsia-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(236,72,153,0.25)] group flex flex-col items-center text-center space-y-4">
+                    <div class="relative w-[150px] h-[150px] rounded-full p-1 bg-gradient-to-tr from-fuchsia-500 to-purple-400 shadow-lg shadow-fuchsia-500/20">
                         <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
                             <img    src="images/DianaRN.jpg"    
                                     alt="Diana RN"
                                     class="w-full h-full object-cover rounded-full transition-transform duration-300     group-hover:scale-110"
                                     style="object-position: 50% 50%;"
                              />
-                            <!-- <svg class="w-12 h-12 text-pink-400 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <!-- <svg class="w-12 h-12 text-fuchsia-400 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                             </svg> -->
                         </div>
                     </div>
                     <div>
                         <h3 class="text-xl font-bold text-slate-100 tracking-wide">Diana Rodríguez Nistal</h3>
-                        <p class="text-xs font-semibold text-pink-400 tracking-widest uppercase mt-0.5">CMO & Técnico especialista</p>
+                        <p class="text-xs font-semibold text-fuchsia-400 tracking-widest uppercase mt-0.5">CMO & Técnico especialista</p>
                     </div>
-                    <a href="mailto:dirodnis81@gmail.com" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">dirodnis81@gmail.com</a>
+                    <a href="mailto:diana@acidloom.com" class="text-xs text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors block mt-0.5 font-medium tracking-wider">dirodnis81@gmail.com</a>
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Lidera la comunicación de la marca y la estrategia comercial. Especialista en edición y acabados.
                     </p>
@@ -390,7 +395,7 @@
             </div>
 
             <!-- Back Button -->
-            <button id="btn-close-about" class="glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-cyan-400 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2">
+            <button id="btn-close-about" class="glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-teal-400 hover:text-white hover:border-teal-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -410,10 +415,10 @@
             
             <!-- Feed Header -->
             <div class="text-center space-y-1 mb-4 flex-shrink-0">
-                <span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
+                <span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold tracking-widest text-teal-400 bg-cyan-950/60 border border-cyan-500/30 uppercase">
                     PERSPECTIVAS, NOVEDADES Y TRAZOS QUE VAMOS DEJANDO
                 </span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 uppercase tracking-tight">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-purple-400 to-fuchsia-500 uppercase tracking-tight">
                     Bitácora
                 </h2>
             </div>
@@ -422,23 +427,23 @@
             <div class="w-full overflow-y-auto flex-1 pr-2 space-y-4 custom-scrollbar">
                 
                 <!-- Article 1: Visual News with Image -->
-                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] flex flex-col md:flex-row gap-5 items-center">
+                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-teal-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] flex flex-col md:flex-row gap-5 items-center">
                     <div class="space-y-2 flex-1">
                         <div class="flex items-center space-x-3 text-xs">
                             <span class="text-purple-400 font-bold uppercase tracking-wider">Exposición</span>
                             <span class="text-slate-500">•</span>
                             <span class="text-slate-400">25-29 Oct, 2026</span>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-100 hover:text-cyan-400 transition-colors cursor-pointer">
+                        <h3 class="text-lg font-bold text-slate-100 hover:text-teal-400 transition-colors cursor-pointer">
                             Estrato 0: The Acid Loom presenta su exposición individual en Espacio Sensoria, Granada
                         </h3>
-                        <p class="text-xs text-slate-400 leading-relaxed"> Todo depende de dónde pongas el 0.</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Con esta premisa, The Acid Loom presentó ESTRATO 0 en Espacio Sensoria, en Cenes de la Vega (Granada).
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet"> Todo depende de dónde pongas el 0.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet">Con esta premisa, The Acid Loom presentó ESTRATO 0 en Espacio Sensoria, en Cenes de la Vega (Granada).
                         </p>
-                        <p class="text-xs text-slate-400 leading-relaxed">La muestra reunió una selección de obras que invita a cuestionar los criterios desde los que observamos, clasificamos y damos sentido a las cosas.
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet">La muestra reunió una selección de obras que invita a cuestionar los criterios desde los que observamos, clasificamos y damos sentido a las cosas.
                             Una investigación visual en la que el metal, la transformación de la materia, los pigmentos y la luz construyen un lenguaje propio.
                         </p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Lo que queda fuera del registro no necesariamente deja de existir. Quizá simplemente estamos mirando desde otro lugar.
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet">Lo que queda fuera del registro no necesariamente deja de existir. Quizá simplemente estamos mirando desde otro lugar.
                         </p>
                     </div>
                         <img src="images/sensoria.jpeg"
@@ -448,7 +453,7 @@
                 </article>
 
                 <!-- Article 2: Text-Only News -->
-                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] flex flex-col md:flex-row gap-5 items-center">
+                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-teal-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] flex flex-col md:flex-row gap-5 items-center">
                     <div class="space-y-2 flex-1">
                         <div class="flex items-center space-x-3 text-xs">
                             <span class="text-purple-400 font-bold uppercase tracking-wider">Exposición</span>
@@ -458,8 +463,8 @@
                         <h3 class="text-lg font-bold text-slate-100 hover:text-purple-400 transition-colors cursor-pointer">
                             Estados Transitorios: exposición de The Acid Loom en Café Teatro de Algeciras
                         </h3>
-                        <p class="text-xs text-slate-400 leading-relaxed"> No todo el arte tiene que suceder en una galería. Del 15 de julio al 30 de agosto de 2026, Café Teatro, en Algeciras, acogió Estados Transitorios, una exposición que situó el trabajo de The Acid Loom en un contexto ligado a la escena musical y alternativa de la ciudad.
-                        </p><p class="text-xs text-slate-400 leading-relaxed">Una experiencia que reivindica los espacios independientes como lugares legítimos para la circulación del arte contemporáneo.
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet"> No todo el arte tiene que suceder en una galería. Del 15 de julio al 30 de agosto de 2026, Café Teatro, en Algeciras, acogió Estados Transitorios, una exposición que situó el trabajo de The Acid Loom en un contexto ligado a la escena musical y alternativa de la ciudad.
+                        </p><p class="text-xs text-slate-400 leading-relaxed data-nosnippet">Una experiencia que reivindica los espacios independientes como lugares legítimos para la circulación del arte contemporáneo.
                         </p>
                     </div>
                         <img src="images/cafeteatro1.jpeg"
@@ -469,49 +474,49 @@
                 </article>
 
                 <!-- Article 3: Visual News with Image -->
-                <article class="glass-panel p-5 rounded-2xl border border-pink-500/30 hover:border-pink-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] flex flex-col md:flex-row gap-5 items-center">
+                <article class="glass-panel p-5 rounded-2xl border border-fuchsia-500/30 hover:border-fuchsia-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] flex flex-col md:flex-row gap-5 items-center">
                     <img src="images/pieldelviento.jpeg"
                          alt="La piel del Viento en Hotel Vincci Albayzín" 
                          onerror="this.src='https://placehold.co/600x400/0b0f19/ec4899?text=PielDelViento+Vincci'"
-                         class="w-full md:w-40 h-68 object-cover rounded-xl border border-pink-500/20" />
+                         class="w-full md:w-40 h-68 object-cover rounded-xl border border-fuchsia-500/20" />
                     <div class="space-y-2 flex-1">
                         <div class="flex items-center space-x-3 text-xs">
-                            <span class="text-pink-400 font-bold uppercase tracking-wider">Pieza Única</span>
+                            <span class="text-fuchsia-400 font-bold uppercase tracking-wider">Pieza Única</span>
                             <span class="text-slate-500">•</span>
                             <span class="text-slate-400">13 Jul, 2026</span>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-100 hover:text-pink-400 transition-colors cursor-pointer">
+                        <h3 class="text-lg font-bold text-slate-100 hover:text-fuchsia-400 transition-colors cursor-pointer">
                             La Piel del Viento: una obra de arte en el Hotel Vincci Albayzín de Granada
                         </h3>
-                        <p class="text-xs text-slate-400 leading-relaxed"> El 13 de julio de 2026, The Acid Loom presentó esta pieza en el Hotel Vincci Albayzín de Granada, incorporándola a un entorno donde arquitectura, interiorismo y creación artística conviven. La obra, de 140 × 59 cm, forma parte del recorrido visual del establecimiento, dónde permanece expuesta permanentemente .</p>
-                        <p class="text-xs text-slate-400 leading-relaxed"> Su presencia en el hotel abre una conversación entre la expresión plástica experimental  y el espacio hotelero. Una relación en la que la obra no se contempla de manera aislada, sino que se incorpora a la experiencia cotidiana de quienes transitan por el lugar.</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">Esta intervención amplía el diálogo de The Acid Loom con otros escenarios para la exhibición y circulación del arte contemporáneo. </p>
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet"> El 13 de julio de 2026, The Acid Loom presentó esta pieza en el Hotel Vincci Albayzín de Granada, incorporándola a un entorno donde arquitectura, interiorismo y creación artística conviven. La obra, de 140 × 59 cm, forma parte del recorrido visual del establecimiento, dónde permanece expuesta permanentemente .</p>
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet"> Su presencia en el hotel abre una conversación entre la expresión plástica experimental  y el espacio hotelero. Una relación en la que la obra no se contempla de manera aislada, sino que se incorpora a la experiencia cotidiana de quienes transitan por el lugar.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed data-nosnippet">Esta intervención amplía el diálogo de The Acid Loom con otros escenarios para la exhibición y circulación del arte contemporáneo. </p>
                     </div>
                 </article>
 
                 <!-- Article 4: Text-Only News -->
-                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] space-y-2">
+                <article class="glass-panel p-5 rounded-2xl border border-cyan-500/30 hover:border-teal-400/80 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] space-y-2">
                         <img src="images/Ovo.jpeg" 
                          alt="Acid Loom en Festival OVO" 
                          onerror="this.src='https://placehold.co/600x400/0b0f19/ec4899?text=AcidLoom+Ovo'"
-                         class="w-full md:w-68 h-44 object-cover rounded-xl border border-pink-500/20" />
+                         class="w-full md:w-68 h-44 object-cover rounded-xl border border-fuchsia-500/20" />
                     <div class="flex items-center space-x-3 text-xs">
-                        <span class="text-cyan-400 font-bold uppercase tracking-wider">Festival</span>
+                        <span class="text-teal-400 font-bold uppercase tracking-wider">Festival</span>
                         <span class="text-slate-500">•</span>
                         <span class="text-slate-400">25 Abr, 2026</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-100 hover:text-cyan-400 transition-colors cursor-pointer">
+                    <h3 class="text-lg font-bold text-slate-100 hover:text-teal-400 transition-colors cursor-pointer">
                         Hipnagogia + Vinilo: arte experimental y música electrónica en el festival OVO
                     </h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">    Hay territorios donde la música deja de ser únicamente algo que se escucha. Hipnagogia  nació precisamente de esa idea: explorar el punto de encuentro entre percepción sonora, estímulo visual y estados de conciencia próximos al sueño.
-                    </p><p class="text-xs text-slate-400 leading-relaxed">En el marco del festival One-Vinyl-Only, OVO, el 25 de abril de 2026, The Acid Loom trasladó su imaginario experimental integrando su propuesta en un entorno dominado por la electrónica y la cultura del vinilo.
+                    <p class="text-xs text-slate-400 leading-relaxed data-nosnippet">    Hay territorios donde la música deja de ser únicamente algo que se escucha. Hipnagogia  nació precisamente de esa idea: explorar el punto de encuentro entre percepción sonora, estímulo visual y estados de conciencia próximos al sueño.
+                    </p><p class="text-xs text-slate-400 leading-relaxed data-nosnippet">En el marco del festival One-Vinyl-Only, OVO, el 25 de abril de 2026, The Acid Loom trasladó su imaginario experimental integrando su propuesta en un entorno dominado por la electrónica y la cultura del vinilo.
                     </p>
                 </article>
 
             </div>
 
             <!-- Back Button -->
-            <button id="btn-close-blog" class="mt-4 flex-shrink-0 glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-cyan-400 hover:text-white hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2 cursor-pointer">
+            <button id="btn-close-blog" class="mt-4 flex-shrink-0 glass-panel px-6 py-2.5 rounded-xl text-xs font-bold text-teal-400 hover:text-white hover:border-teal-400 hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] active:scale-95 transition-all duration-300 uppercase tracking-widest border border-cyan-500/30 flex items-center space-x-2 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -534,7 +539,7 @@
                 <span class="px-3 py-1 rounded-full text-[10px] md:text-xs font-semibold tracking-widest text-purple-400 bg-purple-950/60 border border-purple-500/30 uppercase">
                     Los proyectos de Acid Loom
                 </span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-500 uppercase tracking-tight">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-teal-400 to-fuchsia-500 uppercase tracking-tight">
                     Quimeras
                 </h2>
                 <p class="text-xs text-slate-400">No es fácil acotar nuestro campo de trabajo, mejor te invitamos a explorar nuestras rutas.</p>
@@ -547,13 +552,13 @@
                 <!-- Project Detail Glass Card Modal -->
                 <div id="project-detail-modal" class="absolute inset-x-4 bottom-4 md:inset-x-auto md:bottom-8 max-w-md mx-auto glass-panel p-5 rounded-2xl border border-cyan-500/40 opacity-0 pointer-events-none transition-all duration-300 z-30 space-y-3">
                     <div class="flex items-center justify-between">
-                        <span id="project-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest text-cyan-400 bg-cyan-950/80 border border-cyan-500/30 uppercase">ECHOES OF THE FRACTAL MAZE</span>
+                        <span id="project-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest text-teal-400 bg-cyan-950/80 border border-cyan-500/30 uppercase">ECHOES OF THE FRACTAL MAZE</span>
                         <button id="btn-close-project-modal" class="text-slate-400 hover:text-white transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
                     <h3 id="project-title" class="text-lg font-bold text-slate-100">Los proyectos de Acid Loom</h3>
-                    <p id="project-desc" class="text-xs text-slate-400 leading-relaxed">Arte liminal y Física de Vanguardia.</p>
+                    <p id="project-desc" class="text-xs text-slate-400 leading-relaxed">Arte liminal y Física Disruptiva.</p>
                 </div>
             </div>
 
@@ -1041,34 +1046,34 @@
                     vx: (Math.random() - 0.5) * 0.6,
                     vy: (Math.random() - 0.5) * 0.6,
                     phase: Math.random() * Math.PI * 2,
-                    color: Math.random() > 0.5 ? '#00f3ff' : (Math.random() > 0.5 ? '#ec4899' : '#a855f7')
+                    color: Math.random() > 0.5 ? '#00ffcc' : (Math.random() > 0.5 ? '#ec4899' : '#a855f7')
                 });
             }
 
             // 5 Mecano-Cyberpunk Projects with Complex & Chaotic Parameters
             const nodeNames = ["Echoes of the Fractal Maze", "Arte Rupestre Alienígena", "Quantum & a half", ".o0o.", "proyecto X"];
             const nodeTitles = [
-                '<a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xl text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">Echoes of the Fractal Maze</a>',
-                '<a href="https://www.instagram.com/theacidloom/" class="text-xl text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">Arte Rupestre Alienígena</a>',
-                '<a href="https://www.acidloom.com/QAAH.html" class="text-xl text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">Quantum And A Half</a>',
-                '<a href="https://www.acidloom.com/o0o.html" class="text-xl text-pink-400/80 hover:text-pink-300 transition-colors block mt-0.5 font-medium tracking-wider">_.oOo._</a>',
-                "X"
+                '<a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xl text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors block mt-0.5 font-medium tracking-wider">Echoes of the Fractal Maze</a>',
+                '<a href="https://www.instagram.com/theacidloom/" class="enlace-instagram inline-flex items-center gap-2 text-xl text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors mt-0.5 font-medium tracking-wider" target="_blank" rel="noopener noreferrer"><span>Arte Rupestre Alienígena</span> <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>',
+                '<a href="https://www.acidloom.com/QAAH.html" class="text-xl text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors mt-0.5 font-medium tracking-wider">Quantum And A Half</a>',
+                '<div style="text-align: center;"><a href="https://www.acidloom.com/o0o.html" class="text-xl text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors block mt-0.5 font-medium tracking-wider">_.oOo._</a>',
+                '<div style="text-align: center;">X</div>'
             ];
             const nodeDescs = [
-                'Canal de YouTube donde intento explicar, transmitir y explorar la idea del <a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors">Laberinto Fractal</a>: una hipotesis en física fundamental sobre el origen de la incertidumbre cuántica en un principio de optimización universal. Los capitulos más reveladores están por llegar',
-                'No es fácil decir si son representaciones de otro mundo, expresiones de sentimientos ancestrales o codifican señales que nos pasan desapercibidas. A veces son sorprendentemente cercanos a lo humano, otras no encontramos un nexo. Para navegar en la crónica arqueológica de <a href="https://www.instagram.com/theacidloom/" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors">The Acid Loom</a> sigue nuestro rastro',
-                'Blog-Novela que explora los limites de lo computable, la esencia de la conciencia y la plasticidad de la realidad entrando en conexión con la idea del <a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors">Laberinto Fractal</a>  No se trata tanto de lo que existe, sino de lo que pudiera existir: <a href="https://www.acidloom.com/QAAH.html" class="text-xs text-pink-400/80 hover:text-pink-300 transition-colors">Quantum And A Half</a>. Los artículos de la pagina principal son artículos de ensayo, si pulsas en ellos entrarás en los capítulos de la historia',
-                "Algunos pensaban que eran cuadros para colgar en la pared... otros sabían que eran puertas.",
+                'A través de este canal de YouTube intento explicar, transmitir y explorar la idea del <a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xs text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors">Laberinto Fractal</a>: una hipotesis en física fundamental sobre el origen de la incertidumbre cuántica escondido en un principio de optimización universal intrínsecamente no-computable. Los capitulos más reveladores están por llegar <div class="video-cuadrado">  <iframe src="https://www.youtube.com/embed/dATkYZmwJ-c" title="Something in Quantum Mechanics doesnt fit"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> </iframe></div>',
+                'No es fácil decir si son representaciones de otro mundo, expresiones de sentimientos ancestrales o codifican señales que nos pasan desapercibidas. A veces son sorprendentemente cercanos a lo humano, otras no encontramos un nexo. Para navegar en la crónica arqueológica de <a href="https://www.instagram.com/theacidloom/" class="text-xs text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors">@theacidloom</a> sigue nuestro rastro',
+                'Blog-Novela que explora los limites de lo computable, la esencia de la conciencia y la plasticidad de la realidad entrando en conexión con la idea del <a href="https://www.youtube.com/@ECHOESOFTHEFRACTALMAZE" class="text-xs text-fuchsia-400/80 hover:text-fuchsia-300 transition-colors">Laberinto Fractal</a>  No se trata tanto de lo que existe, sino de lo que pudiera existir:</br><div style="text-align: center;"> <a href="https://acidloom.com/QAAH.html" class="logo-enlace" id="logoQaaH"> <span class="flip-contenedor item-letra"><span class="flip-carta">  <span class="flip-cara flip-frente">Q</span><span class="flip-cara flip-dorso">q</span></span></span>  <span class="cuadro c-2 item-letra"><span class="normal-letra">a</span><span class="hover-letra">A</span></span>  <span class="cuadro c-3 item-letra">  <span class="normal-letra">a</span><span class="hover-letra">A</span></span> <span class="cuadro c-4 item-letra"><span class="letra-blur normal-letra">H</span><span class="letra-blur hover-letra">h</span></span> </a> </div> </br> Los artículos de la pagina principal son artículos de ensayo, si pulsas en ellos entrarás en los capítulos de la historia',
+                '<div class="contenido-modal"> <p class="texto-arriba">Algunos veían marcos...</p>  <a id="enlace-marcox" href="https://www.acidloom.com/o0o.html"><img class="marcox" src="images/marco.svg" alt="Marco o puerta" width="3000" height="3200"><img class="marco-encima" src="images/marco-alt.svg" alt="Marco o puerta" width="300" height="320"></a> <p class="texto-abajo">...otros sabían que eran puertas.</p></div>',
                 "Llámalo X... el próximo proyecto de Acid Loom, quizá empiece con la chispa que hoy nos hagas llegar tú"
             ];
 
             // Eccentric, non-concentric orbital configurations for complex anarchic motion
             const orbitalConfigs = [
-                { rxRatio: 0.38, ryRatio: 0.16, offsetAngle: Math.PI / 6,   centerXOff: -0.08, centerYOff: 0.05,  speed: 0.0035, gearTeeth: 7,  color: '#00f3ff', waveFreq: 2.1 },
+                { rxRatio: 0.38, ryRatio: 0.16, offsetAngle: Math.PI / 6,   centerXOff: -0.08, centerYOff: 0.05,  speed: 0.0035, gearTeeth: 7,  color: '#00eeee', waveFreq: 2.1 },
                 { rxRatio: 0.20, ryRatio: 0.35, offsetAngle: -Math.PI / 4,  centerXOff: 0.07,  centerYOff: -0.06, speed: -0.0045, gearTeeth: 10, color: '#a855f7', waveFreq: 1.7 },
-                { rxRatio: 0.32, ryRatio: 0.28, offsetAngle: Math.PI / 3,   centerXOff: -0.04, centerYOff: -0.08, speed: 0.0028, gearTeeth: 6,  color: '#ec4899', waveFreq: 3.2 },
-                { rxRatio: 0.15, ryRatio: 0.22, offsetAngle: -Math.PI / 2,  centerXOff: 0.09,  centerYOff: 0.07,  speed: -0.0060, gearTeeth: 12, color: '#00f3ff', waveFreq: 2.8 },
-                { rxRatio: 0.40, ryRatio: 0.30, offsetAngle: Math.PI / 1.2, centerXOff: 0.02,  centerYOff: 0.03,  speed: 0.0019, gearTeeth: 8,  color: '#ec4899', waveFreq: 1.3 }
+                { rxRatio: 0.32, ryRatio: 0.28, offsetAngle: Math.PI / 3,   centerXOff: -0.04, centerYOff: -0.08, speed: 0.0028, gearTeeth: 6,  color: '#bb5699', waveFreq: 3.2 },
+                { rxRatio: 0.15, ryRatio: 0.22, offsetAngle: -Math.PI / 2,  centerXOff: 0.09,  centerYOff: 0.07,  speed: -0.0060, gearTeeth: 12, color: '#00ffaa', waveFreq: 2.8 },
+                { rxRatio: 0.40, ryRatio: 0.30, offsetAngle: Math.PI / 1.2, centerXOff: 0.02,  centerYOff: 0.03,  speed: 0.0019, gearTeeth: 8,  color: '#cc38ff', waveFreq: 1.3 }
             ];
 
             projectNodes = nodeNames.map((id, index) => {
@@ -1083,7 +1088,7 @@
                     color: cfg.color,
                     x: 0,
                     y: 0,
-                    radius: 22,
+                    radius: 24,
                     gearTeeth: cfg.gearTeeth
                 };
             });
@@ -1129,10 +1134,10 @@
         // Draw dynamic mechanical connection rod with piston joint
         function drawPistonRod(ctx, x1, y1, x2, y2, color, isHovered) {
             ctx.save();
-            ctx.strokeStyle = isHovered ? '#00f3ff' : 'rgba(168, 85, 247, 0.4)';
+            ctx.strokeStyle = isHovered ? '#00ffcc' : 'rgba(168, 85, 247, 0.4)';
             ctx.lineWidth = isHovered ? 2.5 : 1.2;
             if (isHovered) {
-                ctx.shadowColor = '#00f3ff';
+                ctx.shadowColor = '#00ffcc';
                 ctx.shadowBlur = 15;
             }
 
@@ -1150,7 +1155,7 @@
             ctx.translate(midX, midY);
             ctx.rotate(angle);
 
-            ctx.fillStyle = isHovered ? '#00f3ff' : color;
+            ctx.fillStyle = isHovered ? '#00ffcc' : color;
             ctx.fillRect(-12, -4, 24, 8);
             ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = 1;
@@ -1208,10 +1213,10 @@
             const core2Y = cy - minDim * 0.10;
 
             drawCyberGear(ctx, core1X, core1Y, minDim * 0.09, 14, mecanoTime * 1.1, '#a855f7', 2);
-            drawCyberGear(ctx, core1X, core1Y, minDim * 0.05, 8, -mecanoTime * 1.8, '#00f3ff', 1.5);
+            drawCyberGear(ctx, core1X, core1Y, minDim * 0.05, 8, -mecanoTime * 1.8, '#00ffcc', 1.5);
 
             drawCyberGear(ctx, core2X, core2Y, minDim * 0.11, 16, -mecanoTime * 0.7, '#ec4899', 2);
-            drawCyberGear(ctx, core2X, core2Y, minDim * 0.06, 9, mecanoTime * 1.5, '#00f3ff', 1.5);
+            drawCyberGear(ctx, core2X, core2Y, minDim * 0.06, 9, mecanoTime * 1.5, '#00ffcc', 1.5);
 
             // Secondary Intersecting Line Conduits connecting drive cores
             ctx.save();
@@ -1294,7 +1299,7 @@
                     node.radius + (isHovered ? 8 : 4), 
                     node.gearTeeth, 
                     mecanoTime * (isHovered ? 2 : 1) * (cfg.speed > 0 ? 1 : -1), 
-                    isHovered ? '#00f3ff' : node.color, 
+                    isHovered ? '#00ffcc' : node.color, 
                     isHovered ? 2.5 : 1.5
                 );
 
@@ -1303,11 +1308,11 @@
                 ctx.translate(node.x, node.y);
                 ctx.rotate(-mecanoTime * 1.5 + idx);
                 ctx.fillStyle = isHovered ? '#ffffff' : 'rgba(15, 23, 42, 0.9)';
-                ctx.strokeStyle = isHovered ? '#00f3ff' : node.color;
+                ctx.strokeStyle = isHovered ? '#00ffcc' : node.color;
                 ctx.lineWidth = 2;
 
                 if (isHovered) {
-                    ctx.shadowColor = '#00f3ff';
+                    ctx.shadowColor = '#00ffcc';
                     ctx.shadowBlur = 20;
                 }
 
@@ -1329,7 +1334,7 @@
                 // Cyberpunk HUD Text Label
                 ctx.save();
                 ctx.font = isHovered ? '700 12px "JetBrains Mono", monospace' : '600 10px "JetBrains Mono", monospace';
-                ctx.fillStyle = isHovered ? '#00f3ff' : 'rgba(255, 255, 255, 0.85)';
+                ctx.fillStyle = isHovered ? '#00ffcc' : 'rgba(255, 255, 255, 0.85)';
                 ctx.textAlign = 'center';
                 ctx.shadowColor = 'rgba(0,0,0,0.9)';
                 ctx.shadowBlur = 8;
@@ -1420,6 +1425,60 @@
             startAnimationSequence();
             handleScroll();
         };
+    </script>
+    <script>
+        const letras = document.querySelectorAll('#logoQaaH .item-letra');
+
+        letras.forEach(letra => {
+        letra.addEventListener('click', function (e) {
+            // Solo intercepta el primer toque en pantallas táctiles
+            const esTactil = window.matchMedia('(hover: none)').matches;
+
+            if (esTactil && !this.classList.contains('activo')) {
+            e.preventDefault(); // Evita abrir el enlace en el primer toque
+            
+            // Quita el estado activo de las otras letras
+            letras.forEach(otra => otra.classList.remove('activo'));
+            
+            // Activa la animación en la letra tocada
+            this.classList.add('activo');
+
+            // Vuelve al estado normal tras 2.5 segundos si no vuelve a tocar
+            clearTimeout(this.temporizador);
+            this.temporizador = setTimeout(() => {
+                this.classList.remove('activo');
+            }, 2500);
+            }
+        });
+        });
+    </script>
+    <script>
+    document.addEventListener('click', (e) => {
+        const enlace = e.target.closest('#enlace-marcox');
+        if (!enlace) return;
+
+        // Permite abrir en pestaña nueva con Ctrl, Cmd o Shift
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+        // Detiene la navegación inmediata
+        e.preventDefault();
+
+        // Evita múltiples clics seguidos
+        if (enlace.dataset.navegando === 'true') return;
+        enlace.dataset.navegando = 'true';
+
+        // 1. Mantiene fijo el cambio de opacidad en todo el enlace
+        enlace.classList.add('activado');
+
+        enlace.querySelectorAll('img').forEach((img) => {
+        img.classList.add('agrandado');
+        });
+
+        // Espera 3 segundos antes de ir al enlace
+        setTimeout(() => {
+        window.location.href = enlace.href;
+        }, 3000);
+    });
     </script>
 </body>
 </html>
